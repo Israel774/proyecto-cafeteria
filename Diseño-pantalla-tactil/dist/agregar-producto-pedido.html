@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar Producto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-purple-500 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-cyan-500 rounded-2xl shadow-lg max-w-3xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+        
+        <!-- Imagen del producto -->
+        <div class="bg-gray-200 flex items-center justify-center p-4">
+        <img src="assets/img/hamburguesa.jpg" alt="Producto" class="max-h-80 object-contain">
+        </div>
+
+        <!-- Información del producto -->
+        <div class="p-6 flex flex-col justify-between space-y-4">
+        <div>
+            <h2 class="text-2xl font-bold mb-2">Jugo de naranja 🍺</h2>
+            <p class="text-gray-700">Refresco de naranja natural</p>
+            <p class="text-xl font-semibold mt-4 text-black-700">Precio: Q6.30</p>
+        </div>
+
+        <!-- Controles de cantidad -->
+        <div class="flex items-center space-x-4 mt-4">
+            <span class="text-gray-700 font-medium">Cantidad:</span>
+            <button class="bg-gray-300 hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">-</button>
+            <span class="text-xl font-semibold">1</span>
+            <button class="bg-gray-300 hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">+</button>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-6">
+            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg text-lg font-semibold">
+            Agregar al pedido
+            </button>
+            <button class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg text-lg font-semibold">
+            Cancelar
+            </button>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>
