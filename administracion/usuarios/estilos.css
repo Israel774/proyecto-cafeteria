@@ -1,0 +1,82 @@
+ .corner-image {
+ position: fixed;
+ bottom: 10px;
+            right: 10px;
+            width: 80px;
+            height: auto;
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 0 5px #0000004d;
+        }
+ .btn-xs {
+        padding: 2px 6px;
+        font-size: 0.75rem;
+        line-height: 1;
+        border-radius: 3px;
+    }
+.cont{
+    margin: 5%;
+ 
+ }
+ .cuadro{
+   border: 6px solid #3a37f8b7;
+    margin: 5px ;
+    height: 50px;
+    width: 20%;
+    float: left;
+ }
+ .n1{
+   border: 6px;
+   margin: 5px ;
+   height: 50%;
+   width: 50%;
+   float: left;
+ }
+ .luz{
+   border: 6px  ;
+   margin: 5px ;
+   height: 100%;
+   width: 45%;
+   float: left;
+ }
+ .base{
+
+   margin: 30%;
+ }
+ 
+ .portfolio-item {
+   font-family: 'Playfair Display', serif;
+   font-weight: 50px; 
+   font-size: 25px; 
+   
+}
+.btn{
+font-family: 'Playfair Display', serif;
+   font-weight: 50px; 
+   font-size: 25px; 
+}
+.masthead{
+   font-family: 'Playfair Display', serif;
+      font-weight: 50px; 
+      font-size: 25px; 
+   }
+.col{
+   font-family: 'Playfair Display', serif;
+      font-weight: 50px; 
+      font-size: 25px; 
+}
+.perro{
+   margin: 45%;
+   width: 10px;
+   height: 10px;
+}
+.container1{
+   border: 8px ;
+    margin: 2%;
+height: 500px;
+}
+.container2{
+   border: 8px ;
+    margin: 2%;
+height: 1000px;
+}
