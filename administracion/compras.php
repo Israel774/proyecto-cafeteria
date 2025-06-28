@@ -91,7 +91,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Productos registrados
               </a>
-               <a class="nav-link active" href="compras.html">
+               <a class="nav-link active" href="compras.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Compras
               </a>
@@ -145,17 +145,20 @@
                     <div class="col-md-6">
                       <label for="proveedor" class="form-label"
                         >Proveedor</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        class="form-control"
+                      <select
+                        class="form-select"
                         id="proveedor"
-                        name="proveedor"
+                        name="Proveedor"
                         required
-                      />
+                      >
+                        <option value="">Seleccionar Proveedor</option>
+                        <option value="">Juan Pérez</option>
+                        <option value="">Maria López</option>
+                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                      </select>
                     </div>
                   </div>
-
+                  <div class="row mb-3">
                     <div class="col-md-6">
                       <label for="metodo_de_pago" class="form-label"
                         >Metodo de Pago</label
@@ -167,42 +170,28 @@
                         required
                       >
                         <option value="">Efectivo</option>
-                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                       <option value="">Tarjeta</option>
                       </select>
                     </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <div class="col-md-6">
+                  
+                   <div class="col-md-6">
                       <label for="tipo" class="form-label"
                         >Total Compra</label
                       >
                       <input
-                        type="text"
+                        type="number"
+                        step="0.01"
                         class="form-control"
                         id="tipo"
                         name="total_compra"
                         required
                       />
                     </div>
-                    <div class="col-md-6">
-                      <label for="Estado" class="form-label"
-                        >Metodo de Pago</label
-                      >
-                      <select
-                        class="form-select"
-                        id="estado"
-                        name="estado"
-                        required
-                      >
-                        <option value="">Activo</option>
-                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
-                      </select>
-                    </div>
                   </div>
 
-                  <div class="mb-3">
-                    <label for="descripcion" class="form-label"
+                  <div class="row mb-3">
+                
+                     <label for="descripcion" class="form-label"
                       >Observaciones</label
                     >
                     <textarea
@@ -214,14 +203,21 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="img" class="form-label">Imagen</label>
-                    <input
-                      type="file"
-                      class="form-control"
-                      id="img"
-                      name="img"
-                      accept="image/*"
-                    />
+                    <div class="col-md-6">
+                      <label for="Estado" class="form-label"
+                        >Estado</label
+                      >
+                      <select
+                        class="form-select"
+                        id="estado"
+                        name="estado"
+                        required
+                      >
+                        <option value="">Proceso</option>
+                        <option value="">Completado</option>
+                      
+                      </select>
+                    </div>
                   </div>
 
                   <!-- Campos ocultos o manejados por el sistema -->

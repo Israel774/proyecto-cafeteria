@@ -66,7 +66,7 @@
                             Productos registrados
                         </a>
 
-                        <a class="nav-link" href="compras.html">
+                        <a class="nav-link" href="compras.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                             Compras
                         </a>

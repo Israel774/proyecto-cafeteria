@@ -75,7 +75,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                             Recargar Saldo
                         </a>
-                      <a class="nav-link" href="proveedor.php">
+                           <a class="nav-link" href="proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Registro de Proveedor
               </a>
@@ -113,77 +113,71 @@
                     </div>
                     <!-- CONTENIDO -->
 
-                    <main>
-                        <div class="container-fluid px-4">
-                            <h1 class="mt-4"></h1>
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fa-solid fa-cash-register"></i>
-                                    Recargar Saldo
-                                </div>
-                                <div class="card-body">
-                                    <form id="formProducto">
-                                        <div class="row mb-3">
-                                            <div class="mb-3">
-                                                <label for="tipo" class="form-label">Codigo de Barras</label>
-                                                <input type="text" class="form-control" id="tipo" name="tipo_producto"
-                                                    required />
-                                            </div>
+                   
+                    <CENter><h3 class="mb-0">Registro Proveedor</h3><br></CENter>
+              
+              
+                <div class="encabezado1">
+                  <form class="row g-3 needs-validation" method = "POST" action="create.php">
+                      <div class="col-md-4">
+                          <label for="validationCustom01" class="form-label">Nombre</label>
+                          <input type="text" class="form-control" name ="Nombre" required>
+                      </div>
+                      <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">Direccion</label>
+                          <input type="text" class="form-control" name ="Direccion" required>
+                      </div>
+                       <div class="col-md-4">
+                          <label for="validationCustom01" class="form-label">Tipo_producto</label>
+                          <input type="text" class="form-control" name ="Tipo_Producto" required>
+                      </div>
+                      <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">Numero Telefono de Oficina </label>
+                          <input type="number" class="form-control" name="Notelef_ficina" required>
+                      </div>
+                       <div class="col-md-4">
+                          <label for="validationCustom01" class="form-label"> Nombre de repartidor</label>
+                          <input type="text" class="form-control" name ="Nombre_De_Repartidor" required>
+                      </div>
+                       <div class="col-md-4">
+                         <center> <label for="validationCustom03" class="form-label">Numero de telefono repartidor </label></center>
+                          <input type="number" class="form-control" name="Notelef_Repartidor" required>
+                      </div>
+                       <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">tipo_de_pago </label>
+                          <input type="text" class="form-control" name="Tipo_De_Pago" required>
+                      </div>
+                      <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">NitProveedor</label>
+                          <input type="number" class="form-control" name="NitProveedor" required>
+                      </div>
+                      
+                       
+                     
 
+                      
+                      
+                      <!-- 
+                      <div class="col-md-6">
+                          <label for="validationCustom03" class="form-label">FechaDeNacimiento</label>
+                          <input type="date" class="form-control" name="FechaDeNacimiento" required>
+                      </div>-->
+                      <br>
+                      <div class="col-12 text-center mt-3">
+                      <button class="btn btn-primary" type="submit">Registrar</button>
+               
+               
+            </div>
+                      
+                      <div class="col-12">    
+                          
+                      </div>
+                  </form>
+                  <br><br><br><br>
+                  
 
-
-                                            <div class="col-md-6">
-                                                <label for="nombre" class="form-label">Saldo anterior</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre"
-                                                    disabled />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="precio" class="form-label">Saldo total</label>
-                                                <input type="number" step="0.01" class="form-control" id="precio"
-                                                    name="precio" disabled />
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="tipo" class="form-label">Saldo a Recargar</label>
-                                            <input type="text" class="form-control" id="tipo" name="tipo_producto"
-                                                required />
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="proveedor" class="form-label">Metodo de Pago</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
-                                                    <option value="">Efectivo</option>
-                                                    <option value="">Tarjeta</option>
-                                                    <!-- Aquí puedes cargar los proveedores desde base de datos -->
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="proveedor" class="form-label">¿Necesita Recibo?</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
-                                                    <option value="">No</option>
-                                                    <option value="">Si</option>
-                                                    <!-- Aquí puedes cargar los proveedores desde base de datos -->
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- Campos ocultos o manejados por el sistema -->
-                                        <input type="hidden" name="create_by" value="usuario_actual" />
-                                        <input type="hidden" name="update_by" value="usuario_actual" />
-                                        <input type="hidden" name="create_at" value="" />
-                                        <input type="hidden" name="update_at" value="" />
-
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <button type="reset" class="btn btn-secondary">
-                                            Limpiar
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
+          
+              </div>
                     <!-- FIN CONTENIDO -->
                 </div>
             </main>
@@ -210,6 +204,44 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 
 </html>
