@@ -54,33 +54,45 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menú</div>
 
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-plus-circle"></i>
-                            </div>
-                            Registro de productos
-                        </a>
+                       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
+              aria-expanded="false" aria-controls="collapseUsuarios">
+              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+              Usuarios
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="usuarios/registrar.php">Registrar Usuario</a>
+                <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
+              </nav>
+            </div>
+            <a class="nav-link active" href="index.html">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-plus-circle"></i>
+                </div>
+                Registro de productos
+              </a>
 
-                        <a class="nav-link" href="productos_registrados.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                            Productos registrados
-                        </a>
+              <a class="nav-link" href="productos_registrados.html">
+                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                Productos registrados
+              </a>
+               <a class="nav-link" href="compras.php">
+                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                Compras Productos
+              </a>
 
-                        <a class="nav-link" href="compras.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                            Compras
-                        </a>
-
-                        <a class="nav-link active" href="recarga.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                            Recargar Saldo
-                        </a>
-                      <a class="nav-link" href="proveedor.php">
+               <a class="nav-link" href="recarga.php">
+                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                Recargar Saldo
+              </a>
+               <a class="nav-link" href="proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Registro de Proveedor
               </a>
 
-               <a class="nav-link" href="listado_proveedor.php">
+                 <a class="nav-link" href="listado_proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 listado de Proveedor
               </a>
@@ -88,10 +100,6 @@
                     </div>
                 </div>
 
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Productos
-                </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
