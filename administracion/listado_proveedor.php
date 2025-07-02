@@ -147,7 +147,7 @@
                 <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
               </nav>
             </div>
-            <a class="nav-link active" href="index.html">
+            <a class="nav-link" href="index.html">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-plus-circle"></i>
                 </div>
@@ -172,7 +172,7 @@
                 Registro de Proveedor
               </a>
 
-                 <a class="nav-link" href="listado_proveedor.php">
+                 <a class="nav-link active" href="listado_proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 listado de Proveedor
               </a>

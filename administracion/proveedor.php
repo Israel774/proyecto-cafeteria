@@ -67,7 +67,7 @@
                 <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
               </nav>
             </div>
-            <a class="nav-link active" href="index.html">
+            <a class="nav-link" href="index.html">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-plus-circle"></i>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Recargar Saldo
               </a>
-               <a class="nav-link" href="proveedor.php">
+               <a class="nav-link active" href="proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Registro de Proveedor
               </a>

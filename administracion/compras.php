@@ -104,7 +104,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Productos registrados
               </a>
-               <a class="nav-link" href="compras.php">
+               <a class="nav-link active" href="compras.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Compras Productos
               </a>
