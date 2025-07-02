@@ -114,7 +114,7 @@ $respuesta = mysqli_query($conn , $sql);
             <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios"
               data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="registrar.php">Registrar Usuario</a>
+                <a class="nav-link active" href="registrar.php">Registrar Usuario</a>
                 <a class="nav-link" href="registro.php">Lista de Usuarios</a>
               </nav>
             </div>
