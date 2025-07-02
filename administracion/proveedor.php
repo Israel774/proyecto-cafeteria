@@ -54,7 +54,7 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menú</div>
 
-                       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
               aria-expanded="false" aria-controls="collapseUsuarios">
               <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
               Usuarios
@@ -121,77 +121,71 @@
                     </div>
                     <!-- CONTENIDO -->
 
-                    <main>
-                        <div class="container-fluid px-4">
-                            <h1 class="mt-4"></h1>
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fa-solid fa-cash-register"></i>
-                                    Recargar Saldo
-                                </div>
-                                <div class="card-body">
-                                    <form id="formProducto">
-                                        <div class="row mb-3">
-                                            <div class="mb-3">
-                                                <label for="tipo" class="form-label">Codigo de Barras</label>
-                                                <input type="text" class="form-control" id="tipo" name="tipo_producto"
-                                                    required />
-                                            </div>
+                   
+                    <CENter><h3 class="mb-0">Registro Proveedor</h3><br></CENter>
+              
+              
+                <div class="encabezado1">
+                  <form class="row g-3 needs-validation" method = "POST" action="create.php">
+                      <div class="col-md-4">
+                          <label for="validationCustom01" class="form-label">Nombre</label>
+                          <input type="text" class="form-control" name ="Nombre" required>
+                      </div>
+                      <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">Direccion</label>
+                          <input type="text" class="form-control" name ="Direccion" required>
+                      </div>
+                       <div class="col-md-4">
+                          <label for="validationCustom01" class="form-label">Tipo_producto</label>
+                          <input type="text" class="form-control" name ="Tipo_Producto" required>
+                      </div>
+                      <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">Numero Telefono de Oficina </label>
+                          <input type="number" class="form-control" name="Notelef_ficina" required>
+                      </div>
+                       <div class="col-md-4">
+                          <label for="validationCustom01" class="form-label"> Nombre de repartidor</label>
+                          <input type="text" class="form-control" name ="Nombre_De_Repartidor" required>
+                      </div>
+                       <div class="col-md-4">
+                         <center> <label for="validationCustom03" class="form-label">Numero de telefono repartidor </label></center>
+                          <input type="number" class="form-control" name="Notelef_Repartidor" required>
+                      </div>
+                       <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">tipo_de_pago </label>
+                          <input type="text" class="form-control" name="Tipo_De_Pago" required>
+                      </div>
+                      <div class="col-md-4">
+                          <label for="validationCustom03" class="form-label">NitProveedor</label>
+                          <input type="number" class="form-control" name="NitProveedor" required>
+                      </div>
+                      
+                       
+                     
 
+                      
+                      
+                      <!-- 
+                      <div class="col-md-6">
+                          <label for="validationCustom03" class="form-label">FechaDeNacimiento</label>
+                          <input type="date" class="form-control" name="FechaDeNacimiento" required>
+                      </div>-->
+                      <br>
+                      <div class="col-12 text-center mt-3">
+                      <button class="btn btn-primary" type="submit">Registrar</button>
+               
+               
+            </div>
+                      
+                      <div class="col-12">    
+                          
+                      </div>
+                  </form>
+                  <br><br><br><br>
+                  
 
-
-                                            <div class="col-md-6">
-                                                <label for="nombre" class="form-label">Saldo anterior</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre"
-                                                    disabled />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="precio" class="form-label">Saldo total</label>
-                                                <input type="number" step="0.01" class="form-control" id="precio"
-                                                    name="precio" disabled />
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="tipo" class="form-label">Saldo a Recargar</label>
-                                            <input type="text" class="form-control" id="tipo" name="tipo_producto"
-                                                required />
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="proveedor" class="form-label">Metodo de Pago</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
-                                                    <option value="">Efectivo</option>
-                                                    <option value="">Tarjeta</option>
-                                                    <!-- Aquí puedes cargar los proveedores desde base de datos -->
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="proveedor" class="form-label">¿Necesita Recibo?</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
-                                                    <option value="">No</option>
-                                                    <option value="">Si</option>
-                                                    <!-- Aquí puedes cargar los proveedores desde base de datos -->
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- Campos ocultos o manejados por el sistema -->
-                                        <input type="hidden" name="create_by" value="usuario_actual" />
-                                        <input type="hidden" name="update_by" value="usuario_actual" />
-                                        <input type="hidden" name="create_at" value="" />
-                                        <input type="hidden" name="update_at" value="" />
-
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <button type="reset" class="btn btn-secondary">
-                                            Limpiar
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
+          
+              </div>
                     <!-- FIN CONTENIDO -->
                 </div>
             </main>

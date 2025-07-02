@@ -44,10 +44,10 @@ $row = mysqli_fetch_array($r);
                         <input type="text" class="form-control" name="apellido" id="apellido" value="<?= $row['apellido'] ?>" required>
                     </div>
 
-                    <!-- CAMPO DE MODIFICACIÓN GENERADO AUTOMÁTICAMENTE -->
+                    
                     <div class="col-md-6">
                         <label class="form-label">Modificación</label>
-                        <input type="text" class="form-control" name="modificacion" id="modificacion" readonly>
+                        <input type="text" class="form-control" name="modificacion" id="modificacion" required>
                     </div>
 
                     <div class="col-md-6">

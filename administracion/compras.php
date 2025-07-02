@@ -80,7 +80,20 @@
             <div class="nav">
               <div class="sb-sidenav-menu-heading">Menú</div>
 
-              <a class="nav-link" href="index.html">
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
+              aria-expanded="false" aria-controls="collapseUsuarios">
+              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+              Usuarios
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="usuarios/registrar.php">Registrar Usuario</a>
+                <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
+              </nav>
+            </div>
+            <a class="nav-link " href="index.html">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-plus-circle"></i>
                 </div>
@@ -91,15 +104,25 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Productos registrados
               </a>
-               <a class="nav-link active" href="compras.html">
+               <a class="nav-link" href="compras.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Compras
+                Compras Productos
               </a>
 
                <a class="nav-link" href="recarga.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Recargar Saldo
               </a>
+               <a class="nav-link" href="proveedor.php">
+                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                Registro de Proveedor
+              </a>
+
+                 <a class="nav-link" href="listado_proveedor.php">
+                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                listado de Proveedor
+              </a>
+
             </div>
           </div>
 
@@ -123,76 +146,65 @@
                 <form id="formProducto">
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="nombre" class="form-label">Encargado</label>
+                      <label for="encargado" class="form-label">Encargado</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="nombreC"
-                        name="nombreC"
+                        id="encargado"
+                        name="encargado"
                         required
                       />
                     </div>
                     <div class="col-md-6">
                       <label for="proveedor" class="form-label"
                         >Proveedor</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        class="form-control"
+                      <select
+                        class="form-select"
                         id="proveedor"
                         name="proveedor"
                         required
-                      />
+                      >
+                        <option value="">Seleccionar Proveedor</option>
+                        <option value="">Juan Pérez</option>
+                        <option value="">Maria López</option>
+                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                      </select>
                     </div>
                   </div>
-
+                  <div class="row mb-3">
                     <div class="col-md-6">
                       <label for="metodo_de_pago" class="form-label"
                         >Metodo de Pago</label
                       >
                       <select
                         class="form-select"
-                        id="Metodo de Pago"
-                        name="Metodo de Pago"
+                        id="metodo_de_pago"
+                        name="metodo_de_pago"
                         required
                       >
                         <option value="">Efectivo</option>
-                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                       <option value="">Tarjeta</option>
                       </select>
                     </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <div class="col-md-6">
-                      <label for="tipo" class="form-label"
+                  
+                   <div class="col-md-6">
+                      <label for="total_compra" class="form-label"
                         >Total Compra</label
                       >
                       <input
-                        type="text"
+                        type="number"
+                        step="0.01"
                         class="form-control"
-                        id="tipo"
+                        id="total_compra"
                         name="total_compra"
                         required
                       />
                     </div>
-                    <div class="col-md-6">
-                      <label for="Estado" class="form-label"
-                        >Metodo de Pago</label
-                      >
-                      <select
-                        class="form-select"
-                        id="estado"
-                        name="estado"
-                        required
-                      >
-                        <option value="">Activo</option>
-                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
-                      </select>
-                    </div>
                   </div>
 
-                  <div class="mb-3">
-                    <label for="descripcion" class="form-label"
+                  <div class="row mb-3">
+                
+                     <label for="observaciones" class="form-label"
                       >Observaciones</label
                     >
                     <textarea
@@ -204,14 +216,21 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="img" class="form-label">Imagen</label>
-                    <input
-                      type="file"
-                      class="form-control"
-                      id="img"
-                      name="img"
-                      accept="image/*"
-                    />
+                    <div class="col-md-6">
+                      <label for="estado" class="form-label"
+                        >Estado</label
+                      >
+                      <select
+                        class="form-select"
+                        id="estado"
+                        name="estado"
+                        required
+                      >
+                        <option value="">Proceso</option>
+                        <option value="">Completado</option>
+                      
+                      </select>
+                    </div>
                   </div>
 
                   <!-- Campos ocultos o manejados por el sistema -->
