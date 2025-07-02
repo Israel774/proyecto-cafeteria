@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    
 </head>
  
 <body class="sb-nav-fixed">
@@ -73,7 +74,7 @@
                 </div>
                 Registro de productos
               </a>
-
+            
               <a class="nav-link" href="productos_registrados.html">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Productos registrados
@@ -83,10 +84,24 @@
                 Compras Productos
               </a>
 
-               <a class="nav-link active" href="recarga.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Recargar Saldo
-              </a>
+               <!-- Inicio de Pestaña de recarga-->
+                <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecarge"
+              aria-expanded="false" aria-controls="collapseRecarge">
+              <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
+              Recargar
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <!-- Inicio del menu seleccionable -->
+            <div class="collapse" id="collapseRecarge" aria-labelledby="headingRecarge"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link active" href="recarga.php">Recargar Saldo</a><!-- Pagina para recargar saldos-->
+                <a class="nav-link" href="list.php">Lista de Recargas</a> <!-- Pagina para ver las recargas hechas a los usuarios-->
+              </nav>
+              <!-- Fin del menu seleccionable -->
+            </div>
+               <!-- Fin de Pestaña de recarga-->
+
                <a class="nav-link" href="proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Registro de Proveedor
@@ -119,7 +134,7 @@
 
 
                     </div>
-                    <!-- CONTENIDO -->
+                    <!-- ***************************************CONTENIDO************************************************ -->
 
                     <main>
                         <div class="container-fluid px-4">
@@ -127,49 +142,52 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fa-solid fa-cash-register"></i>
-                                    Recargar Saldo
+                                    Recargar Saldo <!-- Titulo principal-->
                                 </div>
                                 <div class="card-body">
                                     <form id="formProducto">
                                         <div class="row mb-3">
+                                            <!-- Label para codigo de barras -->
                                             <div class="mb-3">
                                                 <label for="tipo" class="form-label">Codigo de Barras</label>
-                                                <input type="text" class="form-control" id="tipo" name="tipo_producto"
+                                                <input type="text" class="form-control" id="barras" name="barras"
                                                     required />
                                             </div>
-
-
-
+                                            <!-- Label bloqueado para mostrar saldo antes de la recarga -->
                                             <div class="col-md-6">
                                                 <label for="nombre" class="form-label">Saldo anterior</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                                <input type="text" class="form-control" id="salanterior" name="salanterior"
                                                     disabled />
                                             </div>
+                                            <!-- label para la suma del saldo anterior con el monto a recargar -->
                                             <div class="col-md-6">
                                                 <label for="precio" class="form-label">Saldo total</label>
-                                                <input type="number" step="0.01" class="form-control" id="precio"
-                                                    name="precio" disabled />
+                                                <input type="number" step="0.01" class="form-control" id="saltotal"
+                                                    name="saltotal" disabled />
                                             </div>
                                         </div>
-
+                                            <!-- Label monto del saldo a recargar -->
                                         <div class="mb-3">
                                             <label for="tipo" class="form-label">Saldo a Recargar</label>
-                                            <input type="text" class="form-control" id="tipo" name="tipo_producto"
+                                            <input type="text" class="form-control" id="salrecarga" name="salrecarga"
                                                 required />
                                         </div>
-
+                                            <!-- Label con select de los metodos de pago -->
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <label for="proveedor" class="form-label">Metodo de Pago</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
+                                                <select class="form-select" id="metodoPago" name="metodoPago" required>
                                                     <option value="">Efectivo</option>
                                                     <option value="">Tarjeta</option>
-                                                    <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                                                    
                                                 </select>
                                             </div>
+                                            <!-- Label con select para marcar si necesita recibo -->
+
+
                                             <div class="col-md-6">
                                                 <label for="proveedor" class="form-label">¿Necesita Recibo?</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
+                                                <select class="form-select" id="recibo" name="recibo" required>  <!-- Pendiente a correccion de ID, name y DB -->
                                                     <option value="">No</option>
                                                     <option value="">Si</option>
                                                     <!-- Aquí puedes cargar los proveedores desde base de datos -->
@@ -197,14 +215,6 @@
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
                 </div>
             </footer>
         </div>

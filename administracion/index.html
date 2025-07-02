@@ -83,10 +83,22 @@
                 Compras Productos
               </a>
 
-               <a class="nav-link" href="recarga.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Recargar Saldo
-              </a>
+               <!-- Inicio de Pestaña de recarga-->
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecarge"
+              aria-expanded="false" aria-controls="collapseUsuarios">
+              <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
+              Recargar
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseRecarge" aria-labelledby="headingUsuarios"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="recarga.php">Recargar Saldo</a><!-- Pagina para recargar saldos-->
+                <a class="nav-link" href="list.php">Lista de Recargas</a> <!-- Pagina para ver las recargas hechas a los usuarios-->
+              </nav>
+            </div>
+               <!-- Fin de Pestaña de recarga-->
+
                <a class="nav-link" href="proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Registro de Proveedor

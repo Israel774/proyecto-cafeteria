@@ -11,8 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    
 </head>
-
+ 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -54,7 +55,7 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menú</div>
 
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
+                       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
               aria-expanded="false" aria-controls="collapseUsuarios">
               <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
               Usuarios
@@ -73,7 +74,7 @@
                 </div>
                 Registro de productos
               </a>
-
+            
               <a class="nav-link" href="productos_registrados.html">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Productos registrados
@@ -83,23 +84,25 @@
                 Compras Productos
               </a>
 
-              <!-- Inicio de Pestaña de recarga-->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecarge"
-              aria-expanded="false" aria-controls="collapseUsuarios">
+               <!-- Inicio de Pestaña de recarga-->
+                <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecarge"
+              aria-expanded="false" aria-controls="collapseRecarge">
               <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
               Recargar
               <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <div class="collapse" id="collapseRecarge" aria-labelledby="headingUsuarios"
+            <!-- Inicio del menu seleccionable -->
+            <div class="collapse" id="collapseRecarge" aria-labelledby="headingRecarge"
               data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
                 <a class="nav-link" href="recarga.php">Recargar Saldo</a><!-- Pagina para recargar saldos-->
-                <a class="nav-link" href="list.php">Lista de Recargas</a> <!-- Pagina para ver las recargas hechas a los usuarios-->
+                <a class="nav-link active" href="list.php">Lista de Recargas</a> <!-- Pagina para ver las recargas hechas a los usuarios-->
               </nav>
+              <!-- Fin del menu seleccionable -->
             </div>
                <!-- Fin de Pestaña de recarga-->
-                
-               <a class="nav-link active" href="proveedor.php">
+
+               <a class="nav-link" href="proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Registro de Proveedor
               </a>
@@ -131,86 +134,14 @@
 
 
                     </div>
-                    <!-- CONTENIDO -->
+                    <!-- ***************************************CONTENIDO************************************************ -->
 
                    
-                    <CENter><h3 class="mb-0">Registro Proveedor</h3><br></CENter>
-              
-              
-                <div class="encabezado1">
-                  <form class="row g-3 needs-validation" method = "POST" action="create.php">
-                      <div class="col-md-4">
-                          <label for="validationCustom01" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" name ="Nombre" required>
-                      </div>
-                      <div class="col-md-4">
-                          <label for="validationCustom03" class="form-label">Direccion</label>
-                          <input type="text" class="form-control" name ="Direccion" required>
-                      </div>
-                       <div class="col-md-4">
-                          <label for="validationCustom01" class="form-label">Tipo_producto</label>
-                          <input type="text" class="form-control" name ="Tipo_Producto" required>
-                      </div>
-                      <div class="col-md-4">
-                          <label for="validationCustom03" class="form-label">Numero Telefono de Oficina </label>
-                          <input type="number" class="form-control" name="Notelef_ficina" required>
-                      </div>
-                       <div class="col-md-4">
-                          <label for="validationCustom01" class="form-label"> Nombre de repartidor</label>
-                          <input type="text" class="form-control" name ="Nombre_De_Repartidor" required>
-                      </div>
-                       <div class="col-md-4">
-                         <center> <label for="validationCustom03" class="form-label">Numero de telefono repartidor </label></center>
-                          <input type="number" class="form-control" name="Notelef_Repartidor" required>
-                      </div>
-                       <div class="col-md-4">
-                          <label for="validationCustom03" class="form-label">tipo_de_pago </label>
-                          <input type="text" class="form-control" name="Tipo_De_Pago" required>
-                      </div>
-                      <div class="col-md-4">
-                          <label for="validationCustom03" class="form-label">NitProveedor</label>
-                          <input type="number" class="form-control" name="NitProveedor" required>
-                      </div>
-                      
-                       
-                     
-
-                      
-                      
-                      <!-- 
-                      <div class="col-md-6">
-                          <label for="validationCustom03" class="form-label">FechaDeNacimiento</label>
-                          <input type="date" class="form-control" name="FechaDeNacimiento" required>
-                      </div>-->
-                      <br>
-                      <div class="col-12 text-center mt-3">
-                      <button class="btn btn-primary" type="submit">Registrar</button>
-               
-               
-            </div>
-                      
-                      <div class="col-12">    
-                          
-                      </div>
-                  </form>
-                  <br><br><br><br>
-                  
-
-          
-              </div>
                     <!-- FIN CONTENIDO -->
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
                 </div>
             </footer>
         </div>
