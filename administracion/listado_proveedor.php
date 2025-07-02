@@ -160,7 +160,7 @@
               </a>
                <a class="nav-link" href="compras.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Compras Productos
+                Compra de Productos
               </a>
 
                <a class="nav-link" href="recarga.php">

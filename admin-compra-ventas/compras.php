@@ -106,12 +106,7 @@
               </a>
                <a class="nav-link" href="compras.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Compra de Productos
-              </a>
-
-               <a class="nav-link" href="detalle_compras.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Detalle de Compras
+                Compras Productos
               </a>
 
                <a class="nav-link" href="recarga.php">
@@ -148,7 +143,7 @@
                 Nueva Compra
               </div>
               <div class="card-body">
-                <form id="formProducto" ethod="POST" action="createc.php" >
+                <form id="formProducto">
                   <div class="row mb-3">
                     <div class="col-md-6">
                       <label for="encargado" class="form-label">Encargado</label>
@@ -163,11 +158,17 @@
                     <div class="col-md-6">
                       <label for="proveedor" class="form-label"
                         >Proveedor</label>
-                      <select class="form-select" id="validationCustom04" name = "proveedor">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>Juan Pérez</option>
-                            <option>Maria López</option>
-                          </select>
+                      <select
+                        class="form-select"
+                        id="proveedor"
+                        name="proveedor"
+                        required
+                      >
+                        <option value="">Seleccionar Proveedor</option>
+                        <option value="">Juan Pérez</option>
+                        <option value="">Maria López</option>
+                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                      </select>
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -175,13 +176,16 @@
                       <label for="metodo_de_pago" class="form-label"
                         >Metodo de Pago</label
                       >
-                   <select class="form-select" id="validationCustom04" name = "metodo_de_pago">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>Efectivo</option>
-                            <option>Transferencia</option>
-                          </select>
-
-                      
+                      <select
+                        class="form-select"
+                        id="metodo_de_pago"
+                        name="metodo_de_pago"
+                        required
+                      >
+                       <option value="">Seleccione una Opcion</option>
+                        <option value="">Efectivo</option>
+                       <option value="">Tarjeta</option>
+                      </select>
                     </div>
                   
                    <div class="col-md-6">
@@ -217,11 +221,16 @@
                       <label for="estado" class="form-label"
                         >Estado</label
                       >
-                      <select class="form-select" id="validationCustom04" name = "estado">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>En Proceso</option>
-                            <option>Completado</option>
-                          </select>
+                      <select
+                        class="form-select"
+                        id="estado"
+                        name="estado"
+                        required
+                      >
+                        <option value="">Proceso</option>
+                        <option value="">Completado</option>
+                      
+                      </select>
                     </div>
                   </div>
 
@@ -239,7 +248,7 @@
                   <input type="hidden" name="create_at" value="" />
                   <input type="hidden" name="update_at" value="" />
 
-                  <button type="submit" class="btn btn-primary">Detallar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                   <button type="reset" class="btn btn-secondary">
                     Limpiar
                   </button>

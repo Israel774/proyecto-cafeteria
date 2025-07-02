@@ -109,11 +109,6 @@
                 Compra de Productos
               </a>
 
-               <a class="nav-link" href="detalle_compras.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Detalle de Compras
-              </a>
-
                <a class="nav-link" href="recarga.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Recargar Saldo
