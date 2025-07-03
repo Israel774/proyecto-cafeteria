@@ -11,9 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
+
 </head>
- 
+
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -55,62 +55,64 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menú</div>
 
-                       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
-              aria-expanded="false" aria-controls="collapseUsuarios">
-              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-              Usuarios
-              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios"
-              data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="usuarios/registrar.php">Registrar Usuario</a>
-                <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
-              </nav>
-            </div>
-            <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-plus-circle"></i>
-                </div>
-                Registro de productos
-              </a>
-            
-              <a class="nav-link" href="productos_registrados.html">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Productos registrados
-              </a>
-               <a class="nav-link" href="compras.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                 Compra de Productos
-              </a>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Usuarios
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="usuarios/registrar.php">Registrar Usuario</a>
+                                <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            Registro de productos
+                        </a>
 
-               <!-- Inicio de Pestaña de recarga-->
-                <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecarge"
-              aria-expanded="false" aria-controls="collapseRecarge">
-              <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
-              Recargar
-              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <!-- Inicio del menu seleccionable -->
-            <div class="collapse" id="collapseRecarge" aria-labelledby="headingRecarge"
-              data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link active" href="recarga.php">Recargar Saldo</a><!-- Pagina para recargar saldos-->
-                <a class="nav-link" href="list.php">Lista de Recargas</a> <!-- Pagina para ver las recargas hechas a los usuarios-->
-              </nav>
-              <!-- Fin del menu seleccionable -->
-            </div>
-               <!-- Fin de Pestaña de recarga-->
+                        <a class="nav-link" href="productos_registrados.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                            Productos registrados
+                        </a>
+                        <a class="nav-link" href="compras.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                            Compra de Productos
+                        </a>
 
-               <a class="nav-link" href="proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Registro de Proveedor
-              </a>
+                        <!-- Inicio de Pestaña de recarga-->
+                        <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecarge"
+                            aria-expanded="false" aria-controls="collapseRecarge">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
+                            Recargar
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <!-- Inicio del menu seleccionable -->
+                        <div class="collapse" id="collapseRecarge" aria-labelledby="headingRecarge"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link active" href="recarga.php">Recargar Saldo</a>
+                                <!-- Pagina para recargar saldos-->
+                                <a class="nav-link" href="list.php">Lista de Recargas</a>
+                                <!-- Pagina para ver las recargas hechas a los usuarios-->
+                            </nav>
+                            <!-- Fin del menu seleccionable -->
+                        </div>
+                        <!-- Fin de Pestaña de recarga-->
 
-                 <a class="nav-link" href="listado_proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                listado de Proveedor
-              </a>
+                        <a class="nav-link" href="proveedor.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                            Registro de Proveedor
+                        </a>
+
+                        <a class="nav-link" href="listado_proveedor.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                            listado de Proveedor
+                        </a>
 
                     </div>
                 </div>
@@ -142,44 +144,71 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fa-solid fa-cash-register"></i>
-                                    Recargar Saldo <!-- Titulo principal-->
+                                    Recargar Saldo
+                                    <!-- Titulo principal-->
                                 </div>
                                 <div class="card-body">
-                                    <form id="formProducto">
+                                    <form id="recargaForm" method="POST" action="recargec.php">
                                         <div class="row mb-3">
-                                            <!-- Label para codigo de barras -->
+
+
+
+
+                                            <!-- Campo para ingresar el código de barras -->
                                             <div class="mb-3">
-                                                <label for="tipo" class="form-label">Codigo de Barras</label>
+                                                <label for="barras" class="form-label">Código de Barras</label>
                                                 <input type="text" class="form-control" id="barras" name="barras"
                                                     required />
                                             </div>
+
+                                            <!-- Campos que se llenarán automáticamente -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="nombre" class="form-label">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre"
+                                                        name="nombre" disabled />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="precio" class="form-label">Apellido</label>
+                                                    <input type="text" class="form-control" id="apellido"
+                                                        name="apellido  " disabled />
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
                                             <!-- Label bloqueado para mostrar saldo antes de la recarga -->
                                             <div class="col-md-6">
                                                 <label for="nombre" class="form-label">Saldo anterior</label>
-                                                <input type="text" class="form-control" id="salanterior" name="salanterior"
-                                                    disabled />
+                                                <input type="text" class="form-control" id="salanterior"
+                                                    name="salanterior" disabled /> <!-- disabled -->
                                             </div>
                                             <!-- label para la suma del saldo anterior con el monto a recargar -->
+
                                             <div class="col-md-6">
                                                 <label for="precio" class="form-label">Saldo total</label>
                                                 <input type="number" step="0.01" class="form-control" id="saltotal"
-                                                    name="saltotal" disabled />
+                                                    name="saltotal" disabled /> <!-- disabled -->
                                             </div>
                                         </div>
-                                            <!-- Label monto del saldo a recargar -->
+                                        <!-- Label monto del saldo a recargar -->
                                         <div class="mb-3">
                                             <label for="tipo" class="form-label">Saldo a Recargar</label>
                                             <input type="text" class="form-control" id="salrecarga" name="salrecarga"
                                                 required />
                                         </div>
-                                            <!-- Label con select de los metodos de pago -->
+                                        <!-- Label con select de los metodos de pago -->
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <label for="proveedor" class="form-label">Metodo de Pago</label>
                                                 <select class="form-select" id="metodoPago" name="metodoPago" required>
-                                                    <option value="">Efectivo</option>
-                                                    <option value="">Tarjeta</option>
-                                                    
+                                                    <option value="Efectivo">Efectivo</option>
+                                                    <option value="Tarjeta">Tarjeta</option>
+
                                                 </select>
                                             </div>
                                             <!-- Label con select para marcar si necesita recibo -->
@@ -187,9 +216,10 @@
 
                                             <div class="col-md-6">
                                                 <label for="proveedor" class="form-label">¿Necesita Recibo?</label>
-                                                <select class="form-select" id="recibo" name="recibo" required>  <!-- Pendiente a correccion de ID, name y DB -->
-                                                    <option value="">No</option>
-                                                    <option value="">Si</option>
+                                                <select class="form-select" id="FK_recibo" name="FK_recibo" required>
+                                                    <!-- Pendiente a correccion de ID, name y DB -->
+                                                    <option value="0">No</option>
+                                                    <option value="1">Si</option>
                                                     <!-- Aquí puedes cargar los proveedores desde base de datos -->
                                                 </select>
                                             </div>

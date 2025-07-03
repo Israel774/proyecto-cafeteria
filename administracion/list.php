@@ -135,6 +135,62 @@
 
                     </div>
                     <!-- ***************************************CONTENIDO************************************************ -->
+                     <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4 text-center">Registro de Recargas</h1>
+                    <div class="sama">
+                        <div>
+                            <table class="table table-bordered table-striped table-hover text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Saldo Anterior</th>
+                                        <th>Saldo Recargado</th>
+                                        <th>Saldo Total</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Sergio</td>
+                                        <td>Chitop</td>
+                                        <td>20</td>
+                                        <td>30</td>
+                                        <td>50</td>                                         
+                                        <td>
+                                            <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="button" class="btn btn-outline-warning"><i class="fa-solid fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-outline-info"><i class="fa-solid fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <!-- Puedes agregar más filas de ejemplo aquí -->
+                                </tbody>
+                            </table>
+                            <a href="index.php" class="btn btn-secondary mt-3">Inicio</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                    
                     <!-- FIN CONTENIDO -->
