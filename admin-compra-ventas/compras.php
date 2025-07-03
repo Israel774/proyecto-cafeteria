@@ -80,7 +80,7 @@
             <div class="nav">
               <div class="sb-sidenav-menu-heading">Menú</div>
 
-              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
               aria-expanded="false" aria-controls="collapseUsuarios">
               <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
               Usuarios
@@ -93,38 +93,26 @@
                 <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
               </nav>
             </div>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link " href="index.html">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-plus-circle"></i>
                 </div>
                 Registro de productos
               </a>
 
-              <a class="nav-link active" href="productos_registrados.html">
+              <a class="nav-link" href="productos_registrados.html">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Productos registrados
               </a>
                <a class="nav-link" href="compras.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                 Compra de Productos
+                Compras Productos
               </a>
 
-                <!-- Inicio de Pestaña de recarga-->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecarge"
-              aria-expanded="false" aria-controls="collapseUsuarios">
-              <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
-              Recargar
-              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <div class="collapse" id="collapseRecarge" aria-labelledby="headingUsuarios"
-              data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="recarga.php">Recargar Saldo</a><!-- Pagina para recargar saldos-->
-                <a class="nav-link" href="list.php">Lista de Recargas</a> <!-- Pagina para ver las recargas hechas a los usuarios-->
-              </nav>
-            </div>
-               <!-- Fin de Pestaña de recarga-->
-
+               <a class="nav-link" href="recarga.php">
+                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                Recargar Saldo
+              </a>
                <a class="nav-link" href="proveedor.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                 Registro de Proveedor
@@ -138,106 +126,139 @@
             </div>
           </div>
 
+          <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            Productos
+          </div>
         </nav>
       </div>
       <div id="layoutSidenav_content">
+        <!-- contenido-->
         <main>
           <div class="container-fluid px-4">
             <h1 class="mt-4"></h1>
-            <!-- parte1-->
-            <div class="row">
-              
-
-              
-            </div>
-            <!-- parte1fin-->
-            <!-- parte2-->
-            <div class="row">
-              
-
-
-            </div>
-            <!-- parte2fin-->
             <div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-coffee me-1"></i>
-        Productos de la Cafetería Escolar
-    </div>
-    <div class="card-body">
-        <table id="datatablesSimple">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio Venta (Q)</th>
-                    <th>Stock</th>
-                    <th>Proveedor</th>
-                    <th>Tipo</th>
-                    <th>Código Barra</th>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Gaseosa Coca-Cola 500ml</td>
-                    <td>Q7.00</td>
-                    <td>50</td>
-                    <td>Coca-Cola Guatemala</td>
-                    <td>Bebida</td>
-                    <td>7501055330006</td>
-                    <td>Bebida gaseosa sabor cola.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Tortilla con frijol y queso</td>
-                    <td>Q5.00</td>
-                    <td>30</td>
-                    <td>Cocina Interna</td>
-                    <td>Comida</td>
-                    <td>456846921463</td>
-                    <td>Tortilla caliente con frijol negro y queso.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Pan dulce</td>
-                    <td>Q3.00</td>
-                    <td>40</td>
-                    <td>Cocina Interna</td>
-                    <td>Snack</td>
-                    <td>6978631785</td>
-                    <td>Pan dulce tradicional guatemalteco.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Café</td>
-                    <td>Q4.00</td>
-                    <td>25</td>
-                    <td>Cocina Interna</td>
-                    <td>Bebida caliente</td>
-                    <td>2546975984</td>
-                    <td>Café preparado con canela y azúcar.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+              <div class="card-header">
+                <i class="fas fa-box-open me-1"></i>
+                Nueva Compra
+              </div>
+              <div class="card-body">
+                <form id="formProducto">
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="encargado" class="form-label">Encargado</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="encargado"
+                        name="encargado"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="proveedor" class="form-label"
+                        >Proveedor</label>
+                      <select
+                        class="form-select"
+                        id="proveedor"
+                        name="proveedor"
+                        required
+                      >
+                        <option value="">Seleccionar Proveedor</option>
+                        <option value="">Juan Pérez</option>
+                        <option value="">Maria López</option>
+                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="metodo_de_pago" class="form-label"
+                        >Metodo de Pago</label
+                      >
+                      <select
+                        class="form-select"
+                        id="metodo_de_pago"
+                        name="metodo_de_pago"
+                        required
+                      >
+                       <option value="">Seleccione una Opcion</option>
+                        <option value="">Efectivo</option>
+                       <option value="">Tarjeta</option>
+                      </select>
+                    </div>
+                  
+                   <div class="col-md-6">
+                      <label for="total_compra" class="form-label"
+                        >Total Compra</label
+                      >
+                      <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        id="total_compra"
+                        name="total_compra"
+                        required
+                      />
+                    </div>
+                  </div>
 
-          </div>
-        </main>
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2023</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
+                  <div class="row mb-3">
+                
+                     <label for="observaciones" class="form-label"
+                      >Observaciones</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="observaciones"
+                      name="observaciones"
+                      rows="3"
+                    ></textarea>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="col-md-6">
+                      <label for="estado" class="form-label"
+                        >Estado</label
+                      >
+                      <select
+                        class="form-select"
+                        id="estado"
+                        name="estado"
+                        required
+                      >
+                        <option value="">Proceso</option>
+                        <option value="">Completado</option>
+                      
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Campos ocultos o manejados por el sistema -->
+                  <input
+                    type="hidden"
+                    name="create_by"
+                    value="usuario_actual"
+                  />
+                  <input
+                    type="hidden"
+                    name="update_by"
+                    value="usuario_actual"
+                  />
+                  <input type="hidden" name="create_at" value="" />
+                  <input type="hidden" name="update_at" value="" />
+
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                  <button type="reset" class="btn btn-secondary">
+                    Limpiar
+                  </button>
+                </form>
               </div>
             </div>
           </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid px-4"></div>
         </footer>
       </div>
     </div>
