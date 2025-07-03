@@ -1,13 +1,6 @@
 <?php
-<<<<<<< HEAD
 include("../../conexion/conexion.php");
-$sql = "SELECT * FROM usuarios";
-=======
-include("conexion.php");
-// Asegúrate de que esta tabla sea 'usuarios' si el listado es de usuarios, o 'estudiantes' si es de estudiantes.
-// Basado en tu HTML, parece que listará 'usuarios'.
-$sql = "SELECT * FROM usuarios"; 
->>>>>>> c3efc19025a990bf7b51100227ccca8999bd4840
+$sql = "SELECT * FROM usuario";
 $respuesta = mysqli_query($conn , $sql); 
 ?>
 
@@ -159,17 +152,17 @@ $respuesta = mysqli_query($conn , $sql);
                                         <td><?php echo $row['telefono']; ?></td>
                                         <td><?php echo $row['tipo']; ?></td> 
                                         <td class="text-center">
-                                            <a href="delete.php?id=<?php echo $row['id']; ?>" title="Borrar Registro">
+                                            <a href="delete.php?id_usuario=<?php echo $row['id_usuario']; ?>" title="Borrar Registro">
                                                 <button type="button" class="btn btn-outline-danger btn-xs">
                                                     <i class="fa-solid fa-trash-can"></i>
                                                 </button>
                                             </a>
-                                            <a href="edit.php?id=<?php echo $row['id']; ?>" title="Editar Registro">
+                                            <a href="edit.php?id_usuario=<?php echo $row['id_usuario']; ?>" title="Editar Registro">
                                                 <button type="button" class="btn btn-outline-warning btn-xs">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </button>
                                             </a>
-                                            <a href="view.php?id=<?php echo $row['id']; ?>" title="Ver Registro">
+                                            <a href="view.php?id_usuario=<?php echo $row['id_usuario']; ?>" title="Ver Registro">
                                                 <button type="button" class="btn btn-outline-success btn-xs">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </button>

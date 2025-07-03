@@ -1,6 +1,6 @@
 <?php
 include("../../conexion/conexion.php");
-$sql = "SELECT * FROM usuarios";
+$sql = "SELECT * FROM usuario";
 $respuesta = mysqli_query($conn , $sql); 
 ?>
 

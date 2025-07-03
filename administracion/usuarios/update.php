@@ -1,6 +1,6 @@
 <?php 
-include("conexion.php");
-$id=$_POST["id"];
+include("../../conexion/conexion.php");
+$id_usuario=$_POST["id_usuario"];
 $nombre=$_POST["nombre"];
 $apellido=$_POST["apellido"];
 $telefono=$_POST["telefono"];
@@ -13,11 +13,11 @@ $contraseña=$_POST["contraseña"];
 $modificacion=$_POST["modificacion"];
 
 
-$sql = "UPDATE usuarios SET nombre ='$nombre', 
+$sql = "UPDATE usuario SET nombre ='$nombre', 
     apellido = '$apellido', telefono = '$telefono', tipo = '$tipo',
      correo = '$correo', estado = '$estado',
      codigobarra='$codigobarra', nickname='$nickname',
-    contraseña = '$contraseña', modificacion = '$modificacion' WHERE id = '$id'";
+    contraseña = '$contraseña', modificacion = '$modificacion' WHERE id_usuario = '$id_usuario'";
 
 $r = mysqli_query($conn, $sql);
 if($r){
