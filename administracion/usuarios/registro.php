@@ -92,7 +92,7 @@ $respuesta = mysqli_query($conn , $sql);
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-plus-circle"></i>
                             </div>
-                            Registro de productos
+                            Registro de productos 
                         </a>
 
                         <a class="nav-link" href="../productos_registrados.html">
