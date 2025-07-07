@@ -8,13 +8,13 @@
 </head>
 <body>
     <div class="vv">
-        <form action="">
+        <form action="verificar.php" method="POST">
             <h1>INICIAR</h1>
             <div class="input-box">
-                <input type="text" placeholder ="Usuario" required>
+                <input type="text" placeholder ="Usuario" name="nickname" required>
             </div>
                <div class="input-box">
-                <input type="password" placeholder ="Contraseña" required>
+                <input type="password" placeholder ="Contraseña" name="pass" required>
             </div>
             <div class="remember-forgot">
             </div>

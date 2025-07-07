@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+// Verifica si el usuario está autenticado y tiene rol con ID 3
+if (!isset($_SESSION['nickname']) || $_SESSION['rol'] != 'Alumno') {
+    header('Location: ../index.php');
+    exit();
+}
+
+// Conectar a la base de datos
+require_once '../conexion/conexion.php'; // Asegúrate de usar la ruta correcta
+
+// Obtener la lista de usuarios
+$sql = "SELECT id_usuario, nickname FROM usuario";
+$result = $conn->query($sql);
+
+$users = [];
+
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $users[] = $row;
+    }
+} else {
+    echo "No se encontraron usuarios.";
+}
+
+// No olvides cerrar la conexión si ya no se necesita más adelante
+$conn->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
