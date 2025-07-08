@@ -14,7 +14,7 @@
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
     />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <script
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
@@ -23,7 +23,7 @@
   <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
-      <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand ps-3" href="../index.php">Inicio</a>
       <!-- Sidebar Toggle-->
       <button
         class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -74,60 +74,7 @@
       </ul>
     </nav>
     <div id="layoutSidenav">
-      <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-          <div class="sb-sidenav-menu">
-            <div class="nav">
-              <div class="sb-sidenav-menu-heading">Menú</div>
-
-              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
-              aria-expanded="false" aria-controls="collapseUsuarios">
-              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-              Usuarios
-              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios"
-              data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="usuarios/registrar.php">Registrar Usuario</a>
-                <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
-              </nav>
-            </div>
-            <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-plus-circle"></i>
-                </div>
-                Registro de productos
-              </a>
-
-              <a class="nav-link active" href="productos_registrados.html">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Productos registrados
-              </a>
-               <a class="nav-link" href="compras.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Compras Productos
-              </a>
-
-               <a class="nav-link" href="recarga.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Recargar Saldo
-              </a>
-               <a class="nav-link" href="proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Registro de Proveedor
-              </a>
-
-                 <a class="nav-link" href="listado_proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                listado de Proveedor
-              </a>
-
-            </div>
-          </div>
-
-        </nav>
-      </div>
+      <?php include '../../conexion/menu.php'; ?>
       <div id="layoutSidenav_content">
         <main>
           <div class="container-fluid px-4">
@@ -233,17 +180,17 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
   </body>
 </html>

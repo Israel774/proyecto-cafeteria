@@ -1,3 +1,8 @@
+ #datatablesSimple thead {
+    background-color: #A3E4D7; /* ¡Cambia este color al que prefieras! */
+    color: #333; 
+}
+
  .corner-image {
  position: fixed;
  bottom: 10px;
@@ -79,4 +84,9 @@ height: 500px;
    border: 8px ;
     margin: 2%;
 height: 1000px;
+}
+/* Ajustar el tamaño del icono de hamburguesa */
+.sb-topnav .btn-link .fa-bars {
+    font-size: 0.7em !important; /* Hazlo más pequeño. Prueba 0.6em o 0.5em si quieres más pequeño aún. */
+    vertical-align: middle; /* Ayuda a que el icono se vea bien centrado verticalmente. */
 }

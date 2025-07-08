@@ -9,14 +9,15 @@
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
 </head>
- 
+
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand ps-3" href="../index.php">Inicio</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
@@ -48,60 +49,7 @@
         </ul>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Menú</div>
-
-                       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
-              aria-expanded="false" aria-controls="collapseUsuarios">
-              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-              Usuarios
-              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios"
-              data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="usuarios/registrar.php">Registrar Usuario</a>
-                <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
-              </nav>
-            </div>
-            <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-plus-circle"></i>
-                </div>
-                Registro de productos
-              </a>
-
-              <a class="nav-link" href="productos_registrados.html">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Productos registrados
-              </a>
-               <a class="nav-link" href="compras.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Compras Productos
-              </a>
-
-               <a class="nav-link active" href="recarga.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Recargar Saldo
-              </a>
-               <a class="nav-link" href="proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Registro de Proveedor
-              </a>
-
-                 <a class="nav-link" href="listado_proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                listado de Proveedor
-              </a>
-
-                    </div>
-                </div>
-
-            </nav>
-        </div>
+        <?php include '../../conexion/menu.php'; ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -119,7 +67,7 @@
 
 
                     </div>
-                    <!-- CONTENIDO -->
+                    <!-- ***************************************CONTENIDO************************************************ -->
 
                     <main>
                         <div class="container-fluid px-4">
@@ -128,50 +76,81 @@
                                 <div class="card-header">
                                     <i class="fa-solid fa-cash-register"></i>
                                     Recargar Saldo
+                                    <!-- Titulo principal-->
                                 </div>
                                 <div class="card-body">
-                                    <form id="formProducto">
+                                    <form id="recargaForm" method="POST" action="recargec.php">
                                         <div class="row mb-3">
+
+
+
+
+                                            <!-- Campo para ingresar el código de barras -->
                                             <div class="mb-3">
-                                                <label for="tipo" class="form-label">Codigo de Barras</label>
-                                                <input type="text" class="form-control" id="tipo" name="tipo_producto"
+                                                <label for="barras" class="form-label">Código de Barras</label>
+                                                <input type="text" class="form-control" id="barras" name="barras"
                                                     required />
                                             </div>
 
+                                            <!-- Campos que se llenarán automáticamente -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="nombre" class="form-label">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre"
+                                                        name="nombre" disabled />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="precio" class="form-label">Apellido</label>
+                                                    <input type="text" class="form-control" id="apellido"
+                                                        name="apellido  " disabled />
+                                                </div>
+                                            </div>
 
 
+
+
+
+
+
+                                            <!-- Label bloqueado para mostrar saldo antes de la recarga -->
                                             <div class="col-md-6">
                                                 <label for="nombre" class="form-label">Saldo anterior</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre"
-                                                    disabled />
+                                                <input type="text" class="form-control" id="salanterior"
+                                                    name="salanterior" disabled /> <!-- disabled -->
                                             </div>
+                                            <!-- label para la suma del saldo anterior con el monto a recargar -->
+
                                             <div class="col-md-6">
                                                 <label for="precio" class="form-label">Saldo total</label>
-                                                <input type="number" step="0.01" class="form-control" id="precio"
-                                                    name="precio" disabled />
+                                                <input type="number" step="0.01" class="form-control" id="saltotal"
+                                                    name="saltotal" disabled /> <!-- disabled -->
                                             </div>
                                         </div>
-
+                                        <!-- Label monto del saldo a recargar -->
                                         <div class="mb-3">
                                             <label for="tipo" class="form-label">Saldo a Recargar</label>
-                                            <input type="text" class="form-control" id="tipo" name="tipo_producto"
+                                            <input type="text" class="form-control" id="salrecarga" name="salrecarga"
                                                 required />
                                         </div>
-
+                                        <!-- Label con select de los metodos de pago -->
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <label for="proveedor" class="form-label">Metodo de Pago</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
-                                                    <option value="">Efectivo</option>
-                                                    <option value="">Tarjeta</option>
-                                                    <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                                                <select class="form-select" id="metodoPago" name="metodoPago" required>
+                                                    <option value="Efectivo">Efectivo</option>
+                                                    <option value="Tarjeta">Tarjeta</option>
+
                                                 </select>
                                             </div>
+                                            <!-- Label con select para marcar si necesita recibo -->
+
+
                                             <div class="col-md-6">
                                                 <label for="proveedor" class="form-label">¿Necesita Recibo?</label>
-                                                <select class="form-select" id="proveedor" name="fk_proveedor" required>
-                                                    <option value="">No</option>
-                                                    <option value="">Si</option>
+                                                <select class="form-select" id="FK_recibo" name="FK_recibo" required>
+                                                    <!-- Pendiente a correccion de ID, name y DB -->
+                                                    <option value="0">No</option>
+                                                    <option value="1">Si</option>
                                                     <!-- Aquí puedes cargar los proveedores desde base de datos -->
                                                 </select>
                                             </div>
@@ -197,27 +176,19 @@
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
                 </div>
             </footer>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php 
-include("conexion.php");
+include("c../../conexion/conexion.php");
 $id = $_GET['id'];
-$sql = "SELECT * FROM usuarios WHERE id = '$id'";
+$sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
 $r = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($r);
 ?>
@@ -44,10 +44,10 @@ $row = mysqli_fetch_array($r);
                         <input type="text" class="form-control" name="apellido" id="apellido" value="<?= $row['apellido'] ?>" required>
                     </div>
 
-                    <!-- CAMPO DE MODIFICACIÓN GENERADO AUTOMÁTICAMENTE -->
+                    
                     <div class="col-md-6">
                         <label class="form-label">Modificación</label>
-                        <input type="text" class="form-control" name="modificacion" id="modificacion" readonly>
+                        <input type="text" class="form-control" name="modificacion" id="modificacion" required>
                     </div>
 
                     <div class="col-md-6">

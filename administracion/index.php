@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "Acceso denegado. Solo los administradores pueden acceder a esta página.";
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +32,7 @@
 <body class="sb-nav-fixed">
   <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand ps-3" href="index.php">Inicio</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
       <i class="fas fa-bars"></i>
@@ -49,10 +65,10 @@
   </nav>
   <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
-      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
-          <div class="nav">
-            <div class="sb-sidenav-menu-heading">Menú</div>
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div class="sb-sidenav-menu-heading">Menú</div>
 
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
               aria-expanded="false" aria-controls="collapseUsuarios">
@@ -67,182 +83,76 @@
                 <a class="nav-link" href="usuarios/registro.php">Lista de Usuarios</a>
               </nav>
             </div>
-            <a class="nav-link active" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-plus-circle"></i>
-                </div>
-                Registro de productos
-              </a>
+            
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProductos"
+              aria-expanded="false" aria-controls="collapseProductos">
+              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+              Productos
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseProductos" aria-labelledby="headingUsuarios"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="productos/registrar-producto.php">Registro de Productos</a>
+                <a class="nav-link" href="productos/productos_registrados.php">Productos Registrados</a>
+              </nav>
+            </div>
 
-              <a class="nav-link" href="productos_registrados.html">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Productos registrados
-              </a>
-               <a class="nav-link" href="compras.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Compras Productos
-              </a>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCompras"
+              aria-expanded="false" aria-controls="collapseCompras">
+              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+              Compras
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseCompras" aria-labelledby="headingUsuarios"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="compras/compras.php">Compra de Productos</a>
+                <a class="nav-link" href="compras/detalle_compras.php">Detalle de compras</a>
+              </nav>
+            </div>
 
-               <a class="nav-link" href="recarga.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Recargar Saldo
-              </a>
-               <a class="nav-link" href="proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                Registro de Proveedor
-              </a>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecargas"
+              aria-expanded="false" aria-controls="collapseRecargas">
+              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+              Recargar
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseRecargas" aria-labelledby="headingUsuarios"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="recarga/recarga.php">Recargar Saldo</a>
+                <a class="nav-link" href="recarga/list.php">Lista de Recargas</a>
+              </nav>
+            </div>
 
-                 <a class="nav-link" href="listado_proveedor.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                listado de Proveedor
-              </a>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProveedores"
+              aria-expanded="false" aria-controls="collapseProveedores">
+              <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+              Proveedores
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseProveedores" aria-labelledby="headingUsuarios"
+              data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="proveedores/proveedor.php">Registro de Proveedores</a>
+                <a class="nav-link" href="proveedores/listado_proveedor.php">Listado de proveedores</a>
+              </nav>
+            </div>
 
+            </div>
           </div>
-        </div>
         </nav>
       </div>
       <div id="layoutSidenav_content">
         <!-- contenido-->
         <main>
-          <div class="container-fluid px-4">
-            <h1 class="mt-4"></h1>
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-box-open me-1"></i>
-                Nuevo Producto
-              </div>
-              <div class="card-body">
-                <form id="formProducto">
-                  <div class="row mb-3">
-                    <div class="col-md-6">
-                      <label for="nombre" class="form-label">Nombre</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="nombre"
-                        name="nombre"
-                        required
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="precio" class="form-label"
-                        >Precio de Venta</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        class="form-control"
-                        id="precio"
-                        name="precio"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <div class="col-md-6">
-                      <label for="stock" class="form-label">Stock</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="stock"
-                        name="stock"
-                        required
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="proveedor" class="form-label"
-                        >Proveedor</label
-                      >
-                      <select
-                        class="form-select"
-                        id="proveedor"
-                        name="fk_proveedor"
-                        required
-                      >
-                        <option value="">Selecciona un proveedor</option>
-                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <div class="col-md-6">
-                      <label for="tipo" class="form-label"
-                        >Tipo de producto</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="tipo"
-                        name="tipo_producto"
-                        required
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="codigo" class="form-label"
-                        >Código de barra</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="codigo"
-                        name="codigo_barra"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="descripcion" class="form-label"
-                      >Descripción</label
-                    >
-                    <textarea
-                      class="form-control"
-                      id="descripcion"
-                      name="descripcion"
-                      rows="3"
-                    ></textarea>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="img" class="form-label">Imagen</label>
-                    <input
-                      type="file"
-                      class="form-control"
-                      id="img"
-                      name="img"
-                      accept="image/*"
-                    />
-                  </div>
-
-                  <!-- Campos ocultos o manejados por el sistema -->
-                  <input
-                    type="hidden"
-                    name="create_by"
-                    value="usuario_actual"
-                  />
-                  <input
-                    type="hidden"
-                    name="update_by"
-                    value="usuario_actual"
-                  />
-                  <input type="hidden" name="create_at" value="" />
-                  <input type="hidden" name="update_at" value="" />
-
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                  <button type="reset" class="btn btn-secondary">
-                    Limpiar
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
+          
         </main>
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4"></div>
         </footer>
       </div>
->>>>>>> 98f7d20406d39427a95f1da4c21b940846e5b3e5
     </div>
     <div id="layoutSidenav_content">
       <!-- contenido-->
