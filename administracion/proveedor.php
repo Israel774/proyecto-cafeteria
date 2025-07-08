@@ -1,3 +1,14 @@
+
+<?php 
+include("../conexion/conexion.php");
+$sql = "SELECT * FROM proveedor";
+$respuesta = mysqli_query($conn, $sql);
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,7 +137,7 @@
               
               
                 <div class="encabezado1">
-                  <form class="row g-3 needs-validation" method = "POST" action="create.php">
+                  <form class="row g-3 needs-validation" method = "POST" action="create_proveedor.php">
                       <div class="col-md-4">
                           <label for="validationCustom01" class="form-label">Nombre</label>
                           <input type="text" class="form-control" name ="Nombre" required>
