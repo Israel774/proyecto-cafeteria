@@ -1,8 +1,9 @@
-
-<?php
-include("../../conexion/conexion.php");
-$sql = "SELECT * FROM proveedor";
-$respuesta = mysqli_query($conn , $sql); 
+<?php 
+   include("../../conexion/conexion.php");
+    $id_proveedor = $_GET['id_proveedor'];
+    $sql = "SELECT * FROM proveedor WHERE id_proveedor = '$id_proveedor'";
+    $r = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($r);
 ?>
 
 
@@ -79,47 +80,63 @@ $respuesta = mysqli_query($conn , $sql);
                     </div>
                     <!-- CONTENIDO -->
 
-                    <div class="sama">
-    <div>
-      <center>  <h1 class="mb-4 text-center">Proveedores Registrados</h1> </center>
-
-        <?php if (mysqli_num_rows($respuesta) > 0): ?>
-        <table class="table table-bordered table-striped table-hover text-center">
-            <thead class="table-dark">
-                <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Numero Telefono de Oficina</th>
-                    <th>Nombre de repartidor</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_assoc($respuesta)): ?>
-                <tr>
-                    <td><?php echo $row['id_proveedor']; ?></td>
-                    <td><?php echo $row['Nombre']; ?></td>
-                    <td><?php echo $row['Notelef_ficina']; ?></td>
-                    <td><?php echo $row['Nombre_De_Repartidor']; ?></td>
-                    <td>
-                    <button type="button" class="btn btn-outline-danger"><a href="borrar.php?id_proveedor=<?php echo $row['id_proveedor'];?>"><i class="fa-solid fa-trash"></i></a></button>
-                     <button type="button" class="btn btn-outline-warning"><a href="edit.php?id=<?php echo $row['id_proveedor'];?>"><i class="fa-solid fa-pencil"></i></a></button>
-                     <button type="button" class="btn btn-outline-info"><a href="ver.php?id_proveedor=<?php echo $row['id_proveedor'];?>"><i class="fa-solid fa-eye"></i></i></a></button>
-                         <!-- <button type="button" class="btn btn-outline-info"><a href="paquete.php?id=<?php echo $row['Id'];?>"><i class="fa-solid fa-cart-plus"></i></i></a></button>-->
-
-
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-        <?php else: ?>
            
-        <?php endif; ?>
 
-        
+
+
+ <div class="content-container">
+    <div class="container">
+        <center><h3 class="mb-4">Detalles del Proveedor</h3></center>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">ID</label>
+                <input type="text" class="form-control" value="<?= $row['id_proveedor'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" value="<?= $row['Nombre'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-control" value="<?= $row['Direccion'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Tipo de Producto</label>
+                <input type="text" class="form-control" value="<?= $row['Tipo_Producto'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Teléfono de Oficina</label>
+                <input type="number" class="form-control" value="<?= $row['Notelef_ficina'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Nombre del Repartidor</label>
+                <input type="text" class="form-control" value="<?= $row['Nombre_De_Repartidor'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Teléfono del Repartidor</label>
+                <input type="number" class="form-control" value="<?= $row['Notelef_Repartidor'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Tipo de Pago</label>
+                <input type="text" class="form-control" value="<?= $row['Tipo_De_Pago'] ?>" disabled>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">NIT del Proveedor</label>
+                <input type="number" class="form-control" value="<?= $row['NitProveedor'] ?>" disabled>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="listado_proveedor.php" class="btn btn-primary">Regresar</a>
+        </div>
     </div>
 </div>
+
+        
+
+
+
+
+
           
                     <!-- FIN CONTENIDO -->
                 </div>
