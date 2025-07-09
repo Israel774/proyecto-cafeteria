@@ -1,8 +1,8 @@
 
-<?php 
-include("../conexion/conexion.php");
-$sql = "SELECT * FROM proveedor";
-$respuesta = mysqli_query($conn, $sql);
+<?php
+include("../../conexion/conexion.php");
+$sql = "SELECT * FROM usuario";
+$respuesta = mysqli_query($conn , $sql); 
 ?>
 
 

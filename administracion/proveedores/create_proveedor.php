@@ -2,7 +2,7 @@
 
 
 <?php
-require "../conexion/conexion.php";
+require "../../conexion/conexion.php";
 
 // Obtener datos del formulario
 $Nombre = $_POST['Nombre'];
