@@ -86,7 +86,7 @@
                 Nuevo Producto
               </div>
               <div class="card-body">
-                <form id="formProducto">
+                <form id="formProducto" enctype="multipart/form-data" action="create_productos.php" method="POST">
                   <div class="row mb-3">
                     <div class="col-md-6">
                       <label for="nombre" class="form-label">Nombre</label>
@@ -184,7 +184,7 @@
                       type="file"
                       class="form-control"
                       id="img"
-                      name="img"
+                      name="imagen"
                       accept="image/*"
                     />
                   </div>
