@@ -1,7 +1,7 @@
-<?php 
-include("../conexion/conexion.php"); 
+<?php
+include("../../conexion/conexion.php");
 $sql = "SELECT * FROM proveedor";
-$respuesta = mysqli_query($conn, $sql);
+$respuesta = mysqli_query($conn , $sql); 
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $respuesta = mysqli_query($conn, $sql);
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
