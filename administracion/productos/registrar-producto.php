@@ -1,3 +1,10 @@
+<?php
+require "../../conexion/conexion.php"; // tu conexión a la BD
+
+$sql = "SELECT id_proveedor, Nombre FROM proveedor";
+$resultado = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -124,17 +131,15 @@
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="proveedor" class="form-label"
-                        >Proveedor</label
-                      >
-                      <select
-                        class="form-select"
-                        id="proveedor"
-                        name="fk_proveedor"
-                        required
-                      >
-                        <option value="">Selecciona un proveedor</option>
-                        <!-- Aquí puedes cargar los proveedores desde base de datos -->
+                      <label for="proveedor" class="form-label">Proveedor</label>
+                      <select class="form-select" id="proveedor" name="fk_proveedor" required>
+                        <option value="" disabled selected>Selecciona un proveedor</option>
+
+                        <?php while ($fila = $resultado->fetch_assoc()) { ?>
+                          <option value="<?php echo $fila['id_proveedor']; ?>">
+                            <?php echo $fila['Nombre']; ?>
+                          </option>
+                        <?php } ?>
                       </select>
                     </div>
                   </div>

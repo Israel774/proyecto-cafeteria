@@ -1,5 +1,5 @@
 <?php
-require "conexion.php";
+require "../../conexion/conexion.php";
 
 // Recibir los datos del formulario (campos de texto, número, etc.)
 $nombre = $_POST['nombre'];
@@ -20,7 +20,7 @@ $fecha_actual = date("Ymd_His");
 $nuevo_nombre_imagen = "img_" . $fecha_actual . "." . $extension;
 
 // Ruta donde se guardará la imagen
-$destino = "imagenes/" . $nuevo_nombre_imagen;
+$destino = "../../imagenes/" . $nuevo_nombre_imagen;
 
 // Mover imagen a la carpeta
 move_uploaded_file($ruta_temporal, $destino);
@@ -30,7 +30,7 @@ $sql = "INSERT INTO productos(nombre, precio, stock, fk_proveedor, tipo_producto
         VALUES ('$nombre', '$precio', '$stock', '$fk_proveedor', '$tipo_producto', '$codigo_barra', '$descripcion', '$nuevo_nombre_imagen', NOW())";
 
 if ($conn->query($sql)) {
-    header("Location: registrar_productos.php");
+    header("Location: registrar-producto.php");
 } else {
     echo "Error: " . $conn->error;
 }

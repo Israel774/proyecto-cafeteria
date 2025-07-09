@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("America/Guatemala");
+
 $hostname = "localhost";  //127.0.0.1 algunas veces
 $user = "root"; //root siempre
 $password = "";
