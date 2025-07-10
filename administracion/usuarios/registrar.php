@@ -23,6 +23,22 @@ $respuesta = mysqli_query($conn , $sql);
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* Tamaño intermedio para input */
+.custom-size {
+    height: 36px;
+    font-size: 17px;
+    padding: 5px 10px;
+}
+
+/* Tamaño del botón a juego */
+.custom-btn {
+    height: 36px;
+    font-size: 17px;
+    padding: 5px 12px;
+}
+
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -32,14 +48,13 @@ $respuesta = mysqli_query($conn , $sql);
             <i class="fas fa-bars"></i>
         </button>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </form>
+    <div class="input-group">
+        <input class="form-control custom-size" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-primary custom-btn" id="btnNavbarSearch" type="button">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
