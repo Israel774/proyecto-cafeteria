@@ -1,7 +1,7 @@
 <?php 
-include("c../../conexion/conexion.php");
-$id = $_GET['id'];
-$sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
+include("../../conexion/conexion.php");
+$id_usuario = $_GET['id_usuario'];
+$sql = "SELECT * FROM usuario WHERE id_usuario = '$id_usuario'";
 $r = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($r);
 ?>
@@ -32,7 +32,7 @@ $row = mysqli_fetch_array($r);
         <div class="container mt-5">
             <h2 class="text-primary text-center mb-4">Editar Usuario</h2>
             <form action="update.php" method="POST" class="card p-4 shadow">
-                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                <input type="hidden" name="id" value="<?= $row['id_usuario'] ?>">
 
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -93,7 +93,7 @@ $row = mysqli_fetch_array($r);
                         <button class="btn btn-success" type="submit">
                             <i class="fas fa-save me-2"></i>Actualizar
                         </button>
-                        <a href="registro.php" class="btn btn-secondary ms-2">
+                        <a href="registro.php" class="btn btn-danger ms-2">
                             <i class="fas fa-arrow-left me-2"></i>Cancelar
                         </a>
                     </div>

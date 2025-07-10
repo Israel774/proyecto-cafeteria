@@ -23,18 +23,14 @@ $respuesta = mysqli_query($conn , $sql);
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="estilos.css">
-    
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="../index.php">Inicio</a>
-        <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
         </button>
-        <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
@@ -44,7 +40,6 @@ $respuesta = mysqli_query($conn , $sql);
                 </button>
             </div>
         </form>
-        <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
@@ -63,7 +58,6 @@ $respuesta = mysqli_query($conn , $sql);
     <div id="layoutSidenav">
         <?php include '../../conexion/menu.php'; ?>
         <div id="layoutSidenav_content">
-            <!-- contenido-->
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4"></h1>
@@ -118,15 +112,14 @@ $respuesta = mysqli_query($conn , $sql);
                                 </div>
                                 <div class="col-md-6 password-wrapper">
                                     <label class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="contraseña"
-                                        required>
+                                    <input type="password" class="form-control" id="password" name="contraseña" required>
                                     <button type="button" class="toggle-password" onclick="togglePassword()">
                                         <i class="fas fa-eye" id="toggleIcon"></i>
                                     </button>
                                     <br><br>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-success" type="submit">Registrar</button>
+                                    <button class="btn btn-primary" type="submit">Registrar</button>
                                 </div>
                             </form>
                         </div>
@@ -140,47 +133,64 @@ $respuesta = mysqli_query($conn , $sql);
     </div>
 
     <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 
-    <!-- Script de Sidebar Toggle -->
+    <!-- Sidebar Toggle -->
     <script>
-    window.addEventListener('DOMContentLoaded', event => {
-        const sidebarToggle = document.body.querySelector('#sidebarToggle');
-        if (sidebarToggle) {
-            sidebarToggle.addEventListener('click', event => {
-                event.preventDefault();
+        window.addEventListener('DOMContentLoaded', event => {
+            const sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    document.body.classList.toggle('sb-sidenav-toggled');
+                    localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+                });
+            }
+
+            if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
                 document.body.classList.toggle('sb-sidenav-toggled');
-                localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains(
-                    'sb-sidenav-toggled'));
+            }
+        });
+
+        function togglePassword() {
+            const passInput = document.getElementById('password');
+            const icon = document.getElementById('toggleIcon');
+            if (passInput.type === "password") {
+                passInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
+
+    <!-- Validación de espacios en blanco al inicio y final -->
+    <script>
+        // Trim en el submit
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const inputs = this.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="password"]');
+            inputs.forEach(input => {
+                input.value = input.value.trim();
             });
-        }
+        });
 
-        if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-            document.body.classList.toggle('sb-sidenav-toggled');
-        }
-    });
-
-    function togglePassword() {
-        const passInput = document.getElementById('password');
-        const icon = document.getElementById('toggleIcon');
-        if (passInput.type === "password") {
-            passInput.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        } else {
-            passInput.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        }
-    }
+        // Prevenir espacios al inicio durante la escritura
+        document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"]').forEach(input => {
+            input.addEventListener('input', function () {
+                if (this.selectionStart === 1 && this.value.startsWith(' ')) {
+                    this.value = this.value.trimStart();
+                }
+            });
+        });
     </script>
 </body>
 

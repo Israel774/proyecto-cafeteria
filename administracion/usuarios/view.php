@@ -1,6 +1,6 @@
 <?php 
 include("../../conexion/conexion.php");
-$id = $_GET['id'];
+$id_usuario = $_GET['id_usuario'];
 $sql = "SELECT * FROM usuario WHERE id_usuario = '$id_usuario'";
 $r = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($r);
@@ -21,6 +21,28 @@ $row = mysqli_fetch_array($r);
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="styles.css">
+    
+        <style>
+            .btn-naranja {
+  background-color: orange;     /* fondo naranja */
+  color: white;                 /* texto e ícono blancos */
+  border: 1px solid orange;     /* borde del mismo color */
+  padding: 0.375rem 0.75rem;    /* padding como botón normal */
+  font-size: 0.875rem;          /* tamaño pequeño si usas btn-xs */
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;        /* quita el subrayado del <a> */
+  display: inline-block;
+}
+
+.btn-naranja:hover {
+  background-color: #e69500;    /* naranja más oscuro en hover */
+  color: white;                 /* mantiene el texto blanco */
+  border-color: #e69500;
+  cursor: pointer;
+}
+        </style>
+    
 </head>
 
 <body>
@@ -32,7 +54,7 @@ $row = mysqli_fetch_array($r);
         <div class="container mt-5">
             <h2 class="text-primary text-center mb-4">Editar Usuario</h2>
             <form action="update.php" method="POST" class="card p-4 shadow">
-                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                <input type="hidden" name="id_usuario" value="<?= $row['id_usuario'] ?>">
 
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -92,10 +114,10 @@ $row = mysqli_fetch_array($r);
                     
 
 <div class="col-12 text-center mt-4">
-                        <a href="registro.php" class="btn btn-success">
-                            <i class="fas fa-arrow-left me-2"></i>Volver al listado
-                        </a>
-                    </div>
+  <a href="registro.php" class="btn btn-xs btn-naranja">
+    <i class="fas fa-arrow-left me-2"></i>Volver al listado
+  </a>
+</div>
                 </div>
             </form>
         </div>
