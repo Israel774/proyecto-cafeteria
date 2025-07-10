@@ -83,84 +83,101 @@
             <div class="card mb-4">
               <div class="card-header">
                 <i class="fas fa-box-open me-1"></i>
-                Nueva Compra
+                Detallar Compra
               </div>
               <div class="card-body">
                 <form id="formProducto" ethod="POST" action="createc.php" >
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="encargado" class="form-label">Encargado</label>
+                      <label for="producto" class="form-label">Producto</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="encargado"
-                        name="encargado"
+                        id="producto"
+                        name="producto"
                         required
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="proveedor" class="form-label"
-                        >Proveedor</label>
-                      <select class="form-select" id="validationCustom04" name = "proveedor">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>Juan Pérez</option>
-                            <option>Maria López</option>
-                          </select>
+                      <label for="cantidad" class="form-label">Cantidad</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        id="cantidad"
+                        name="cantidad"
+                        required
+                      />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="metodo_de_pago" class="form-label"
-                        >Metodo de Pago</label
-                      >
-                   <select class="form-select" id="validationCustom04" name = "metodo_de_pago">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>Efectivo</option>
-                            <option>Transferencia</option>
-                          </select>
-
-                      
+                      <label for="unidad_de_medidad" class="form-label">Unidad de Medida</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="unidad_de_medidad"
+                        name="unidad_de_medidad"
+                        required
+                      />
                     </div>
-                  
-                   <div class="col-md-6">
-                      <label for="total_compra" class="form-label"
-                        >Total Compra</label
+                    <div class="col-md-6">
+                      <label for="precio" class="form-label"
+                        >Precio</label
                       >
                       <input
                         type="number"
                         step="0.01"
                         class="form-control"
-                        id="total_compra"
-                        name="total_compra"
+                        id="precio"
+                        name="precio"
+                        required
+                      />
+                    </div>
+                  
+                   <div class="col-md-6">
+                      <label for="caducidad" class="form-label"
+                        >Fecha de Caducidad</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="caducidad"
+                        name="caducidad"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="codigo_de_barras" class="form-label"
+                        >Codigo de Barras</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="codigo_de_barras"
+                        name="codigo_de_barras"
                         required
                       />
                     </div>
                   </div>
 
-                  <div class="row mb-3">
-                
-                     <label for="observaciones" class="form-label"
-                      >Observaciones</label
-                    >
-                    <textarea
-                      class="form-control"
-                      id="observaciones"
-                      name="observaciones"
-                      rows="3"
-                    ></textarea>
-                  </div>
+                 
 
                   <div class="mb-3">
-                    <div class="col-md-6">
-                      <label for="estado" class="form-label"
-                        >Estado</label
-                      >
-                      <select class="form-select" id="validationCustom04" name = "estado">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>En Proceso</option>
-                            <option>Completado</option>
-                          </select>
-                    </div>
+                      <div class="col-md-6">
+                      <label for="sub_total" class="form-label"
+                      >SubTotal</label
+                    >
+                   <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        id="precio"
+                        name="precio"
+                        required
+                      />
+                      </div>
                   </div>
 
                   <!-- Campos ocultos o manejados por el sistema -->

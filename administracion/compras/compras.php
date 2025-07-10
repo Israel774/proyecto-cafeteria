@@ -151,16 +151,7 @@
                   </div>
 
                   <div class="mb-3">
-                    <div class="col-md-6">
-                      <label for="estado" class="form-label"
-                        >Estado</label
-                      >
-                      <select class="form-select" id="validationCustom04" name = "estado">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>En Proceso</option>
-                            <option>Completado</option>
-                          </select>
-                    </div>
+                    
                   </div>
 
                   <!-- Campos ocultos o manejados por el sistema -->
