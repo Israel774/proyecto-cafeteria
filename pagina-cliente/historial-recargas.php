@@ -82,7 +82,9 @@ $conn->close();
             <thead class="bg-black-500">
                 <tr>
                 <th class="px-4 py-3 text-left text-gray-700 font-semibold">Fecha</th>
-                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Total pagado</th>
+                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Saldo Anterior</th>
+                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Monto recargado</th>
+                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Saldo Post-recarga</th>
                 <th class="px-4 py-3 text-left text-gray-700 font-semibold">Acciones</th>
                 </tr>
             </thead>
