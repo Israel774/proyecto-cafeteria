@@ -30,7 +30,7 @@ $resultado = $conn->query($sql);
   <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
-      <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand ps-3" href="../index.php">Inicio</a>
       <!-- Sidebar Toggle-->
       <button
         class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -146,16 +146,16 @@ $resultado = $conn->query($sql);
 
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="tipo" class="form-label"
-                        >Tipo de producto</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="tipo"
-                        name="tipo_producto"
-                        required
-                      />
+                      <label for="proveedor" class="form-label">Tipo de producto</label>
+                      <select class="form-select" id="proveedor" name="tipo_producto" required>
+                        <option value="" disabled selected>Selecciona un producto</option>
+                        <option value="comidas" >comidas</option>
+                        <option value="postres" >postres</option>
+                        <option value="bebidasfrias" >bebidas frías</option>
+                        <option value="bebidascalientes" >bebidas calientes</option>
+                        <option value="snacks" >snacks</option>
+                        <option value="dulces" >dulces</option>
+                      </select>
                     </div>
                     <div class="col-md-6">
                       <label for="codigo" class="form-label"
