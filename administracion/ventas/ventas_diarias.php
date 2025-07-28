@@ -99,8 +99,8 @@
         Ventas Diarias 
     </div> 
     <div class="card-body">
-<table id="datatablesSimple" class="table table-bordered table-hover text-center">
-    <thead>
+<table id="datatablesSimple" class="display nowrap table table-hover" style="width:100%">
+    <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>Nombre del producto</th>
@@ -181,7 +181,25 @@
         </tr>
     </tbody>
 </table>
+                        <script src="https://kit.fontawesome.com/76679858d1.js" crossorigin="anonymous"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                            crossorigin="anonymous"></script>
 
+                        <!-- DataTables -->
+                        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+                        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+                        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+                        <script>
+                        $(document).ready(function() {
+                            $('#miTabla').DataTable({
+                                responsive: true,
+                                language: {
+                                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+                                }
+                            });
+                        });
+                        </script>
 
 
 
@@ -206,21 +224,12 @@
         </footer>
       </div>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../js/scripts.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../assets/demo/chart-area-demo.js"></script>
-    <script src="../assets/demo/chart-bar-demo.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../js/datatables-simple-demo.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous">
+    </script>
+
+  
+
+
   </body>
 </html>
