@@ -34,13 +34,7 @@ $respuesta = mysqli_query($conn , $sql);
         </button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -48,12 +42,9 @@ $respuesta = mysqli_query($conn , $sql);
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    
+                    
+                    <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -170,6 +161,30 @@ $respuesta = mysqli_query($conn , $sql);
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="../js/datatables-simple-demo.js"></script>
+  
+
+      <!-- para espacios en blanco -->
+
+    <script>
+        // Trim en el submit
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const inputs = this.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="password"]');
+            inputs.forEach(input => {
+                input.value = input.value.trim();
+            });
+        });
+
+        // Prevenir espacios al inicio durante la escritura
+        document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"]').forEach(input => {
+            input.addEventListener('input', function () {
+                if (this.selectionStart === 1 && this.value.startsWith(' ')) {
+                    this.value = this.value.trimStart();
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

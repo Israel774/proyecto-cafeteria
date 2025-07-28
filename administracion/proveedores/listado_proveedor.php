@@ -1,7 +1,7 @@
 
 <?php
 include("../../conexion/conexion.php");
-$sql = "SELECT * FROM proveedor";
+$sql = "SELECT * FROM proveedor where activo=1" ;
 $respuesta = mysqli_query($conn , $sql); 
 ?>
 
@@ -22,6 +22,38 @@ $respuesta = mysqli_query($conn , $sql);
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="styles.css">
+
+
+
+<style>
+    .sb-topnav .btn-link .fa-bars {
+        font-size: 1.3em !important;
+        vertical-align: middle;
+       
+    }
+    .btn-outline-rosado {
+  color: #ff69b4;             
+  background-color: white;     
+  border: 1px solid #ff69b4;  
+  margin-right: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-rosado:hover {
+  background-color: #ff69b4;
+  color: white;              
+  border-color: #ff69b4;
+  cursor: pointer;
+}
+table thead th {
+  color: white !important; 
+}
+
+    </style>
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -34,13 +66,8 @@ $respuesta = mysqli_query($conn , $sql);
         </button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            
+        
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -48,11 +75,8 @@ $respuesta = mysqli_query($conn , $sql);
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
+                    
+                
                     <li><a class="dropdown-item" href="#!">Logout</a></li>
                 </ul>
             </li>
@@ -95,26 +119,42 @@ $respuesta = mysqli_query($conn , $sql);
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = mysqli_fetch_assoc($respuesta)): ?>
+                <?php 
+                                    $i = 1;
+                                    while($row = mysqli_fetch_array($respuesta)):
+                                    ?>
+                                    
                 <tr>
-                    <td><?php echo $row['id_proveedor']; ?></td>
+                       <td><?php echo $i++; ?></td>
+                    
                     <td><?php echo $row['Nombre']; ?></td>
                     <td><?php echo $row['Notelef_ficina']; ?></td>
                     <td><?php echo $row['Nombre_De_Repartidor']; ?></td>
-                    <td>
-                    <button type="button" class="btn btn-outline-danger"><a href="borrar.php?id_proveedor=<?php echo $row['id_proveedor'];?>"><i class="fa-solid fa-trash"></i></a></button>
-                     <button type="button" class="btn btn-outline-warning"><a href="edit.php?id=<?php echo $row['id_proveedor'];?>"><i class="fa-solid fa-pencil"></i></a></button>
-                     <button type="button" class="btn btn-outline-info"><a href="ver.php?id_proveedor=<?php echo $row['id_proveedor'];?>"><i class="fa-solid fa-eye"></i></i></a></button>
-                         <!-- <button type="button" class="btn btn-outline-info"><a href="paquete.php?id=<?php echo $row['Id'];?>"><i class="fa-solid fa-cart-plus"></i></i></a></button>-->
-
-
-                    </td>
+                    <td class="text-center">
+                                            <a href="borrar.php?id_proveedor=<?php echo $row['id_proveedor']; ?>"
+                                                title="Borrar Registro">
+                                                <button type="button" class="btn btn-outline-danger btn-xs btn-margin">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </a>
+                                            <a href="actualizar.php?id_proveedor=<?php echo $row['id_proveedor']; ?>"
+                                                title="Editar Registro">
+                                                <button type="button" class="btn btn-outline-warning btn-xs btn-margin">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
+                                            </a>
+                                            <a href="ver.php?id_proveedor=<?php echo $row['id_proveedor']; ?>" title="Ver Registro">
+  <button type="button" class="btn btn-xs btn-outline-rosado">
+    <i class="fa-solid fa-eye"></i>
+  </button>
+</a>
+                                        </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
         <?php else: ?>
-           
+           <p class="alert alert-info">No hay Proveedores  registrados.</p>
         <?php endif; ?>
 
         

@@ -1,0 +1,132 @@
+.btn-naranja {
+  background-color: orange;     /* fondo naranja */
+  color: white;                 /* texto e ícono blancos */
+  border: 1px solid orange;     /* borde del mismo color */
+  padding: 0.375rem 0.75rem;    /* padding como botón normal */
+  font-size: 0.875rem;          /* tamaño pequeño si usas btn-xs */
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;        /* quita el subrayado del <a> */
+  display: inline-block;
+}
+
+.btn-naranja:hover {
+  background-color: #e69500;    /* naranja más oscuro en hover */
+  color: white;                 /* mantiene el texto blanco */
+  border-color: #e69500;
+  cursor: pointer;
+}
+ #datatablesSimple thead {
+    background-color: black; /* ¡Cambia este color al que prefieras! */
+    color: #333; 
+}
+
+
+ .corner-image {
+ position: fixed;
+ bottom: 10px;
+            right: 10px;
+            width: 80px;
+            height: auto;
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 0 5px #0000004d;
+        }
+ .btn-xs {
+        padding: 2px 6px;
+        font-size: 0.75rem;
+        line-height: 1;
+        border-radius: 3px;
+    }
+.cont{
+    margin: 5%;
+ 
+ }
+ .cuadro{
+   border: 6px solid #3a37f8b7;
+    margin: 5px ;
+    height: 50px;
+    width: 20%;
+    float: left;
+ }
+ .n1{
+   border: 6px;
+   margin: 5px ;
+   height: 50%;
+   width: 50%;
+   float: left;
+ }
+ .luz{
+   border: 6px  ;
+   margin: 5px ;
+   height: 100%;
+   width: 45%;
+   float: left;
+ }
+ .base{
+
+   margin: 30%;
+ }
+ 
+ .portfolio-item {
+   font-family: 'Playfair Display', serif;
+   font-weight: 50px; 
+   font-size: 25px; 
+   
+}
+.btn{
+font-family: 'Playfair Display', serif;
+   font-weight: 50px; 
+   font-size: 25px; 
+}
+.masthead{
+   font-family: 'Playfair Display', serif;
+      font-weight: 50px; 
+      font-size: 25px; 
+   }
+.col{
+   font-family: 'Playfair Display', serif;
+      font-weight: 50px; 
+      font-size: 25px; 
+}
+.perro{
+   margin: 45%;
+   width: 10px;
+   height: 10px;
+}
+.container1{
+   border: 8px ;
+    margin: 2%;
+height: 500px;
+}
+.container2{
+   border: 8px ;
+    margin: 2%;
+height: 1000px;
+}
+/* Ajustar el tamaño del icono de hamburguesa */
+.sb-topnav .btn-link .fa-bars {
+    font-size: 0.7em !important; /* Hazlo más pequeño. Prueba 0.6em o 0.5em si quieres más pequeño aún. */
+    vertical-align: middle; /* Ayuda a que el icono se vea bien centrado verticalmente. */
+}
+
+ 
+            .btn-naranja {
+  background-color: orange;     /* fondo naranja */
+  color: white;                 /* texto e ícono blancos */
+  border: 1px solid orange;     /* borde del mismo color */
+  padding: 0.375rem 0.75rem;    /* padding como botón normal */
+  font-size: 0.875rem;          /* tamaño pequeño si usas btn-xs */
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;        /* quita el subrayado del <a> */
+  display: inline-block;
+}
+
+.btn-naranja:hover {
+  background-color: #e69500;    /* naranja más oscuro en hover */
+  color: white;                 /* mantiene el texto blanco */
+  border-color: #e69500;
+  cursor: pointer;
+}
+      
