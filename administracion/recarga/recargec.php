@@ -1,7 +1,7 @@
 <?php
-require "../conexion/conexion.php";
-$barras = $_POST["barras"];
-$salanterior = $_POST["salanterior"];
+require "../../conexion/conexion.php";
+$barras = $_POST["codigobarra"];
+$salanterior = $_POST["saldo"];
 $saltotal = $_POST["saltotal"];
 $salrecarga = $_POST["salrecarga"];
 $metodoPago = $_POST["metodoPago"];

@@ -164,7 +164,7 @@
                                         <input type="hidden" name="create_at" value="" />
                                         <input type="hidden" name="update_at" value="" />
 
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary">Continuar</button>
                                         <button type="reset" class="btn btn-secondary">
                                             Limpiar
                                         </button>
@@ -198,6 +198,8 @@
     const nombreInput = document.getElementById('nombre'); // Tu input para el nombre
     const apellidoInput = document.getElementById('apellido'); // Tu input para el apellido
     const saldoInput = document.getElementById('saldo'); // Tu input para el saldo
+    const salRecargaInput = document.getElementById('salrecarga'); // Saldo a recargar (ingresado por usuario)
+    const salTotalInput = document.getElementById('saltotal'); // Saldo total (calculado)
 
     // Función para buscar el nombre, apellido y saldo haciendo una solicitud a PHP
     async function buscarNombre() {
@@ -281,16 +283,16 @@
     }
 
     function calcularSaldoTotal() {
-    // Obtener los valores y convertirlos a números flotantes
-    const saldoAnterior = parseFloat(saldoInput.value) || 0; // Si no es un número, se asume 0
-    const saldoARecargar = parseFloat(salRecargaInput.value) || 0; // Si no es un número, se asume 0
+        // Obtener los valores y convertirlos a números flotantes
+        const saldoAnterior = parseFloat(saldoInput.value) || 0; // Si no es un número, se asume 0
+        const saldoARecargar = parseFloat(salRecargaInput.value) || 0; // Si no es un número, se asume 0
 
-    const saldoTotal = saldoAnterior + saldoARecargar;
+        const saldoTotal = saldoAnterior + saldoARecargar;
 
-    // Mostrar el saldo total en el input correspondiente, formateado a 2 decimales
-    salTotalInput.value = saldoTotal.toFixed(2);
-    salTotalInput.style.color = 'green'; // Opcional: color para el total
-}
+        // Mostrar el saldo total en el input correspondiente, formateado a 2 decimales
+        salTotalInput.value = saldoTotal.toFixed(2);
+        salTotalInput.style.color = 'green'; // Opcional: color para el total
+    }
     </script>
 
 
