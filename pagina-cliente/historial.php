@@ -1,31 +1,5 @@
 <?php
-session_start();
-
-// Verifica si el usuario está autenticado y tiene rol con ID 3
-if (!isset($_SESSION['nickname'])) {
-    header('Location: ../index.php');
-    exit();
-}
-
-// Conectar a la base de datos
-require_once '../conexion/conexion.php'; // Asegúrate de usar la ruta correcta
-
-// Obtener la lista de usuarios
-$sql = "SELECT id_usuario, nickname FROM usuario";
-$result = $conn->query($sql);
-
-$users = [];
-
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $users[] = $row;
-    }
-} else {
-    echo "No se encontraron usuarios.";
-}
-
-// No olvides cerrar la conexión si ya no se necesita más adelante
-$conn->close();
+include 'obtener-usuario/obtener_usuario.php';
 ?>
 
 
@@ -37,12 +11,43 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Cuenta - Pedidos</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" href="../administracion/usuarios/estilos.css">
+    <link rel="stylesheet" href="../administracion/usuarios/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" />
+    <style>
+    .sb-topnav .btn-link .fa-bars {
+        font-size: 1.3em !important;
+        vertical-align: middle;
+       
+    }
+    .btn-outline-rosado {
+  color: white;             
+  background-color: #ff69b4;     
+  border: 1px solid #ff69b4;  
+  margin-right: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-rosado:hover {
+  background-color: #ff69b4;
+  color: black !important;              
+  border-color: #ff69b4;
+  cursor: pointer;
+}
+
+    </style>
     </head>
     <body class="bg-blue-300 min-h-screen flex flex-col items-center">
 
     <!-- Encabezado -->
     <header class="w-full bg-purple-500 py-4 px-6 shadow-md flex justify-between items-center">
-        <h1 class="text-2xl font-extrabold text-black uppercase">Mi Cuenta - Anderson Rodriguez</h1>
+        <h1 class="text-2xl font-extrabold text-black uppercase">Mi Cuenta - <?php echo $nombre_completo;?></h1>
         
         <!-- Perfil del usuario -->
         <div class="relative inline-block text-left">
@@ -71,7 +76,7 @@ $conn->close();
             <h2 class="text-2xl font-bold text-gray-800">Saldo actual</h2>
             <p class="text-lg text-gray-500">Dinero disponible para comprar</p>
         </div>
-        <span class="text-4xl font-extrabold text-green-600">Q450.00</span>
+        <span class="text-4xl font-extrabold text-green-600">Q <?php echo $saldo;?></span>
         </section>
 
         <!-- Historial de pedidos -->
@@ -80,14 +85,26 @@ $conn->close();
         <div class="overflow-x-auto">
             <table class="min-w-full table-auto">
             <thead class="bg-black-500">
-                <tr>
-                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Fecha</th>
-                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Total pagado</th>
-                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Acciones</th>
+                <tr class="text-center">
+                <th class="px-4 py-3 text-gray-800 font-semibold">Fecha</th>
+                <th class="px-4 py-3 text-gray-800 font-semibold">Total pagado</th>
+                <th class="px-4 py-3 text-gray-800 font-semibold">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="divide-y">
-
+            <tbody class="divide-y text-center">
+                <?php while ($row_compras = $result_compras->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo $row_compras['fecha']; ?></td>
+                    <td><?php echo $row_compras['total_pagado']; ?></td>
+                    <td>
+                        <a href="view.php?id_venta=<?php echo $row_compras['id_venta']; ?>" title="Ver detelle de la compra">
+                        <button type="button" class="btn btn-xs btn-outline-rosado">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        </a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
             </tbody>
             </table>
         </div>
@@ -114,6 +131,17 @@ $conn->close();
         }
         });
     </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
 
 </body>
 </html>

@@ -1,31 +1,5 @@
 <?php
-session_start();
-
-// Verifica si el usuario está autenticado y tiene rol con ID 3
-if (!isset($_SESSION['nickname'])) {
-    header('Location: ../index.php');
-    exit();
-}
-
-// Conectar a la base de datos
-require_once '../conexion/conexion.php'; // Asegúrate de usar la ruta correcta
-
-// Obtener la lista de usuarios
-$sql = "SELECT id_usuario, nickname FROM usuario";
-$result = $conn->query($sql);
-
-$users = [];
-
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $users[] = $row;
-    }
-} else {
-    echo "No se encontraron usuarios.";
-}
-
-// No olvides cerrar la conexión si ya no se necesita más adelante
-$conn->close();
+include_once 'obtener-usuario/obtener_usuario.php'
 ?>
 
 
@@ -42,8 +16,8 @@ $conn->close();
 
     <!-- Encabezado -->
     <header class="w-full bg-purple-500 py-4 px-6 shadow-md flex justify-between items-center">
-        <h1 class="text-2xl font-extrabold text-black uppercase">Mi Cuenta - Anderson Rodriguez</h1>
-        
+        <h1 class="text-2xl font-extrabold text-black uppercase">Mi Cuenta - <?php echo $nombre_completo?></h1>
+    
         <!-- Perfil del usuario -->
         <div class="relative inline-block text-left">
         <button onclick="toggleDropdown()" class="flex items-center gap-2 focus:outline-none">
@@ -76,7 +50,7 @@ $conn->close();
 
         <!-- Historial de pedidos -->
         <section class="bg-teal-300 p-6 rounded-2xl shadow-lg">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Historial de compras</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Historial de recargas</h2>
         <div class="overflow-x-auto">
             <table class="min-w-full table-auto">
             <thead class="bg-black-500">
