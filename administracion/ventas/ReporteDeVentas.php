@@ -71,8 +71,8 @@ $ventas = [
                     <li><a class="dropdown-item" href="#!">Logout</a></li>
                 </ul>
             </li>
-        </ul>
-    </nav>
+        </ul>   
+    </nav> 
     <div id="layoutSidenav">
         <?php include '../../conexion/menu.php'; ?>
         <div id="layoutSidenav_content">
@@ -131,11 +131,12 @@ $ventas = [
                                             </button>
                                         </a>
 
-                                        <a href="view.php?id=<?= urlencode($row['Id'] ?? '') ?>">
-                                            <button type="button" class="btn btn-outline-secondary" title="Ver detalle">
-                                                <i class="fa-regular fa-eye"></i>
-                                            </button>
-                                        </a>
+<a href="view.php?id=<?= urlencode($row['Id'] ?? '') ?>">
+    <button type="button" class="btn" style="background-color: #f78acb; color: white; border: 1px solid #f78acb;" title="Ver detalle">
+        <i class="fa-regular fa-eye"></i>
+    </button>
+</a>
+
                                     </td>
 
                                 </tr>
