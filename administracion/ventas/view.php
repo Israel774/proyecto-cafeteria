@@ -1,6 +1,21 @@
 <?php
 include("conexion.php");
+
+$idVenta = isset($_GET['id']) ? intval($_GET['id']) : 0;
+if ($idVenta <= 0) {
+    die("ID de venta inválido.");
+}
+
+$sql = "SELECT id_producto AS NombreP, cantidad, precio_unitario AS PrecioUni, subtotal AS SubTotal, create_date
+        FROM detalle_ventas
+        WHERE id_venta = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $idVenta);
+$stmt->execute();
+$res = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,7 +56,7 @@ include("conexion.php");
     <table id="mitabla" class="table table-striped table-hover table-bordered shadow rounded tabla-ajustada">
         <thead class="table-success text-center">
             <tr>
-                <th>Nombre</th>
+                <th>ID Producto</th>
                 <th>Cantidad</th>
                 <th>Precio U.</th>
                 <th>Fecha</th>
@@ -50,47 +65,25 @@ include("conexion.php");
         </thead>
         <tbody class="text-center align-middle">
             <?php
-            $sql = "SELECT * FROM detalle_Ventas";
-            $res = $conn->query($sql);
-
             if ($res && $res->num_rows > 0) {
                 while ($row = $res->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['NombreP']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['CantidadP']) . "</td>";
-
-                    $precioUni = isset($row['PrecioUni']) ? $row['PrecioUni'] : 0;
-                    echo "<td>" . number_format((float)$precioUni, 2) . "</td>";
-
-                    $fecha = !empty($row['create_at']) ? date('Y-m-d', strtotime($row['create_at'])) : 'N/A';
-                    echo "<td>" . $fecha . "</td>";
-
-                    $subTotal = isset($row['SubTotal']) ? $row['SubTotal'] : 0;
-                    echo "<td class='fw-bold text-dark'>Q" . number_format((float)$subTotal, 2) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['cantidad']) . "</td>";
+                    echo "<td>Q" . number_format((float)$row['PrecioUni'], 2) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['create_date']) . "</td>";
+                    echo "<td class='fw-bold text-dark'>Q" . number_format((float)$row['SubTotal'], 2) . "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='5'>No hay datos disponibles.</td></tr>";
+                echo "<tr><td colspan='5'>No hay datos disponibles para esta venta.</td></tr>";
             }
             ?>
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4" class="text-end fw-bold">Total general:</td>
-                <td class="fw-bold text-success">
-                    <?php
-                    $sqlTotal = "SELECT SUM(SubTotal) AS total FROM Ventas";
-                    $resTotal = $conn->query($sqlTotal);
-                    $total = ($resTotal) ? $resTotal->fetch_assoc()['total'] : 0;
-                    echo "Q" . number_format((float)$total, 2);
-                    ?>
-                </td>
-            </tr>
-        </tfoot>
     </table>
 
     <div class="text-center mt-3">
-        <a href="index.php" class="btn btn-sm btn-success">Regresar</a>
+        <a href="ReporteDeVentas.php" class="btn btn-sm btn-success">Regresar</a>
     </div>
 </div>
 
