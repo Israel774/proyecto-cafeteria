@@ -3,6 +3,29 @@
 include("../../conexion/conexion.php");
 $sql = "SELECT * FROM proveedor where activo=1" ;
 $respuesta = mysqli_query($conn , $sql); 
+
+// Inicia la sesión
+
+session_start();
+
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+
 ?>
 
 
@@ -22,7 +45,7 @@ $respuesta = mysqli_query($conn , $sql);
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="styles.css">
 

@@ -7,12 +7,18 @@
       exit();
   }
 
-  // Verifica el rol del usuario
-  if ($_SESSION['rol'] != 'Administrador') {
-      echo "Acceso denegado. Solo los administradores pueden acceder a esta página.";
-      exit();
-  }
-  ?>
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+?>
 
   <!DOCTYPE html>
   <html lang="en">

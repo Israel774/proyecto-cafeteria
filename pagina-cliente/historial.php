@@ -1,5 +1,39 @@
 <?php
 include 'obtener-usuario/obtener_usuario.php';
+=======
+session_start();
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+
+// Conectar a la base de datos
+require_once '../conexion/conexion.php'; // Asegúrate de usar la ruta correcta
+
+// Obtener la lista de usuarios
+$sql = "SELECT id_usuario, nickname FROM usuario";
+$result = $conn->query($sql);
+
+$users = [];
+
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $users[] = $row;
+    }
+} else {
+    echo "No se encontraron usuarios.";
+}
+
+// No olvides cerrar la conexión si ya no se necesita más adelante
+$conn->close();
 ?>
 
 

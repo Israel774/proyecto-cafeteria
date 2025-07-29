@@ -1,5 +1,18 @@
 <?php
 include_once 'obtener-usuario/obtener_usuario.php'
+session_start();
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
 ?>
 
 
