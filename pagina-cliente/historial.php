@@ -1,9 +1,17 @@
 <?php
+include 'obtener-usuario/obtener_usuario.php';
+=======
 session_start();
 
-// Verifica si el usuario está autenticado y tiene rol con ID 3
-if (!isset($_SESSION['nickname']) || $_SESSION['rol'] != 'Alumno') {
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['nickname'])) {
     header('Location: ../index.php');
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
 
@@ -37,17 +45,48 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Cuenta - Pedidos</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" href="../administracion/usuarios/estilos.css">
+    <link rel="stylesheet" href="../administracion/usuarios/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" />
+    <style>
+    .sb-topnav .btn-link .fa-bars {
+        font-size: 1.3em !important;
+        vertical-align: middle;
+       
+    }
+    .btn-outline-rosado {
+  color: white;             
+  background-color: #ff69b4;     
+  border: 1px solid #ff69b4;  
+  margin-right: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-rosado:hover {
+  background-color: #ff69b4;
+  color: black !important;              
+  border-color: #ff69b4;
+  cursor: pointer;
+}
+
+    </style>
     </head>
     <body class="bg-blue-300 min-h-screen flex flex-col items-center">
 
     <!-- Encabezado -->
     <header class="w-full bg-purple-500 py-4 px-6 shadow-md flex justify-between items-center">
-        <h1 class="text-2xl font-extrabold text-black uppercase">Mi Cuenta - Rosendo Chub</h1>
+        <h1 class="text-2xl font-extrabold text-black uppercase">Mi Cuenta - <?php echo $nombre_completo;?></h1>
         
         <!-- Perfil del usuario -->
         <div class="relative inline-block text-left">
         <button onclick="toggleDropdown()" class="flex items-center gap-2 focus:outline-none">
-            <img src="https://i.pravatar.cc/40?img=3" alt="Foto de perfil" class="w-10 h-10 rounded-full border-2 border-white" />
+            Explorar
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -55,8 +94,9 @@ $conn->close();
 
         <!-- Menú desplegable -->
         <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
-            <a href="editar-perfil.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Editar perfil</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Cerrar sesión</a>
+            <a href="historial.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Historial de compras</a>
+            <a href="historial-recargas.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Historial de recargas</a>
+            <a href="../cerrar-sesion.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Cerrar sesión</a>
         </div>
         </div>
     </header>
@@ -70,7 +110,7 @@ $conn->close();
             <h2 class="text-2xl font-bold text-gray-800">Saldo actual</h2>
             <p class="text-lg text-gray-500">Dinero disponible para comprar</p>
         </div>
-        <span class="text-4xl font-extrabold text-green-600">Q450.00</span>
+        <span class="text-4xl font-extrabold text-green-600">Q <?php echo $saldo;?></span>
         </section>
 
         <!-- Historial de pedidos -->
@@ -79,44 +119,26 @@ $conn->close();
         <div class="overflow-x-auto">
             <table class="min-w-full table-auto">
             <thead class="bg-black-500">
-                <tr>
-                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Fecha</th>
-                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Total pagado</th>
-                <th class="px-4 py-3 text-left text-gray-700 font-semibold">Acciones</th>
+                <tr class="text-center">
+                <th class="px-4 py-3 text-gray-800 font-semibold">Fecha</th>
+                <th class="px-4 py-3 text-gray-800 font-semibold">Total pagado</th>
+                <th class="px-4 py-3 text-gray-800 font-semibold">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="divide-y">
-
-                <!-- Pedido 1 -->
+            <tbody class="divide-y text-center">
+                <?php while ($row_compras = $result_compras->fetch_assoc()): ?>
                 <tr>
-                <td class="px-4 py-3 text-gray-700">04/06/2025</td>
-                <td class="px-4 py-3 text-green-600 font-bold">Q40.00</td>
-                <td class="px-4 py-3 flex gap-2">
-                    <a href="detalle-pedido.html" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Ver detalles</a>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600">Eliminar</button>
-                </td>
+                    <td><?php echo $row_compras['fecha']; ?></td>
+                    <td><?php echo $row_compras['total_pagado']; ?></td>
+                    <td>
+                        <a href="view.php?id_venta=<?php echo $row_compras['id_venta']; ?>" title="Ver detelle de la compra">
+                        <button type="button" class="btn btn-xs btn-outline-rosado">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        </a>
+                    </td>
                 </tr>
-
-                <!-- Pedido 2 -->
-                <tr>
-                <td class="px-4 py-3 text-gray-700">01/06/2025</td>
-                <td class="px-4 py-3 text-green-600 font-bold">Q22.00</td>
-                <td class="px-4 py-3 flex gap-2">
-                    <a href="detalle-pedido.html" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Ver detalles</a>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600">Eliminar</button>
-                </td>
-                </tr>
-
-                <!-- Pedido 3 -->
-                <tr>
-                <td class="px-4 py-3 text-gray-700">28/05/2025</td>
-                <td class="px-4 py-3 text-green-600 font-bold">Q30.00</td>
-                <td class="px-4 py-3 flex gap-2">
-                    <a href="detalle-pedido.html" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Ver detalles</a>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600">Eliminar</button>
-                </td>
-                </tr>
-
+                <?php endwhile; ?>
             </tbody>
             </table>
         </div>
@@ -143,6 +165,17 @@ $conn->close();
         }
         });
     </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
 
 </body>
 </html>

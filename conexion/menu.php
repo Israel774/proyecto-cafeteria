@@ -36,6 +36,13 @@ $menu = [
             'Listado de proveedores' => '../proveedores/listado_proveedor.php'
         ]
     ],
+    'Ventas' => [
+        'icono' => 'fa-solid fa-cash-register',
+        'submenu' => [
+            'Ventas diaras' => '../ventas/ventas_diarias.php',
+            'Reporte de ventas' => '../ventas/ReporteDeVentas.php'
+        ]
+    ],
 ];
 ?>
 

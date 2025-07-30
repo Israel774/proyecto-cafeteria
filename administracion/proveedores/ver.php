@@ -23,6 +23,12 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="styles.css">
+
+
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -35,13 +41,8 @@
         </button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+           
+        
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -49,11 +50,8 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
+                    
+                
                     <li><a class="dropdown-item" href="#!">Logout</a></li>
                 </ul>
             </li>
@@ -122,12 +120,17 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label">NIT del Proveedor</label>
-                <input type="number" class="form-control" value="<?= $row['NitProveedor'] ?>" disabled>
+                <input type="text" class="form-control" value="<?= $row['NitProveedor'] ?>" disabled>
             </div>
         </div>
-        <div class="mt-4">
-            <a href="listado_proveedor.php" class="btn btn-primary">Regresar</a>
-        </div>
+        
+<div class="col-12 text-center mt-4">
+  <a href="listado_proveedor.php" class="btn btn-xs btn-naranja">
+    <i class="fas fa-arrow-left me-2"></i>Volver al listado
+  </a>
+
+
+
     </div>
 </div>
 

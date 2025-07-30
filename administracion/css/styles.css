@@ -11241,3 +11241,14 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+
+.btn-outline-rosado {
+    color: #e83e8c; /* color rosado */
+    border: 1px solid #e83e8c;
+    background-color: transparent;
+}
+
+.btn-outline-rosado:hover {
+    background-color: #e83e8c;
+    color: white;
+}
