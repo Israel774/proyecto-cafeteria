@@ -137,15 +137,12 @@ if ($_SESSION['estado'] != 'Activo') {
                     <th>Nombre</th>
                     <th>Precio Venta (Q)</th>
                     <th>Stock</th>
-                    <th>Proveedor</th>
                     <th>Tipo</th>
-                    <th>Codigo de Barra</th>
-                    <th>imagen</th>
                     <th>opciones</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
+              <?php
                   while ($row = mysqli_fetch_array($respuesta)):
                 ?>
                 <tr>
@@ -153,28 +150,25 @@ if ($_SESSION['estado'] != 'Activo') {
                   <td><?php echo $row['nombre']; ?></td>
                   <td><?php echo $row['precio']; ?></td>
                   <td><?php echo $row['stock']; ?></td>
-                  <td><?php echo $row['nombre_proveedor']; ?></td>
                   <td><?php echo $row['tipo_producto']; ?></td>
-                  <td><?php echo $row['codigo_barra']; ?></td>
-                  <td><?php echo $row['imagen']; ?></td>
                   <td class="text-center">
                       <!-- Botón para borrar registro -->
-                      <a href="delete.php?id_usuario=<?php echo $row['id_productos']; ?>" title="Borrar Registro">
-                          <button type="button" class="btn btn-outline-danger btn-xs">
+                      <a href="delete.php?id_productos=<?php echo $row['id_productos']; ?>" title="Borrar Registro">
+                          <button type="button" class="btn btn-outline-danger btn-xs btn-margin">
                               <i class="fa-solid fa-trash-can"></i>
                           </button>
                       </a>
 
                       <!-- Botón para editar registro -->
-                      <a href="edit.php?id_usuario=<?php echo $row['id_productos']; ?>" title="Editar Registro">
-                          <button type="button" class="btn btn-outline-warning btn-xs">
+                      <a href="edit_productos.php?id_productos=<?php echo $row['id_productos']; ?>" title="Editar Registro">
+                          <button type="button" class="btn btn-outline-warning btn-xs btn-margins">
                               <i class="fa-solid fa-pen-to-square"></i>
                           </button>
                       </a>
 
                       <!-- Botón para ver registro -->
-                      <a href="view.php?id_usuario=<?php echo $row['id_productos']; ?>" title="Ver Registro">
-                          <button type="button" class="btn btn-outline-success btn-xs">
+                      <a href="view.php?id_productos=<?php echo $row['id_productos']; ?>" title="Ver Registro">
+                          <button type="button" class="btn btn-xs btn-outline-rosado">
                               <i class="fa-solid fa-eye"></i>
                           </button>
                       </a>
