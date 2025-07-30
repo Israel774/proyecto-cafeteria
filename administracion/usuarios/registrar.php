@@ -24,14 +24,14 @@ $respuesta = mysqli_query($conn , $sql);
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="estilos.css">
     <style>
-        /* Tamaño intermedio para input */
+       
 .custom-size {
     height: 36px;
     font-size: 17px;
     padding: 5px 10px;
 }
 
-/* Tamaño del botón a juego */
+
 .custom-btn {
     height: 36px;
     font-size: 17px;
@@ -83,7 +83,7 @@ $respuesta = mysqli_query($conn , $sql);
                         </div>
                         <div class="card-body">
                             <form class="row g-3" method="POST" action="create.php">
-                                <!-- FORMULARIO -->
+                                
                                 <div class="col-md-6">
                                     <label class="form-label">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" required>
@@ -110,13 +110,7 @@ $respuesta = mysqli_query($conn , $sql);
                                     <label class="form-label">Correo</label>
                                     <input type="email" class="form-control" name="correo" required>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Estado</label>
-                                    <select class="form-select" name="estado" required>
-                                        <option value="Activo">Activo</option>
-                                        <option value="Inactivo">Inactivo</option>
-                                    </select>
-                                </div>
+                                
                                 <div class="col-md-6">
                                     <label class="form-label">Código de Barra</label>
                                     <input type="text" class="form-control" name="codigobarra" required>
@@ -147,7 +141,7 @@ $respuesta = mysqli_query($conn , $sql);
         </div>
     </div>
 
-    <!-- SCRIPTS -->
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -156,7 +150,7 @@ $respuesta = mysqli_query($conn , $sql);
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 
-    <!-- Sidebar Toggle -->
+
     <script>
         window.addEventListener('DOMContentLoaded', event => {
             const sidebarToggle = document.body.querySelector('#sidebarToggle');
@@ -188,9 +182,9 @@ $respuesta = mysqli_query($conn , $sql);
         }
     </script>
 
-    <!-- Validación de espacios en blanco al inicio y final -->
+   
     <script>
-        // Trim en el submit
+        
         document.querySelector('form').addEventListener('submit', function (e) {
             const inputs = this.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="password"]');
             inputs.forEach(input => {
@@ -198,7 +192,7 @@ $respuesta = mysqli_query($conn , $sql);
             });
         });
 
-        // Prevenir espacios al inicio durante la escritura
+
         document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"]').forEach(input => {
             input.addEventListener('input', function () {
                 if (this.selectionStart === 1 && this.value.startsWith(' ')) {

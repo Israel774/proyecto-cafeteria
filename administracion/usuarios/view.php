@@ -14,7 +14,7 @@ $row = mysqli_fetch_array($r);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Editar Usuario - PREU</title>
 
-    <!-- FontAwesome, Bootstrap y estilos -->
+  
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -24,20 +24,20 @@ $row = mysqli_fetch_array($r);
     
         <style>
             .btn-naranja {
-  background-color: orange;     /* fondo naranja */
-  color: white;                 /* texto e ícono blancos */
-  border: 1px solid orange;     /* borde del mismo color */
-  padding: 0.375rem 0.75rem;    /* padding como botón normal */
-  font-size: 0.875rem;          /* tamaño pequeño si usas btn-xs */
+  background-color: orange;     
+  color: white;                 
+  border: 1px solid orange;     
+  padding: 0.375rem 0.75rem;    
+  font-size: 0.875rem;          
   border-radius: 0.25rem;
   transition: background-color 0.3s, color 0.3s;
-  text-decoration: none;        /* quita el subrayado del <a> */
+  text-decoration: none;        
   display: inline-block;
 }
 
 .btn-naranja:hover {
-  background-color: #e69500;    /* naranja más oscuro en hover */
-  color: white;                 /* mantiene el texto blanco */
+  background-color: #e69500;   
+  color: white;                 
   border-color: #e69500;
   cursor: pointer;
 }
