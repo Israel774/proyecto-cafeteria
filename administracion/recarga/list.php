@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 session_start();
 
 if (!isset($_SESSION['nickname'])) {
@@ -13,6 +14,32 @@ if (!isset($_SESSION['nickname'])) {
   $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
   $respuesta = mysqli_query($conn, $sql);
 ?>
+=======
+// Inicia la sesión
+
+session_start();
+
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+
+?>
+
+>>>>>>> e2510c0bd0af13bd8d6244d6ef59ae9883aca785
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +56,7 @@ if (!isset($_SESSION['nickname'])) {
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     
 </head>
- 
+
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
