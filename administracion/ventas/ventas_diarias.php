@@ -77,10 +77,9 @@
                                 <thead class="table-dark">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre del producto</th>
-                                        <th>Cantidad (Q)</th>
-                                        <th>Precio unitario</th>
-                                        <th>Total</th>
+                                        <th>Nombre del Cliente</th>
+                                        <th>Cantidad</th>
+                                        <th>Total Pagado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -89,7 +88,6 @@
                                         <td>1</td>
                                         <td>Gaseosa Coca-Cola 500ml</td>
                                         <td>1</td>
-                                        <td>Q5.00</td>
                                         <td>Q5.00</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
@@ -111,7 +109,6 @@
                                         <td>2</td>
                                         <td>Tortilla con frijol y queso</td>
                                         <td>4</td>
-                                        <td>Q7.50</td>
                                         <td>Q30.00</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
@@ -132,7 +129,6 @@
                                         <td>3</td>
                                         <td>Pan dulce</td>
                                         <td>5</td>
-                                        <td>Q8.00</td>
                                         <td>Q40.00</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
@@ -153,7 +149,6 @@
                                         <td>4</td>
                                         <td>Café</td>
                                         <td>7</td>
-                                        <td>Q3.57</td>
                                         <td>Q25.00</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
