@@ -129,6 +129,10 @@
     <i class="fas fa-arrow-left me-2"></i>Volver al listado
   </a>
 
+  <a href="../../pagina_administracion.php" class="btn btn-xs btn-naranja">
+    <i class="fas fa-arrow-left me-2"></i>MENU
+  </a>
+
 
 
     </div>
