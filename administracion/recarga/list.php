@@ -1,20 +1,4 @@
 <?php
-<<<<<<< HEAD
-session_start();
-
-if (!isset($_SESSION['nickname'])) {
-    // No ha iniciado sesión, redirigir
-     header("Location: ../../index.html");
-    exit;
-}
-?>
-
-<?php
-  include("../../conexion/conexion.php");
-  $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
-  $respuesta = mysqli_query($conn, $sql);
-?>
-=======
 // Inicia la sesión
 
 session_start();
@@ -38,8 +22,12 @@ if ($_SESSION['estado'] != 'Activo') {
 }
 
 ?>
+<?php
+  include("../../conexion/conexion.php");
+  $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
+  $respuesta = mysqli_query($conn, $sql);
+?>
 
->>>>>>> e2510c0bd0af13bd8d6244d6ef59ae9883aca785
 
 <!DOCTYPE html>
 <html lang="en">

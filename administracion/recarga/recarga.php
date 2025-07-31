@@ -1,13 +1,4 @@
 <?php
-<<<<<<< HEAD
-session_start();
-
-if (!isset($_SESSION['nickname'])) {
-    // No ha iniciado sesión, redirigir
-     header("Location: ../../index.html");
-    exit;
-}
-=======
 // Inicia la sesión
 
 session_start();
@@ -30,7 +21,6 @@ if ($_SESSION['estado'] != 'Activo') {
     exit();
 }
 
->>>>>>> e2510c0bd0af13bd8d6244d6ef59ae9883aca785
 ?>
 
 <!DOCTYPE html>

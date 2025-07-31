@@ -26,7 +26,8 @@ $menu = [
         'icono' => 'fa-solid fa-cash-register',
         'submenu' => [
             'Recargar Saldo' => '../recarga/recarga.php',
-            'Lista de Recargas' => '../recarga/list.php'
+            'Lista de Recargas' => '../recarga/list.php',
+            'Reporte de Recargas' => '../recarga/reporte.php'
         ]
     ],
     'Proveedores' => [
