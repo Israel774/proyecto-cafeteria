@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['rol'] = $user['tipo']; // 'tipo' es el nombre real del campo en BD
 
                     if ($user['tipo'] == 'Administrador') {
-                        header("Location: administracion/index.php");
+                        header("Location: pagina_administracion.php");
                         exit;
                     } elseif ($user['tipo'] == 'Alumno') {
                         header("Location: pagina-cliente/historial.php");

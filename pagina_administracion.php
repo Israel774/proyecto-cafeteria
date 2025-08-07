@@ -1,3 +1,26 @@
+  <?php
+  session_start();
+
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -76,7 +99,7 @@
       color: #fff;
       border: none;
       padding: 3rem 5rem;
-      font-size: 3rem;
+      font-size: 2rem;
       margin: 0;
       border-radius: 8px;
       cursor: pointer;
@@ -96,19 +119,18 @@
 
   <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');">
     <div class="slide-content">
-      <h1>Bienvenidos </h1>
+      <h1>Bienvenido</h1>
       <p>Una experiencia para los sentidos. Más que una compra , un momento inolvidable.</p>
 
       <div class="buttons">
-        <form action="listado_proveedor.php" method="get">
-          <button type="submit">Siguiente</button>
-        </form>
-
-        <form action="listado_proveedor.php" method="get">
-          <button type="submit">hola</button>
-        </form>  
+        <a href="administracion/index.php">
+          <button type="submit">Administracion</button>
+        </a>
+        <a href="pagina-cliente/historial.php">
+          <button type="submit">Historial de compras</button>
+        </a>
       </div>
-
+¿
     </div>
   </div>
 

@@ -1,6 +1,5 @@
 <?php
-include_once 'obtener-usuario/obtener_usuario.php'
-session_start();
+include_once 'obtener-usuario/obtener_usuario.php';
 
 // Verifica si el usuario está autenticado
 if (!isset($_SESSION['nickname'])) {
