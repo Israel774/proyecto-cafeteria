@@ -126,7 +126,7 @@ if ($_SESSION['estado'] != 'Activo') {
         <a href="administracion/index.php">
           <button type="submit">Administracion</button>
         </a>
-        <a href="pagina-cliente/historial.php">
+        <a href="pagina-cliente/historial_compras.php">
           <button type="submit">Historial de compras</button>
         </a>
       </div>

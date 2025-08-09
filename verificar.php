@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: pagina_administracion.php");
                         exit;
                     } elseif ($user['tipo'] == 'Alumno') {
-                        header("Location: pagina-cliente/historial.php");
+                        header("Location: pagina-cliente/historial_compras.php");
                         exit;
                     } elseif ($user['tipo'] == 'Kiosko') {
                         header("Location: Diseño-pantalla-tactil/index.php");

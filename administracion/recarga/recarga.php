@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 session_start();
 
 if (!isset($_SESSION['nickname'])) {
@@ -7,7 +6,6 @@ if (!isset($_SESSION['nickname'])) {
      header("Location: ../../index.html");
     exit;
 }
-=======
 // Inicia la sesión
 
 session_start();
@@ -30,7 +28,6 @@ if ($_SESSION['estado'] != 'Activo') {
     exit();
 }
 
->>>>>>> e2510c0bd0af13bd8d6244d6ef59ae9883aca785
 ?>
 
 <!DOCTYPE html>
