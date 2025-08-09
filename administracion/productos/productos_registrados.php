@@ -23,8 +23,9 @@ if ($_SESSION['estado'] != 'Activo') {
 
   // Consulta con join para traer nombre del proveedor
   $sql = "SELECT productos.*, proveedor.Nombre AS nombre_proveedor
-          FROM productos
-          INNER JOIN proveedor ON productos.fk_proveedor = proveedor.id_proveedor";
+        FROM productos
+        INNER JOIN proveedor ON productos.fk_proveedor = proveedor.id_proveedor
+        WHERE productos.estado = 1";
 
   $respuesta = mysqli_query($conn, $sql);
 ?>
@@ -153,25 +154,26 @@ if ($_SESSION['estado'] != 'Activo') {
                   <td><?php echo $row['tipo_producto']; ?></td>
                   <td class="text-center">
                       <!-- Botón para borrar registro -->
-                      <a href="delete.php?id_productos=<?php echo $row['id_productos']; ?>" title="Borrar Registro">
-                          <button type="button" class="btn btn-outline-danger btn-xs btn-margin">
-                              <i class="fa-solid fa-trash-can"></i>
-                          </button>
-                      </a>
+                      <!-- Botón para borrar -->
+                        <a href="delete_productos.php?id_productos=<?php echo $row['id_productos']; ?>" 
+                          class="btn btn-outline-danger btn-xs btn-margin" 
+                          title="Borrar Registro">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </a>
 
-                      <!-- Botón para editar registro -->
-                      <a href="edit_productos.php?id_productos=<?php echo $row['id_productos']; ?>" title="Editar Registro">
-                          <button type="button" class="btn btn-outline-warning btn-xs btn-margins">
-                              <i class="fa-solid fa-pen-to-square"></i>
-                          </button>
-                      </a>
+                        <!-- Botón para editar -->
+                        <a href="edit_productos.php?id_productos=<?php echo $row['id_productos']; ?>" 
+                          class="btn btn-outline-warning btn-xs btn-margins" 
+                          title="Editar Registro">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
 
-                      <!-- Botón para ver registro -->
-                      <a href="view.php?id_productos=<?php echo $row['id_productos']; ?>" title="Ver Registro">
-                          <button type="button" class="btn btn-xs btn-outline-rosado">
-                              <i class="fa-solid fa-eye"></i>
-                          </button>
-                      </a>
+                        <!-- Botón para ver -->
+                        <a href="view_productos.php?id_productos=<?php echo $row['id_productos']; ?>" 
+                          class="btn btn-xs btn-outline-rosado" 
+                          title="Ver Registro">
+                          <i class="fa-solid fa-eye"></i>
+                        </a>
                   </td>
                 </tr>
                 <?php endwhile ?>
