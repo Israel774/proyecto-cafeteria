@@ -38,7 +38,7 @@ $resultado_proveedores = mysqli_query($conn, $sql_proveedores);
     <div class="main-content">
         <div class="container mt-5">
             <h2 class="text-primary text-center mb-4">Editar Producto</h2>
-            <form action="update.php" method="POST" class="card p-4 shadow" enctype="multipart/form-data">
+            <form action="update_productos.php" method="POST" class="card p-4 shadow" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $row['id_productos'] ?>">
 
                 <div class="row g-3">
@@ -74,7 +74,7 @@ $resultado_proveedores = mysqli_query($conn, $sql_proveedores);
                     <div class="col-md-6">
                         <label class="form-label">Tipo de Producto</label>
                         <select class="form-select" id="proveedor" name="tipo_producto" required>
-                        <option value="" selectet><?= $row['tipo_producto'] ?></option>
+                        <option value="<?= $row['tipo_producto'] ?>" selectet><?= $row['tipo_producto'] ?></option>
                         <option value="comidas" >comidas</option>
                         <option value="postres" >postres</option>
                         <option value="bebidasfrias" >bebidas frías</option>
@@ -96,9 +96,9 @@ $resultado_proveedores = mysqli_query($conn, $sql_proveedores);
                             id="descripcion"
                             name="descripcion"
                             rows="3"
-                            value="<?= $row['descripcion'] ?>" required
                             style="resize: none;"
-                        ></textarea>
+                            required
+                        ><?= htmlspecialchars($row['descripcion']) ?></textarea>
                     </div>
 
                     <div class="col-md-6">

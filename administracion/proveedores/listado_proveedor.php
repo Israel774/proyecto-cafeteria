@@ -41,7 +41,7 @@ if ($_SESSION['estado'] != 'Activo') {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Lista de Proveedores</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -100,7 +100,8 @@ table thead th {
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     
                 
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+            <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
                 </ul>
             </li>
         </ul>

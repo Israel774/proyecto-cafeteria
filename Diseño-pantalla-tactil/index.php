@@ -27,21 +27,22 @@ if ($_SESSION['estado'] != 'Activo') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-        background-image: url('dist/assets/img/nuevofondo.jpg');
+<style>
+    body {
+        background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93'); /* Reemplaza con la ruta correcta de tu imagen */
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
-        }
-        .overlay {
+        background-position: center; /* Nueva propiedad para centrar la imagen */
+    }
+    .overlay {
         background-color: rgba(0, 0, 0, 0.2);
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        }
-    </style>
+    }
+</style>
     </head>
     <body>
 

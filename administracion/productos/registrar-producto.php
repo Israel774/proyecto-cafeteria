@@ -37,7 +37,7 @@ $resultado = $conn->query($sql);
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Registrar Producto</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -64,18 +64,7 @@ $resultado = $conn->query($sql);
       <form
         class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
       >
-        <div class="input-group">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Search for..."
-            aria-label="Search for..."
-            aria-describedby="btnNavbarSearch"
-          />
-          <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+
       </form>
       <!-- Navbar-->
       <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -93,10 +82,8 @@ $resultado = $conn->query($sql);
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdown"
           >
-            <li><a class="dropdown-item" href="#!">Settings</a></li>
-            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#!">Logout</a></li>
+            <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+            <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -230,8 +217,8 @@ $resultado = $conn->query($sql);
                   <input type="hidden" name="update_at" value="" />
 
                   <button type="submit" class="btn btn-primary">Guardar</button>
-                  <button type="reset" class="btn btn-secondary">
-                    Limpiar
+                  <button type="reset" class="btn btn-danger">
+                      Limpiar
                   </button>
                 </form>
               </div>
