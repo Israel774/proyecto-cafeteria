@@ -2,6 +2,7 @@
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Al cargar la página, actualiza la vista del carrito desde localStorage
     actualizarVistaCarrito();
     
     // Lógica para el carrito
@@ -75,23 +76,39 @@ function disminuir(id) {
 }
 
 // Función principal para agregar productos al carrito
-function agregarAlCarrito(nombre, precio, id) {
+function agregarAlCarrito(nombre, precio, id, imagen, descripcion, stock) {
     const cantidadElement = document.getElementById(`cantidad-${id}`);
-    if (!cantidadElement) return;
+    const productoCard = document.querySelector(`[data-id="${id}"]`);
 
-    const cantidad = parseInt(cantidadElement.innerText);
-    if (cantidad === 0) return;
+    if (!cantidadElement || !productoCard) return;
 
+    const cantidadAAgregar = parseInt(cantidadElement.innerText);
+    if (cantidadAAgregar === 0) return;
+
+    const stockDisponible = parseInt(productoCard.dataset.stock) || 0;
     const productoExistente = carrito.find(p => p.id === id);
 
+    let cantidadEnCarrito = productoExistente ? productoExistente.cantidad : 0;
+    
+    // Calcula la nueva cantidad total que habría en el carrito
+    const nuevaCantidadTotal = cantidadEnCarrito + cantidadAAgregar;
+
+    // Comprueba si la nueva cantidad total excede el stock
+    if (nuevaCantidadTotal > stockDisponible) {
+        alert(`No puedes agregar esa cantidad. El stock disponible es de ${stockDisponible} y ya tienes ${cantidadEnCarrito} en el carrito.`);
+        return; 
+    }
+
     if (productoExistente) {
-        productoExistente.cantidad += cantidad;
+        productoExistente.cantidad = nuevaCantidadTotal;
     } else {
-        carrito.push({ id, nombre, precio, cantidad });
+        // Se añade la imagen al objeto del producto
+        carrito.push({ id, nombre, precio, cantidad: cantidadAAgregar, imagen, descripcion, stock});
     }
 
     cantidadElement.innerText = '0';
 
+    // Se guarda el carrito en localStorage después de cada cambio
     guardarCarrito();
     actualizarVistaCarrito();
 }
@@ -106,6 +123,7 @@ function actualizarVistaCarrito() {
     const listaCarrito = document.getElementById('lista-carrito');
     const totalCarrito = document.getElementById('total-carrito');
     const contadorCarrito = document.getElementById('contador-carrito');
+    const botonesCarrito = document.getElementById('botones-carrito'); // Nuevo elemento
     let total = 0;
     let totalItems = 0;
 
@@ -117,6 +135,12 @@ function actualizarVistaCarrito() {
             li.className = "text-gray-500 italic";
             listaCarrito.appendChild(li);
             if (totalCarrito) totalCarrito.textContent = '0.00';
+            
+            // Oculta los botones si el carrito está vacío
+            if (botonesCarrito) {
+                botonesCarrito.classList.add('hidden');
+            }
+
         } else {
             carrito.forEach((producto, index) => {
                 const li = document.createElement('li');
@@ -134,6 +158,11 @@ function actualizarVistaCarrito() {
                 totalItems += producto.cantidad;
             });
             if (totalCarrito) totalCarrito.textContent = total.toFixed(2);
+            
+            // Muestra los botones si el carrito tiene productos
+            if (botonesCarrito) {
+                botonesCarrito.classList.remove('hidden');
+            }
         }
     }
     
@@ -148,3 +177,13 @@ function eliminarDelCarrito(index) {
     guardarCarrito();
     actualizarVistaCarrito();
 }
+
+// Función para vaciar el carrito y redirigir a otra página
+function vaciarCarritoYRedirigir(url) {
+    localStorage.removeItem('carrito'); // Borra el carrito del localStorage
+    window.location.href = url; // Redirige a la URL especificada
+}
+
+document.querySelector('#logoutModal form').addEventListener('submit', function() {
+    localStorage.removeItem('carrito');
+});

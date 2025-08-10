@@ -45,7 +45,9 @@ $menu = [
         <div class="flex justify-end md:hidden">
             <button id="cerrar-menu" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
         </div>
+        <a href="categorias.php">
         <h2 class="text-2xl font-bold text-center mb-6 text-red-700">Menú</h2>
+        </a>
 
         <div class="flex flex-col justify-between flex-1">
             <ul class="space-y-6">
@@ -66,7 +68,7 @@ $menu = [
             </ul>
 
             <div>
-                <a href="../index.php">
+                <a href="#" onclick="vaciarCarritoYRedirigir('../index.php')">
                     <button class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg text-lg font-semibold mt-6">
                         Cancelar compra
                     </button>

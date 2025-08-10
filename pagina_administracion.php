@@ -117,7 +117,7 @@ if ($_SESSION['estado'] != 'Activo') {
 </head>
 <body>
 
-  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');">
+  <div class="slide active" style="background-image: url('https://media.istockphoto.com/id/1221913991/es/foto/tablero-de-mesa-de-madera-sobre-fondo-interior-del-restaurante-borroso.jpg?s=612x612&w=0&k=20&c=3X6j777rf_ePDVzEcz0BfxuHksqbTD45wuQsn7aNRio=');">
     <div class="slide-content">
       <h1>Bienvenido</h1>
       <p>Una experiencia para los sentidos. Más que una compra , un momento inolvidable.</p>
@@ -130,7 +130,6 @@ if ($_SESSION['estado'] != 'Activo') {
           <button type="submit">Historial de compras</button>
         </a>
       </div>
-¿
     </div>
   </div>
 
