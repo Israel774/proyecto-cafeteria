@@ -16,6 +16,7 @@ $estado       = 'Activo';
 $codigobarra  = trim($_POST['codigobarra']);
 $nickname     = trim($_POST['nickname']);
 $contraseña   = trim($_POST['contraseña']);
+$modificacion = trim($_POST['modificacion']);
 
 $create_by = $_SESSION['id_usuario'];
 
@@ -29,9 +30,9 @@ if ($row_nickname['count'] > 0) {
 }
 
 $sql = "INSERT INTO usuario(
-    nombre, apellido, telefono, tipo, correo, estado, codigobarra, nickname, contraseña, Create_by, Create_at
+    nombre, apellido, telefono, tipo, correo, estado, codigobarra, nickname, contraseña, modificacion, Create_by, Create_at
 ) VALUES (
-    '$nombre', '$apellido', '$telefono', '$tipo', '$correo', '$estado', '$codigobarra', '$nickname', '$contraseña', '$create_by', NOW()
+    '$nombre', '$apellido', '$telefono', '$tipo', '$correo', '$estado', '$codigobarra', '$nickname', '$contraseña', '$modificacion', '$create_by',  NOW()
 )";
 
 $sql2 = "INSERT INTO clientes(

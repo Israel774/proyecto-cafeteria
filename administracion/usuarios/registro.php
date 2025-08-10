@@ -141,16 +141,16 @@ if ($_SESSION['estado'] != 'Activo') {
                                         <td><?php echo $row['tipo']; ?></td>
                                         <td class="text-center">
                                             <a href="delete.php?id_usuario=<?php echo $row['id_usuario']; ?>"
+                                                class="btn btn-outline-danger btn-xs btn-margin"
                                                 title="Borrar Registro">
-                                                <button type="button" class="btn btn-outline-danger btn-xs btn-margin">
-                                                    <i class="fa-solid fa-trash-can"></i>
-                                                </button>
+                                                <i class="fa-solid fa-trash-can"></i>
                                             </a>
                                             <a href="edit.php?id_usuario=<?php echo $row['id_usuario']; ?>"
+                                            class="btn btn-outline-warning btn-xs btn-margin"
                                                 title="Editar Registro">
-                                                <button type="button" class="btn btn-outline-warning btn-xs btn-margin">
+                                                
                                                     <i class="fa-solid fa-pen-to-square"></i>
-                                                </button>
+                                                
                                             </a>
                                             <a href="view.php?id_usuario=<?php echo $row['id_usuario']; ?>"
                                                 title="Ver Registro">
