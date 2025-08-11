@@ -33,11 +33,8 @@ if ($_SESSION['estado'] != 'Activo') {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<<<<<<< HEAD
     <title>Registrar Usuario</title>
 
-=======
->>>>>>> bbf91b4e38e07d777c749c5f7b77577f9bff834a
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Cafetería Liceo Pre Universitario del Norte - Registrar Usuarios</title>
@@ -75,7 +72,6 @@ if ($_SESSION['estado'] != 'Activo') {
             <i class="fas fa-bars"></i>
         </button>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-<<<<<<< HEAD
             <div class="input-group">
                 <input class="form-control custom-size" type="text" placeholder="Buscar..." />
                 <button class="btn btn-primary custom-btn" type="button">
@@ -91,8 +87,6 @@ if ($_SESSION['estado'] != 'Activo') {
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="#!">Configuración</a></li>
                     <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
-=======
->>>>>>> bbf91b4e38e07d777c749c5f7b77577f9bff834a
 </form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">

@@ -47,7 +47,6 @@ if ($row_contraseña['count'] > 0) {
 
 
 
-
 $sql = "INSERT INTO usuario(
     nombre, apellido, telefono, tipo, correo, estado, codigobarra, nickname, contraseña, modificacion, Create_by, Create_at
 ) VALUES (
