@@ -19,8 +19,8 @@ $menu = [
         'icono' => 'fas fa-user',
         'submenu' => [
             'Compra de Productos' => '../compras/compras.php',
-            'Detalle de compras' => '../compras/detalle_compras.php',
-        ]
+            'Compras registradas' => '../compras/listado.php',
+         ]
     ],
     'Recargar' => [
         'icono' => 'fa-solid fa-cash-register',
