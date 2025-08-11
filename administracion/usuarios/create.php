@@ -28,6 +28,25 @@ if ($row_nickname['count'] > 0) {
     echo "<script>alert('El nickname ya está en uso. Por favor elige otro.'); window.history.back();</script>";
     exit();
 }
+$sql_check_codigobarra = "SELECT COUNT(*) AS count FROM usuario WHERE codigobarra = '$codigobarra'";
+$result_codigobarra = $conn->query($sql_check_codigobarra);
+$row_codigobarra = $result_codigobarra->fetch_assoc();
+
+if ($row_codigobarra['count'] > 0) {
+    echo "<script>alert('El codigobarra ya está en uso. Por favor elige otro.'); window.history.back();</script>";
+    exit();
+}
+$sql_check_contraseña= "SELECT COUNT(*) AS count FROM usuario WHERE contraseña = '$contraseña'";
+$result_contraseña = $conn->query($sql_check_contraseña);
+$row_contraseña = $result_contraseña->fetch_assoc();
+
+if ($row_contraseña['count'] > 0) {
+    echo "<script>alert('El contraseña ya está en uso. Por favor elige otro.'); window.history.back();</script>";
+    exit();
+}
+
+
+
 
 $sql = "INSERT INTO usuario(
     nombre, apellido, telefono, tipo, correo, estado, codigobarra, nickname, contraseña, modificacion, Create_by, Create_at
