@@ -1,7 +1,29 @@
 <?php
 include("../../conexion/conexion.php");
-$sql = "SELECT * FROM usuario";
+$sql = "SELECT * FROM usuario where estado = 'activo'" ;
+
 $respuesta = mysqli_query($conn , $sql); 
+
+// Inicia la sesión
+session_start();
+
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +35,7 @@ $respuesta = mysqli_query($conn , $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Lista de Usuarios</title>
 
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -31,26 +53,27 @@ $respuesta = mysqli_query($conn , $sql);
     .sb-topnav .btn-link .fa-bars {
         font-size: 1.3em !important;
         vertical-align: middle;
-       
+
     }
+
     .btn-outline-rosado {
-  color: #ff69b4;             
-  background-color: white;     
-  border: 1px solid #ff69b4;  
-  margin-right: 0.25rem;
-  transition: background-color 0.3s, color 0.3s;
-}
+        color: #ff69b4;
+        background-color: white;
+        border: 1px solid #ff69b4;
+        margin-right: 0.25rem;
+        transition: background-color 0.3s, color 0.3s;
+    }
 
-.btn-outline-rosado:hover {
-  background-color: #ff69b4;
-  color: white;              
-  border-color: #ff69b4;
-  cursor: pointer;
-}
-table thead th {
-  color: white !important; 
-}
+    .btn-outline-rosado:hover {
+        background-color: #ff69b4;
+        color: white;
+        border-color: #ff69b4;
+        cursor: pointer;
+    }
 
+    table thead th {
+        color: white !important;
+    }
     </style>
 </head>
 
@@ -61,25 +84,14 @@ table thead th {
             <i class="fas fa-bars"></i>
         </button>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
         </form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+                    <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -118,22 +130,23 @@ table thead th {
                                         <td><?php echo $row['tipo']; ?></td>
                                         <td class="text-center">
                                             <a href="delete.php?id_usuario=<?php echo $row['id_usuario']; ?>"
+                                                class="btn btn-outline-danger btn-xs btn-margin"
                                                 title="Borrar Registro">
-                                                <button type="button" class="btn btn-outline-danger btn-xs btn-margin">
-                                                    <i class="fa-solid fa-trash-can"></i>
-                                                </button>
+                                                <i class="fa-solid fa-trash-can"></i>
                                             </a>
                                             <a href="edit.php?id_usuario=<?php echo $row['id_usuario']; ?>"
+                                            class="btn btn-outline-warning btn-xs btn-margin"
                                                 title="Editar Registro">
-                                                <button type="button" class="btn btn-outline-warning btn-xs btn-margin">
+                                                
                                                     <i class="fa-solid fa-pen-to-square"></i>
+                                                
+                                            </a>
+                                            <a href="view.php?id_usuario=<?php echo $row['id_usuario']; ?>"
+                                                title="Ver Registro">
+                                                <button type="button" class="btn btn-xs btn-outline-rosado">
+                                                    <i class="fa-solid fa-eye"></i>
                                                 </button>
                                             </a>
-                                            <a href="view.php?id_usuario=<?php echo $row['id_usuario']; ?>" title="Ver Registro">
-  <button type="button" class="btn btn-xs btn-outline-rosado">
-    <i class="fa-solid fa-eye"></i>
-  </button>
-</a>
                                         </td>
                                     </tr>
                                     <?php endwhile; ?>
@@ -166,13 +179,11 @@ table thead th {
     <script src="js/scripts.js"></script>
 
     <script>
-    // Inicialización de Simple DataTables
     window.addEventListener('DOMContentLoaded', event => {
         const datatablesSimple = document.getElementById('datatablesSimple');
         if (datatablesSimple) {
             new simpleDatatables.DataTable(datatablesSimple, {
-                // Puedes activar o desactivar la búsqueda global aquí
-                // searchable: false, 
+
                 labels: {
                     perPage: "Entradas por página",
                     noRows: "No se encontraron resultados",
@@ -190,9 +201,7 @@ table thead th {
             });
         }
 
-        // Script para la funcionalidad del Sidebar Toggle (Menú de hamburguesa)
-        // Este código generalmente se encuentra en js/scripts.js en la plantilla SB Admin.
-        // Si tu js/scripts.js ya lo contiene, puedes eliminar esta sección para evitar duplicidad.
+
         const sidebarToggle = document.body.querySelector('#sidebarToggle');
         if (sidebarToggle) {
             sidebarToggle.addEventListener('click', event => {
@@ -208,11 +217,10 @@ table thead th {
         }
     });
 
-    // Función para mostrar/ocultar contraseña (si tienes un formulario de registro en esta misma página)
     function togglePassword() {
         const passInput = document.getElementById('password');
         const icon = document.getElementById('toggleIcon');
-        if (passInput && icon) { // Asegúrate de que los elementos existan antes de manipularlos
+        if (passInput && icon) {
             if (passInput.type === "password") {
                 passInput.type = "text";
                 icon.classList.remove("fa-eye");

@@ -20,18 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if (($contraseña = $user['contraseña'])) {
                     session_start();
+                    $_SESSION['estado'] = $user['estado'];
                     $_SESSION['id_usuario'] = $user['id_usuario'];
                     $_SESSION['nickname'] = $user['nickname'];
                     $_SESSION['rol'] = $user['tipo']; // 'tipo' es el nombre real del campo en BD
 
                     if ($user['tipo'] == 'Administrador') {
-                        header("Location: administracion/index.php");
+                        header("Location: pagina_administracion.php");
                         exit;
                     } elseif ($user['tipo'] == 'Alumno') {
-                        header("Location: pagina-cliente/historial.php");
+                        header("Location: pagina-cliente/historial_compras.php");
                         exit;
-                    } else {
-                        $error_message = "Acceso denegado. Rol no autorizado.";
+                    } elseif ($user['tipo'] == 'Kiosko') {
+                        header("Location: Diseño-pantalla-tactil/index.php");
+                        exit;
+                    }
+                    else {
+                        $error_message = "Rol de usuario no reconocido.";
                     }
 
                 } else {

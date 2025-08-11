@@ -1,4 +1,25 @@
 <?php
+
+  session_start();
+
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+
 require "../../conexion/conexion.php"; // tu conexión a la BD
 
 $sql = "SELECT id_proveedor, Nombre FROM proveedor";
@@ -16,7 +37,7 @@ $resultado = $conn->query($sql);
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Registrar Producto</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -30,7 +51,7 @@ $resultado = $conn->query($sql);
   <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
-      <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand ps-3" href="../index.php">Inicio</a>
       <!-- Sidebar Toggle-->
       <button
         class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -43,18 +64,7 @@ $resultado = $conn->query($sql);
       <form
         class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
       >
-        <div class="input-group">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Search for..."
-            aria-label="Search for..."
-            aria-describedby="btnNavbarSearch"
-          />
-          <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+
       </form>
       <!-- Navbar-->
       <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -72,10 +82,8 @@ $resultado = $conn->query($sql);
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdown"
           >
-            <li><a class="dropdown-item" href="#!">Settings</a></li>
-            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#!">Logout</a></li>
+            <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+            <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -146,16 +154,16 @@ $resultado = $conn->query($sql);
 
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="tipo" class="form-label"
-                        >Tipo de producto</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="tipo"
-                        name="tipo_producto"
-                        required
-                      />
+                      <label for="proveedor" class="form-label">Tipo de producto</label>
+                      <select class="form-select" id="proveedor" name="tipo_producto" required>
+                        <option value="" disabled selected>Selecciona un producto</option>
+                        <option value="comidas" >comidas</option>
+                        <option value="postres" >postres</option>
+                        <option value="bebidasfrias" >bebidas frías</option>
+                        <option value="bebidascalientes" >bebidas calientes</option>
+                        <option value="snacks" >snacks</option>
+                        <option value="dulces" >dulces</option>
+                      </select>
                     </div>
                     <div class="col-md-6">
                       <label for="codigo" class="form-label"
@@ -209,8 +217,8 @@ $resultado = $conn->query($sql);
                   <input type="hidden" name="update_at" value="" />
 
                   <button type="submit" class="btn btn-primary">Guardar</button>
-                  <button type="reset" class="btn btn-secondary">
-                    Limpiar
+                  <button type="reset" class="btn btn-danger">
+                      Limpiar
                   </button>
                 </form>
               </div>

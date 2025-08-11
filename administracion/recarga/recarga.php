@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['nickname'])) {
+    // No ha iniciado sesión, redirigir
+    header("Location: ../../index.html");
+    exit;
+}
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Recargas</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -24,13 +52,6 @@
         </button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -38,12 +59,8 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+                    <li><a class="dropdown-item" href="cerrar.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -164,7 +181,7 @@
                                         <input type="hidden" name="create_at" value="" />
                                         <input type="hidden" name="update_at" value="" />
 
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary">Continuar</button>
                                         <button type="reset" class="btn btn-secondary">
                                             Limpiar
                                         </button>
@@ -198,6 +215,8 @@
     const nombreInput = document.getElementById('nombre'); // Tu input para el nombre
     const apellidoInput = document.getElementById('apellido'); // Tu input para el apellido
     const saldoInput = document.getElementById('saldo'); // Tu input para el saldo
+    const salRecargaInput = document.getElementById('salrecarga'); // Saldo a recargar (ingresado por usuario)
+    const salTotalInput = document.getElementById('saltotal'); // Saldo total (calculado)
 
     // Función para buscar el nombre, apellido y saldo haciendo una solicitud a PHP
     async function buscarNombre() {
@@ -281,16 +300,16 @@
     }
 
     function calcularSaldoTotal() {
-    // Obtener los valores y convertirlos a números flotantes
-    const saldoAnterior = parseFloat(saldoInput.value) || 0; // Si no es un número, se asume 0
-    const saldoARecargar = parseFloat(salRecargaInput.value) || 0; // Si no es un número, se asume 0
+        // Obtener los valores y convertirlos a números flotantes
+        const saldoAnterior = parseFloat(saldoInput.value) || 0; // Si no es un número, se asume 0
+        const saldoARecargar = parseFloat(salRecargaInput.value) || 0; // Si no es un número, se asume 0
 
-    const saldoTotal = saldoAnterior + saldoARecargar;
+        const saldoTotal = saldoAnterior + saldoARecargar;
 
-    // Mostrar el saldo total en el input correspondiente, formateado a 2 decimales
-    salTotalInput.value = saldoTotal.toFixed(2);
-    salTotalInput.style.color = 'green'; // Opcional: color para el total
-}
+        // Mostrar el saldo total en el input correspondiente, formateado a 2 decimales
+        salTotalInput.value = saldoTotal.toFixed(2);
+        salTotalInput.style.color = 'green'; // Opcional: color para el total
+    }
     </script>
 
 

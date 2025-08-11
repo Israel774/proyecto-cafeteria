@@ -1,3 +1,35 @@
+<?php
+  session_start();
+
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+
+  include("../../conexion/conexion.php");
+
+  // Consulta con join para traer nombre del proveedor
+  $sql = "SELECT productos.*, proveedor.Nombre AS nombre_proveedor
+        FROM productos
+        INNER JOIN proveedor ON productos.fk_proveedor = proveedor.id_proveedor
+        WHERE productos.estado = 1";
+
+  $respuesta = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +41,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Lista de Productos</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -36,18 +68,7 @@
       <form
         class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
       >
-        <div class="input-group">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Search for..."
-            aria-label="Search for..."
-            aria-describedby="btnNavbarSearch"
-          />
-          <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+
       </form>
       <!-- Navbar-->
       <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -65,10 +86,8 @@
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdown"
           >
-            <li><a class="dropdown-item" href="#!">Settings</a></li>
-            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#!">Logout</a></li>
+            <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+            <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -106,53 +125,45 @@
                     <th>Nombre</th>
                     <th>Precio Venta (Q)</th>
                     <th>Stock</th>
-                    <th>Proveedor</th>
                     <th>Tipo</th>
-                    <th>Código Barra</th>
-                    <th>Descripción</th>
+                    <th>opciones</th>
                 </tr>
             </thead>
             <tbody>
+              <?php
+                  while ($row = mysqli_fetch_array($respuesta)):
+                ?>
                 <tr>
-                    <td>1</td>
-                    <td>Gaseosa Coca-Cola 500ml</td>
-                    <td>Q7.00</td>
-                    <td>50</td>
-                    <td>Coca-Cola Guatemala</td>
-                    <td>Bebida</td>
-                    <td>7501055330006</td>
-                    <td>Bebida gaseosa sabor cola.</td>
+                  <td><?php echo $row['id_productos']; ?></td>
+                  <td><?php echo $row['nombre']; ?></td>
+                  <td><?php echo $row['precio']; ?></td>
+                  <td><?php echo $row['stock']; ?></td>
+                  <td><?php echo $row['tipo_producto']; ?></td>
+                  <td class="text-center">
+                      <!-- Botón para borrar registro -->
+                      <!-- Botón para borrar -->
+                        <a href="delete_productos.php?id_productos=<?php echo $row['id_productos']; ?>" 
+                          class="btn btn-outline-danger btn-xs btn-margin" 
+                          title="Borrar Registro">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </a>
+
+                        <!-- Botón para editar -->
+                        <a href="edit_productos.php?id_productos=<?php echo $row['id_productos']; ?>" 
+                          class="btn btn-outline-warning btn-xs btn-margins" 
+                          title="Editar Registro">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+
+                        <!-- Botón para ver -->
+                        <a href="view_productos.php?id_productos=<?php echo $row['id_productos']; ?>" 
+                          class="btn btn-xs btn-outline-rosado" 
+                          title="Ver Registro">
+                          <i class="fa-solid fa-eye"></i>
+                        </a>
+                  </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Tortilla con frijol y queso</td>
-                    <td>Q5.00</td>
-                    <td>30</td>
-                    <td>Cocina Interna</td>
-                    <td>Comida</td>
-                    <td>456846921463</td>
-                    <td>Tortilla caliente con frijol negro y queso.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Pan dulce</td>
-                    <td>Q3.00</td>
-                    <td>40</td>
-                    <td>Cocina Interna</td>
-                    <td>Snack</td>
-                    <td>6978631785</td>
-                    <td>Pan dulce tradicional guatemalteco.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Café</td>
-                    <td>Q4.00</td>
-                    <td>25</td>
-                    <td>Cocina Interna</td>
-                    <td>Bebida caliente</td>
-                    <td>2546975984</td>
-                    <td>Café preparado con canela y azúcar.</td>
-                </tr>
+                <?php endwhile ?>
             </tbody>
         </table>
     </div>

@@ -3,6 +3,29 @@
 include("../../conexion/conexion.php");
 $sql = "SELECT * FROM usuario";
 $respuesta = mysqli_query($conn , $sql); 
+
+// Inicia la sesión
+
+session_start();
+
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+
 ?>
 
 
@@ -18,7 +41,7 @@ $respuesta = mysqli_query($conn , $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Lista de Proveedores</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -34,13 +57,7 @@ $respuesta = mysqli_query($conn , $sql);
         </button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -48,12 +65,10 @@ $respuesta = mysqli_query($conn , $sql);
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    
+                    
+                    <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+                    <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -131,7 +146,10 @@ $respuesta = mysqli_query($conn , $sql);
                       <br>
                       <div class="col-12 text-center mt-3">
                       <button class="btn btn-primary" type="submit">Registrar</button>
-               
+                <a href="../../pagina_administracion.php" class="btn btn-xs btn-naranja">
+    <i class="fas fa-arrow-left me-2"></i>MENU
+  </a>
+
                
             </div>
                       
@@ -170,6 +188,30 @@ $respuesta = mysqli_query($conn , $sql);
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="../js/datatables-simple-demo.js"></script>
+  
+
+      <!-- para espacios en blanco -->
+
+    <script>
+        // Trim en el submit
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const inputs = this.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="password"]');
+            inputs.forEach(input => {
+                input.value = input.value.trim();
+            });
+        });
+
+        // Prevenir espacios al inicio durante la escritura
+        document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"]').forEach(input => {
+            input.addEventListener('input', function () {
+                if (this.selectionStart === 1 && this.value.startsWith(' ')) {
+                    this.value = this.value.trimStart();
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

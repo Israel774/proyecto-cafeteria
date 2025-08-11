@@ -2,6 +2,25 @@
 include("../../conexion/conexion.php");
 $sql = "SELECT * FROM usuario";
 $respuesta = mysqli_query($conn , $sql); 
+
+session_start();
+
+if (!isset($_SESSION['nickname'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert('Acceso denegado. Solo los administradores pueden acceder a esta página.'); window.history.back();</script>";
+    exit();
+}
+
+
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algún error'); window.history.back();</script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +30,14 @@ $respuesta = mysqli_query($conn , $sql);
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<<<<<<< HEAD
+    <title>Registrar Usuario</title>
+
+=======
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Registrar Usuarios</title>
+>>>>>>> 6d5b788a7944adf2c6c61b68718bea20a257f8fc
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -24,20 +48,29 @@ $respuesta = mysqli_query($conn , $sql);
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="estilos.css">
     <style>
-        /* Tamaño intermedio para input */
-.custom-size {
-    height: 36px;
-    font-size: 17px;
-    padding: 5px 10px;
-}
+        .custom-size {
+            height: 36px;
+            font-size: 17px;
+            padding: 5px 10px;
+        }
 
-/* Tamaño del botón a juego */
-.custom-btn {
-    height: 36px;
-    font-size: 17px;
-    padding: 5px 12px;
-}
+        .custom-btn {
+            height: 36px;
+            font-size: 17px;
+            padding: 5px 12px;
+        }
 
+        .toggle-password {
+            background: none;
+            border: none;
+            position: absolute;
+            right: 10px;
+            top: 36px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
     </style>
 </head>
 
@@ -48,48 +81,54 @@ $respuesta = mysqli_query($conn , $sql);
             <i class="fas fa-bars"></i>
         </button>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-    <div class="input-group">
-        <input class="form-control custom-size" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-        <button class="btn btn-primary custom-btn" id="btnNavbarSearch" type="button">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
+<<<<<<< HEAD
+            <div class="input-group">
+                <input class="form-control custom-size" type="text" placeholder="Buscar..." />
+                <button class="btn btn-primary custom-btn" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" data-bs-toggle="dropdown">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#!">Configuración</a></li>
+                    <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+=======
 </form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+                    <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
+>>>>>>> 6d5b788a7944adf2c6c61b68718bea20a257f8fc
                 </ul>
             </li>
         </ul>
     </nav>
+
     <div id="layoutSidenav">
         <?php include '../../conexion/menu.php'; ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4"></h1>
+                    <h1 class="mt-4">Registrar Usuario</h1>
                     <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-box-open me-1"></i>
-                            Tabla Registradora
-                        </div>
+                        <div class="card-header"><i class="fas fa-user-plus me-1"></i>Nuevo Usuario</div>
                         <div class="card-body">
                             <form class="row g-3" method="POST" action="create.php">
-                                <!-- FORMULARIO -->
+                                
                                 <div class="col-md-6">
                                     <label class="form-label">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Apellidos</label>
+                                    <label class="form-label">Apellido</label>
                                     <input type="text" class="form-control" name="apellido" required>
                                 </div>
                                 <div class="col-md-6">
@@ -111,13 +150,6 @@ $respuesta = mysqli_query($conn , $sql);
                                     <input type="email" class="form-control" name="correo" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Estado</label>
-                                    <select class="form-select" name="estado" required>
-                                        <option value="Activo">Activo</option>
-                                        <option value="Inactivo">Inactivo</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
                                     <label class="form-label">Código de Barra</label>
                                     <input type="text" class="form-control" name="codigobarra" required>
                                 </div>
@@ -128,11 +160,12 @@ $respuesta = mysqli_query($conn , $sql);
                                 <div class="col-md-6 password-wrapper">
                                     <label class="form-label">Contraseña</label>
                                     <input type="password" class="form-control" id="password" name="contraseña" required>
-                                    <button type="button" class="toggle-password" onclick="togglePassword()">
-                                        <i class="fas fa-eye" id="toggleIcon"></i>
-                                    </button>
-                                    <br><br>
+                                    
                                 </div>
+
+                                <!-- CAMPO OCULTO PARA MODIFICACION -->
+                                <input type="hidden" name="modificacion" id="modificacion">
+
                                 <div class="col-12">
                                     <button class="btn btn-primary" type="submit">Registrar</button>
                                 </div>
@@ -147,32 +180,11 @@ $respuesta = mysqli_query($conn , $sql);
         </div>
     </div>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
 
-    <!-- Sidebar Toggle -->
     <script>
-        window.addEventListener('DOMContentLoaded', event => {
-            const sidebarToggle = document.body.querySelector('#sidebarToggle');
-            if (sidebarToggle) {
-                sidebarToggle.addEventListener('click', event => {
-                    event.preventDefault();
-                    document.body.classList.toggle('sb-sidenav-toggled');
-                    localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-                });
-            }
-
-            if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-                document.body.classList.toggle('sb-sidenav-toggled');
-            }
-        });
-
         function togglePassword() {
             const passInput = document.getElementById('password');
             const icon = document.getElementById('toggleIcon');
@@ -188,9 +200,36 @@ $respuesta = mysqli_query($conn , $sql);
         }
     </script>
 
-    <!-- Validación de espacios en blanco al inicio y final -->
+    <!-- GENERADOR DE CAMPO MODIFICACION -->
     <script>
-        // Trim en el submit
+        const nombreInput = document.querySelector('input[name="nombre"]');
+        const apellidoInput = document.querySelector('input[name="apellido"]');
+        const modificacionInput = document.getElementById('modificacion');
+
+        function generarModificacion() {
+            const nombre = nombreInput.value.trim().toLowerCase();
+            const apellido = apellidoInput.value.trim().toLowerCase();
+
+            if (nombre.length >= 2 && apellido.length >= 2) {
+                const letras = nombre.slice(0, 2) + apellido.slice(0, 2);
+                const numeros = '0123456789';
+                let aleatorios = '';
+                for (let i = 0; i < 4; i++) {
+                    aleatorios += numeros.charAt(Math.floor(Math.random() * numeros.length));
+                }
+                modificacionInput.value = letras + aleatorios;
+            } else {
+                modificacionInput.value = '';
+            }
+        }
+
+        nombreInput.addEventListener('input', generarModificacion);
+        apellidoInput.addEventListener('input', generarModificacion);
+        window.addEventListener('load', generarModificacion);
+    </script>
+
+    <!-- Limpieza de espacios en inputs -->
+    <script>
         document.querySelector('form').addEventListener('submit', function (e) {
             const inputs = this.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="password"]');
             inputs.forEach(input => {
@@ -198,7 +237,6 @@ $respuesta = mysqli_query($conn , $sql);
             });
         });
 
-        // Prevenir espacios al inicio durante la escritura
         document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"]').forEach(input => {
             input.addEventListener('input', function () {
                 if (this.selectionStart === 1 && this.value.startsWith(' ')) {
