@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+
+<?php
+require "../../conexion/conexion.php"; // tu conexión a la BD
+
+$sql = "SELECT id_productos, nombre FROM productos";
+$resultado = $conn->query($sql);
+?><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -89,14 +95,16 @@
                 <form id="formProducto" ethod="POST" action="createc.php" >
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label for="producto" class="form-label">Producto</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="producto"
-                        name="producto"
-                        required
-                      />
+                      <label for="fk_producto" class="form-label">Producto</label>
+                      <select class="form-select" id="proveedor" name="fk_proveedor" required>
+                        <option value="" disabled selected>Seleccionar Producto</option>
+
+                        <?php while ($fila = $resultado->fetch_assoc()) { ?>
+                          <option value="<?php echo $fila['id_productos']; ?>">
+                            <?php echo $fila['nombre']; ?>
+                          </option>
+                        <?php } ?>
+                      </select>
                     </div>
                     <div class="col-md-6">
                       <label for="cantidad" class="form-label">Cantidad</label>
@@ -194,7 +202,7 @@
                   <input type="hidden" name="create_at" value="" />
                   <input type="hidden" name="update_at" value="" />
 
-                  <button type="submit" class="btn btn-primary">Detallar</button>
+                  <button type="submit" class="btn btn-primary">Registrar</button>
                   <button type="reset" class="btn btn-secondary">
                     Limpiar
                   </button>

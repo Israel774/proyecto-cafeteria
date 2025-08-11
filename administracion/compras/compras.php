@@ -1,3 +1,9 @@
+<?php
+require "../../conexion/conexion.php"; // tu conexión a la BD
+
+$sql = "SELECT id_proveedor, Nombre FROM proveedor";
+$resultado = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -99,13 +105,17 @@
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="proveedor" class="form-label"
+                      <label for="fk_proveedor" class="form-label"
                         >Proveedor</label>
-                      <select class="form-select" id="validationCustom04" name = "proveedor">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>Juan Pérez</option>
-                            <option>Maria López</option>
-                          </select>
+                      <select class="form-select" id="fk_proveedor" name="fk_proveedor" required>
+                        <option value="" disabled selected>Selecciona un proveedor</option>
+
+                        <?php while ($fila = $resultado->fetch_assoc()) { ?>
+                          <option value="<?php echo $fila['id_proveedor']; ?>">
+                            <?php echo $fila['Nombre']; ?>
+                          </option>
+                        <?php } ?>
+                      </select>
                     </div>
                   </div>
                   <div class="row mb-3">
