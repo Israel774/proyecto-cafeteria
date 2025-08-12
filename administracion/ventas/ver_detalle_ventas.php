@@ -1,30 +1,31 @@
 <?php
-include("conexion.php");
+include '../../conexion/conexion.php';
 
-$idVenta = isset($_GET['id']) ? intval($_GET['id']) : 0;
-if ($idVenta <= 0) {
-    die("ID de venta inválido.");
+$fechaInicio = $_GET['fechaInicio'] ?? null;
+$fechaFin = $_GET['fechaFin'] ?? null;
+
+if ($fechaInicio && $fechaFin) {
+    $sql = "SELECT id_venta, id_producto, cantidad, precio_unitario, subtotal, create_time, create_date 
+            FROM detalle_ventas 
+            WHERE DATE(create_date) BETWEEN ? AND ? 
+            ORDER BY id_venta, id_producto";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $fechaInicio, $fechaFin);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $sql = "SELECT id_venta, id_producto, cantidad, precio_unitario, subtotal, create_time, create_date 
+            FROM detalle_ventas ORDER BY id_venta, id_producto";
+    $result = $conn->query($sql);
 }
-
-$sql = "SELECT id_producto, cantidad, precio_unitario AS PrecioUni, subtotal AS SubTotal, create_date
-        FROM detalle_ventas
-        WHERE id_venta = ?";
-
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Error en la preparación: " . $conn->error);
-}
-$stmt->bind_param("i", $idVenta);
-$stmt->execute();
-$res = $stmt->get_result();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Detalle de la Venta #<?= htmlspecialchars($idVenta) ?></title>
+    <title>Todos los Detalles de Ventas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" />
@@ -54,32 +55,36 @@ $res = $stmt->get_result();
 </head>
 <body>
 <div class="container mt-4">
-    <h4 class="text-center mb-4 text-dark">🧾 Detalle de la Venta #<?= htmlspecialchars($idVenta) ?></h4>
+    <h4 class="text-center mb-4 text-dark">🧾 Detalles de Ventas <?= $fechaInicio && $fechaFin ? "del $fechaInicio al $fechaFin" : '' ?></h4>
 
-    <table id="mitabla" class="table table-striped table-hover table-bordered shadow rounded tabla-ajustada" style="width:100%">
+    <table id="tablaCompleta" class="table table-striped table-hover table-bordered shadow rounded tabla-ajustada" style="width:100%">
         <thead class="table-success text-center">
             <tr>
-                <th>Producto (ID)</th>
+                <th>ID Venta</th>
+                <th>ID Producto</th>
                 <th>Cantidad</th>
-                <th>Precio U.</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+                <th>Hora</th>
                 <th>Fecha</th>
-                <th>Total</th>
             </tr>
         </thead>
         <tbody class="text-center align-middle">
             <?php
-            if ($res && $res->num_rows > 0) {
-                while ($row = $res->fetch_assoc()) {
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['id_venta']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['id_producto']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['cantidad']) . "</td>";
-                    echo "<td>Q" . number_format((float)$row['PrecioUni'], 2) . "</td>";
+                    echo "<td>Q" . number_format((float)$row['precio_unitario'], 2) . "</td>";
+                    echo "<td>Q" . number_format((float)$row['subtotal'], 2) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['create_time']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['create_date']) . "</td>";
-                    echo "<td class='fw-bold text-dark'>Q" . number_format((float)$row['SubTotal'], 2) . "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='5'>No hay datos disponibles para esta venta.</td></tr>";
+                echo "<tr><td colspan='7'>No hay datos disponibles.</td></tr>";
             }
             ?>
         </tbody>
@@ -101,15 +106,15 @@ $res = $stmt->get_result();
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#mitabla').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['excel', 'pdf', 'print'],
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
-            }
-        });
+$(document).ready(function () {
+    $('#tablaCompleta').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+        }
     });
+});
 </script>
 </body>
 </html>
