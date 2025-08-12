@@ -15,7 +15,7 @@ $resultado = $conn->query($sql);
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Cafetería Liceo Pre Universitario del Norte - Registrar Compra</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -42,18 +42,6 @@ $resultado = $conn->query($sql);
       <form
         class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
       >
-        <div class="input-group">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Search for..."
-            aria-label="Search for..."
-            aria-describedby="btnNavbarSearch"
-          />
-          <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
       </form>
       <!-- Navbar-->
       <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -71,10 +59,8 @@ $resultado = $conn->query($sql);
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdown"
           >
-            <li><a class="dropdown-item" href="#!">Settings</a></li>
-            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#!">Logout</a></li>
+            <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+            <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -92,7 +78,7 @@ $resultado = $conn->query($sql);
                 Nueva Compra
               </div>
               <div class="card-body">
-                <form id="formProducto" ethod="POST" action="createc.php" >
+                <form id="formProducto" method="POST" action="createc.php" >
                   <div class="row mb-3">
                     <div class="col-md-6">
                       <label for="encargado" class="form-label">Encargado</label>
@@ -123,16 +109,16 @@ $resultado = $conn->query($sql);
                       <label for="metodo_de_pago" class="form-label"
                         >Metodo de Pago</label
                       >
-                   <select class="form-select" id="validationCustom04" name = "metodo_de_pago">
-                            <option selected="" disabled="" value="">Seleccionar</option>
-                            <option>Efectivo</option>
-                            <option>Transferencia</option>
-                          </select>
+                     <select class="form-select" id="validationCustom04" name = "metodo_de_pago">
+                          <option selected="" disabled="" value="">Seleccionar</option>
+                          <option>Efectivo</option>
+                          <option>Transferencia</option>
+                       </select>
 
                       
                     </div>
                   
-                   <div class="col-md-6">
+                    <div class="col-md-6">
                       <label for="total_compra" class="form-label"
                         >Total Compra</label
                       >
@@ -148,10 +134,10 @@ $resultado = $conn->query($sql);
                   </div>
 
                   <div class="row mb-3">
-                
-                     <label for="observaciones" class="form-label"
+                  
+                      <label for="observaciones" class="form-label"
                       >Observaciones</label
-                    >
+                      >
                     <textarea
                       class="form-control"
                       id="observaciones"
@@ -178,7 +164,9 @@ $resultado = $conn->query($sql);
                   <input type="hidden" name="create_at" value="" />
                   <input type="hidden" name="update_at" value="" />
 
-                  <button type="submit" class="btn btn-primary">Detallar</button>
+                  <!-- Botones con el atributo name para diferenciar las acciones -->
+                  <button type="submit" name="action" value="save_only" class="btn btn-primary">Registrar sin detallar</button>
+                  <button type="submit" name="action" value="save_and_detail" class="btn btn-primary">Detallar</button>
                   <button type="reset" class="btn btn-secondary">
                     Limpiar
                   </button>
