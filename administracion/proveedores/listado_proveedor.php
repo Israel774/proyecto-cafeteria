@@ -1,4 +1,3 @@
-
 <?php
 include("../../conexion/conexion.php");
 $sql = "SELECT * FROM proveedor where activo=1" ;

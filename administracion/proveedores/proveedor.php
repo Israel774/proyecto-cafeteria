@@ -1,4 +1,3 @@
-
 <?php
 include("../../conexion/conexion.php");
 $sql = "SELECT * FROM usuario";
@@ -146,10 +145,7 @@ if ($_SESSION['estado'] != 'Activo') {
                       <br>
                       <div class="col-12 text-center mt-3">
                       <button class="btn btn-primary" type="submit">Registrar</button>
-                <a href="../../pagina_administracion.php" class="btn btn-xs btn-naranja">
-    <i class="fas fa-arrow-left me-2"></i>MENU
-  </a>
-
+               
                
             </div>
                       
