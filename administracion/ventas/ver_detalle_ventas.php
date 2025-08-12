@@ -109,7 +109,7 @@ if ($fechaInicio && $fechaFin) {
 $(document).ready(function () {
     $('#tablaCompleta').DataTable({
         dom: 'Bfrtip',
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        buttons: ['excel', 'pdf', 'print'],
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
         }

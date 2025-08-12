@@ -32,7 +32,7 @@ $row = mysqli_fetch_array($r);
         <div class="container mt-5">
             <h2 class="text-primary text-center mb-4">Editar Compra</h2>
             <form action="update.php" method="POST" class="card p-4 shadow">
-                <input type="hidden" name="id" value="<?= $row['id_compras'] ?>">
+                <input type="hidden" name="id_compras" value="<?= $row['id_compras'] ?>">
 
            
                    

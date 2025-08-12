@@ -32,15 +32,22 @@ if ($fechaInicio && $fechaFin) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
     <title>Reporte de Ventas</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- DataTables CSS y JS -->
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <!-- FontAwesome -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -96,8 +103,6 @@ if ($fechaInicio && $fechaFin) {
 
                     <div class="col-auto">
                         <a href="<?= $visualizarUrl ?>" class="btn btn-primary">Visualizar</a>
-
-
                     </div>
                 </form>
 
@@ -149,7 +154,17 @@ if ($fechaInicio && $fechaFin) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="../assets/demo/chart-area-demo.js"></script>
 <script src="../assets/demo/chart-bar-demo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-<script src="../js/datatables-simple-demo.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#miTabla').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+            },
+            scrollX: true
+        });
+    });
+</script>
+
 </body>
 </html>

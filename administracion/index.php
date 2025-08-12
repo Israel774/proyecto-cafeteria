@@ -53,6 +53,7 @@ if ($_SESSION['estado'] != 'Activo') {
           <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="../pagina_administracion.php">Exit</a></li>
             <li><a class="dropdown-item" href="../cerrar-sesion.php">Logout</a></li>
           </ul>
         </li>
@@ -103,7 +104,7 @@ if ($_SESSION['estado'] != 'Activo') {
                 data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
                   <a class="nav-link" href="compras/compras.php">Compra de Productos</a>
-                  <a class="nav-link" href="compras/detalle_compras.php">Detalle de compras</a>
+                  <a class="nav-link" href="compras/listado.php">Listado de Compras</a>
                 </nav>
               </div>
 
@@ -136,13 +137,13 @@ if ($_SESSION['estado'] != 'Activo') {
               </div>
 
 
-              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProveedores"
-                aria-expanded="false" aria-controls="collapseProveedores">
+              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas"
+                aria-expanded="false" aria-controls="collapseVentas">
                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                 Ventas
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
               </a>
-              <div class="collapse" id="collapseProveedores" aria-labelledby="headingUsuarios"
+              <div class="collapse" id="collapseVentas" aria-labelledby="headingUsuarios"
                 data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
                   <a class="nav-link" href="ventas/ventas_diarias.php">Ventas diaras</a>
