@@ -11,7 +11,7 @@ if (!isset($_SESSION['nickname'])) {
 
 // Verifica el rol del usuario
 if ($_SESSION['rol'] != 'Administrador') {
-    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    echo "<script>alert('Acceso denegado. Solo los administradores pueden acceder a esta página.'); window.history.back();</script>";
     exit();
 }
 
@@ -184,19 +184,33 @@ if ($_SESSION['estado'] != 'Activo') {
                                         </div>
 
                                         <!-- Campos ocultos o manejados por el sistema -->
-                                        <input type="hidden" name="create_by" value="usuario_actual" />
-                                        <input type="hidden" name="update_by" value="usuario_actual" />
+                                        <input type="hidden" name="create_by" value="<?php echo htmlspecialchars($_SESSION['nickname']); ?>" />
+                                        <input type="hidden" name="update_by" value="<?php echo htmlspecialchars($_SESSION['nickname']); ?>" />
                                         <input type="hidden" name="create_at" value="" />
                                         <input type="hidden" name="update_at" value="" />
 
-                                        <button type="submit" class="btn btn-primary">Continuar</button>
-                                        <button type="reset" class="btn btn-secondary">
-                                            Limpiar
-                                        </button>
+                                        <div class="d-flex gap-2 mb-2">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fas fa-plus"></i> Agregar
+                                            </button>
+                                            <button type="reset" class="btn btn-danger">
+                                                <i class="fas fa-times"></i> Cancelar
+                                            </button>
+                                        </div>
+                                        
                                     </form>
                                 </div>
                             </div>
+                                            <!--
+                                            <a href="list.php" class="btn btn-warning" style="background-color: orange; color: #fff;">
+                                                <i class="fas fa-list"></i> Listado
+                                            </a>
+                                            <a href="reporte.php" class="btn btn-warning" style="background-color: orange; color: #fff;">
+                                                <i class="fas fa-file-alt"></i> Reportes
+                                            </a>
+                                            -->
                         </div>
+                       
                     </main>
                     <!-- FIN CONTENIDO -->
                 </div>

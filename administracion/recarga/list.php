@@ -23,9 +23,9 @@ if ($_SESSION['estado'] != 'Activo') {
 
 ?>
 <?php
-  include("../../conexion/conexion.php");
-  $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
-  $respuesta = mysqli_query($conn, $sql);
+include("../../conexion/conexion.php");
+$sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
+$respuesta = mysqli_query($conn, $sql);
 ?>
 
 
@@ -42,7 +42,13 @@ if ($_SESSION['estado'] != 'Activo') {
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -87,71 +93,79 @@ if ($_SESSION['estado'] != 'Activo') {
                     <h1 class="mt-4"></h1>
                     <!-- parte1-->
                     <div class="row">
-
-
-
                     </div>
                     <!-- parte1fin-->
                     <!-- parte2-->
                     <div class="row">
-
-
-
                     </div>
                     <!-- ***************************************CONTENIDO************************************************ -->
-                     <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4 text-center">Registro de Recargas</h1>
-                    <div class="sama">
-                        <div>
-                            
+                    <main>
+                        <div class="container-fluid px-4">
+                            <h1 class="mt-4 text-center">Registro de Recargas</h1>
+                            <div class="sama">
+                                <div>
+                                    <table id="miTabla" class="display nowrap table table-hover" style="width:100%">
 
-                              <table id="miTabla" class="display nowrap table table-hover" style="width:100%">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombre</th>
+                                                <th>Apellido</th>
+                                                <th>Saldo Total</th>
+                                                <th>Saldo que se recargó</th>
+                                                <center>
+                                                    <th>Acciones</th>
+                                                </center>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($row = mysqli_fetch_array($respuesta)):  ?>
+                                                <tr>
+                                                    <td><?php echo $row['id_recarga'];  ?></td>
+                                                    <td><?php echo $row['nombre'];  ?></td>
+                                                    <td><?php echo $row['apellido'];  ?></td>
+                                                    <td><?php echo $row['saltotal'];  ?></td>
+                                                    <td><?php echo $row['salrecarga'];  ?></td>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" title="Borrar Registro" class="btn" style="background-color: #dc3545; color: #fff;" onclick="window.location.href='delete.php?id_recarga=<?php echo $row['id_recarga']; ?>'">
+                                                            <i class="fa-solid fa-trash-can"></i> Eliminar
+                                                        </button>
 
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Saldo Total</th>
-                                    <th>Saldo que se recargó</th>
-                                    <center><th>Acciones</th></center>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while($row = mysqli_fetch_array($respuesta)):  ?>
-                                <tr>
-                                    <td><?php echo $row['id_recarga'];  ?></td> 
-                                     <td><?php echo $row['nombre'];  ?></td> 
-                                     <td><?php echo $row['apellido'];  ?></td>
-                                     <td><?php echo $row['saltotal'];  ?></td>
-                                     <td><?php echo $row['salrecarga'];  ?></td></td>
-                                     <td>
-                    
-                                         <center><a href="delete.php?id_recarga=<?php echo $row['id_recarga']; ?>"><button type="button" title="Borrar Registro" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</button></a>
-                                         <a href="view.php?id=<?php echo $row['id_recarga']; ?>"><button type="button" title="Ver Registro" class="btn btn-outline-success"><i class="fa-solid fa-eye">Ver</i></button></a></td></center>
-                                    </td>
-                                </tr>
-                                <?php endwhile ?>
-                            </tbody>
-                        </table>
+                                                        <button type="button"
+                                                            title="Ver información"
+                                                            class="btn verRecargaBtn"
+                                                            style="background-color: #e83e8c; color: #fff; border-color: #e83e8c;"
+                                                            data-id="<?php echo $row['id_recarga']; ?>">
+                                                            <i class="fa-solid fa-eye"></i> Ver
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile ?>
+                                        </tbody>
+                                    </table>
 
-                            <a href="recarga.php" class="btn btn-secondary mt-3">Inicio</a>
+                                    <!-- <a href="recarga.php" class="btn mt-3" style="background-color: orange; color: #fff;">
+                                        <i class="fa-solid fa-house"></i> Inicio
+                                    </a>
+                                    <a href="reporte.php" class="btn mt-3" style="background-color: orange; color: #fff;">
+                                        <i class="fa-solid fa-file-lines"></i> Reportes
+                                    </a> -->
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </main>
-            <!-- Scripts -->
-                        <script src="https://kit.fontawesome.com/76679858d1.js" crossorigin="anonymous"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                            crossorigin="anonymous"></script>
+                    </main>
+                    <!-- Scripts -->
+                    <script src="https://kit.fontawesome.com/76679858d1.js" crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                        crossorigin="anonymous"></script>
 
-                        <!-- DataTables -->
-                        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-                        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-                        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-                        <script>
+                    <!-- DataTables -->
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+                    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+                    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+                    <script>
                         $(document).ready(function() {
                             $('#miTabla').DataTable({
                                 responsive: true,
@@ -160,36 +174,18 @@ if ($_SESSION['estado'] != 'Activo') {
                                 }
                             });
                         });
-                        </script>
-                    </div>
+                    </script>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                   
-                    <!-- FIN CONTENIDO -->
-                </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                </div>
-            </footer>
         </div>
+
+        <!-- FIN CONTENIDO -->
+    </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+        </div>
+    </footer>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
@@ -200,6 +196,54 @@ if ($_SESSION['estado'] != 'Activo') {
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="../js/datatables-simple-demo.js"></script>
+
+    <!-- Codificacion para apertura de ventana emergente "Ver" -->
+    <!-- Modal Estilizado -->
+    <div class="modal fade" id="modalRecarga" tabindex="-1" aria-labelledby="modalRecargaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+                <div class="modal-header bg-dark text-white rounded-top-4">
+                    <h5 class="modal-title" id="modalRecargaLabel">
+                        <i class="fa-solid fa-circle-info me-2"></i> Detalle de Recarga
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" id="modal-content">
+                    <!-- Aquí irán los datos con AJAX -->
+                </div>
+                <div class="modal-footer bg-light rounded-bottom-4">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-xmark me-1"></i> Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).on('click', '.verRecargaBtn', function() {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: 'get_recarga.php', // Archivo que devuelve HTML con el detalle
+                method: 'POST',
+                data: {
+                    id_recarga: id
+                },
+                success: function(response) {
+                    $('#modal-content').html(response); // Inserta datos en el modal
+
+                    const modal = new bootstrap.Modal(document.getElementById('modalRecarga'));
+                    modal.show();
+                },
+                error: function() {
+                    $('#modal-content').html('<p class="text-danger">Error al cargar los datos.</p>');
+                }
+            });
+        });
+    </script>
+    <!-- Fin de codificacion para apertura de ventana emergente "Ver" -->
+
 </body>
 
 </html>

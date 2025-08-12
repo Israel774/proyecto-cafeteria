@@ -15,6 +15,7 @@ $html .= "<p>Fecha: $fecha</p>";
 $html .= "<table border='1' width='100%' cellspacing='0' cellpadding='5'>
     <thead>
         <tr>
+            <th>Codigo de barras</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Saldo Recargado</th>
@@ -25,8 +26,15 @@ $html .= "<table border='1' width='100%' cellspacing='0' cellpadding='5'>
     </thead>
     <tbody>";
 
-while ($row = mysqli_fetch_assoc($res)) {
+// Use prepared statements to prevent SQL injection
+$stmt = $conn->prepare("SELECT barras, nombre, apellido, salrecarga, saltotal, metodoPago, create_at FROM recarga WHERE DATE(create_at) = ?");
+$stmt->bind_param("s", $fecha);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
     $html .= "<tr>
+        <td>{$row['barras']}</td>
         <td>{$row['nombre']}</td>
         <td>{$row['apellido']}</td>
         <td>{$row['salrecarga']}</td>
@@ -35,6 +43,7 @@ while ($row = mysqli_fetch_assoc($res)) {
         <td>{$row['create_at']}</td>
     </tr>";
 }
+$stmt->close();
 $html .= "</tbody></table>";
 
 $options = new Options();
