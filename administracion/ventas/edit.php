@@ -1,22 +1,24 @@
 <?php
 include("conexion.php");
 
-$id = $_GET['id'];
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+if ($id <= 0) {
+    die("ID de venta inválido.");
+}
 
 $sql = "SELECT * FROM ventas WHERE id = $id";
 $resultado = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($resultado);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
-    $nombre = $_POST['NombreP'];
-    $cantidad = $_POST['CantidadP'];
-    $subtotal = $_POST['SubTotal'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_cliente = intval($_POST['id_cliente']);
+    $total_pagado = floatval($_POST['total_pagado']);
 
-    $update = "UPDATE VentaDia SET 
-                NombreP = '$nombre', 
-                CantidadP = '$cantidad', 
-                SubTotal = $subtotal 
-                WHERE Id = $id";
+    $update = "UPDATE ventas SET 
+                id_cliente = $id_cliente, 
+                total_pagado = $total_pagado,
+                update_at = NOW() 
+                WHERE id = $id";
 
     mysqli_query($conn, $update);
     header("Location: index.php");
@@ -42,19 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="card-body bg-white">
                 <form method="POST">
                     <div class="mb-3">
-                        <label class="form-label">Nombre del Producto:</label>
-                        <input type="text" name="NombreP" class="form-control" value="<?php echo $row['NombreP']; ?>" required>
+                        <label class="form-label">ID Cliente:</label>
+                        <input type="number" name="id_cliente" class="form-control" value="<?php echo $row['id_cliente']; ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Cantidad:</label>
-                        <input type="number" name="CantidadP" class="form-control" value="<?php echo $row['CantidadP']; ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">SubTotal:</label>
-                        <input type="number" name="SubTotal" class="form-control" step="0.01" value="<?php echo $row['SubTotal']; ?>" required>
+                        <label class="form-label">Total Pagado:</label>
+                        <input type="number" name="total_pagado" step="0.01" class="form-control" value="<?php echo $row['total_pagado']; ?>" required>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="index.php" class="btn btn-outline-secondary">
+                        <a href="ventas_diarias.php" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-arrow-left"></i> Cancelar
                         </a>
                         <button type="submit" class="btn btn-primary">
@@ -66,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <!-- Bootstrap y FontAwesome JS -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

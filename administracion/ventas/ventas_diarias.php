@@ -77,7 +77,7 @@
                                 <thead class="table-dark">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre del Cliente</th>
+                                        <th>Nombre del Producto</th>
                                         <th>Cantidad</th>
                                         <th>Total Pagado</th>
                                         <th>Acciones</th>
@@ -94,11 +94,6 @@
                                                 <a href="delete.php?id=1" class="btn btn-danger" title="Borrar">
                                                     <i class="fa-solid fa-xmark"></i>
                                                 </a>
-                                                <a href="edit.php?id=1" class="btn"
-                                                    style="background-color: #ffc107; color: black; border: 1px solid #ffc107;"
-                                                    title="Editar">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </a>
 
 
 
@@ -114,11 +109,7 @@
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="delete.php?id=2" class="btn btn-danger" title="Borrar">
                                                     <i class="fa-solid fa-xmark"></i>
-                                                    <a href="edit.php?id=1" class="btn"
-                                                        style="background-color: #ffc107; color: black; border: 1px solid #ffc107;"
-                                                        title="Editar">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </a>
+                                                </a>
 
 
 
@@ -135,11 +126,6 @@
                                                 <a href="delete.php?id=3" class="btn btn-danger" title="Borrar">
                                                     <i class="fa-solid fa-xmark"></i>
                                                 </a>
-                                                <a href="edit.php?id=1" class="btn"
-                                                    style="background-color: #ffc107; color: black; border: 1px solid #ffc107;"
-                                                    title="Editar">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </a>
 
 
                                             </div>
@@ -154,11 +140,6 @@
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="delete.php?id=4" class="btn btn-danger" title="Borrar">
                                                     <i class="fa-solid fa-xmark"></i>
-                                                </a>
-                                                <a href="edit.php?id=1" class="btn"
-                                                    style="background-color: #ffc107; color: black; border: 1px solid #ffc107;"
-                                                    title="Editar">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
 
 
