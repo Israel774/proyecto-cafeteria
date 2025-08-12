@@ -58,9 +58,29 @@
     </div>
   </div>
 
+    <div id="carrito-container" class="fixed top-0 right-0 h-full w-80 bg-white shadow-lg p-4 transform translate-x-full carrito-container z-50">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold">Carrito</h2>
+            <button id="cerrar-carrito" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
+        </div>
+        <ul id="lista-carrito" class="list-none p-0">
+        </ul>
+        <div class="mt-4 pt-4 border-t-2 border-gray-200">
+        <p class="text-xl font-bold">Total: Q<span id="total-carrito">0.00</span></p>
+        </div>
+        <div id="botones-carrito" class="flex flex-col mt-4">
+            <a href="ver_carrito.php">
+                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-lg font-semibold mb-2">
+                    Ver Carrito
+                </button>
+            </a>
+        </div>
+    </div>
+
 
   <!-- Bootstrap CSS y JS para modales -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/js.js"></script>
 
 </body>
 </html>
