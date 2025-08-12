@@ -1,4 +1,0 @@
-POST: Array
-(
-    [id_recarga] => 1
-)

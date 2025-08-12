@@ -1,9 +1,4 @@
 <?php
-<<<<<<< HEAD
-// Inicia la sesión
-
-session_start();
-=======
 session_start();
 
 if (!isset($_SESSION['nickname'])) {
@@ -15,7 +10,6 @@ if (!isset($_SESSION['nickname'])) {
 include("../../conexion/conexion.php");
   $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
     $respuesta = mysqli_query($conn, $sql);
->>>>>>> 93624e09e0ddca744caf3beabe38235c6c94dc2f
 
 // Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['nickname'])) {
@@ -36,16 +30,6 @@ if ($_SESSION['estado'] != 'Activo') {
 }
 
 ?>
-<?php
-include("../../conexion/conexion.php");
-$sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
-$respuesta = mysqli_query($conn, $sql);
-?>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 93624e09e0ddca744caf3beabe38235c6c94dc2f
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,46 +95,47 @@ $respuesta = mysqli_query($conn, $sql);
                             <h1 class="mt-4 text-center">Registro de Recargas</h1>
                             <div class="sama">
                                 <div>
-                                    <table id="miTabla" class="display nowrap table table-hover" style="width:100%">
-
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nombre</th>
-                                                <th>Apellido</th>
-                                                <th>Saldo Total</th>
-                                                <th>Saldo que se recargó</th>
-                                                <center>
-                                                    <th>Acciones</th>
-                                                </center>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php while ($row = mysqli_fetch_array($respuesta)):  ?>
+                                    <?php if (mysqli_num_rows($respuesta) > 0): ?>
+                                        <table id="miTabla" class="display nowrap table table-hover text-center" style="width:100%">
+                                            <thead class="table-dark">
                                                 <tr>
-                                                    <td><?php echo $row['id_recarga'];  ?></td>
-                                                    <td><?php echo $row['nombre'];  ?></td>
-                                                    <td><?php echo $row['apellido'];  ?></td>
-                                                    <td><?php echo $row['saltotal'];  ?></td>
-                                                    <td><?php echo $row['salrecarga'];  ?></td>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" title="Borrar Registro" class="btn" style="background-color: #dc3545; color: #fff;" onclick="window.location.href='delete.php?id_recarga=<?php echo $row['id_recarga']; ?>'">
-                                                            <i class="fa-solid fa-trash-can"></i> Eliminar
-                                                        </button>
-
-                                                        <button type="button"
-                                                            title="Ver información"
-                                                            class="btn verRecargaBtn"
-                                                            style="background-color: #e83e8c; color: #fff; border-color: #e83e8c;"
-                                                            data-id="<?php echo $row['id_recarga']; ?>">
-                                                            <i class="fa-solid fa-eye"></i> Ver
-                                                        </button>
-                                                    </td>
+                                                    <th>#</th>
+                                                    <th>Nombre</th>
+                                                    <th>Apellido</th>
+                                                    <th>Saldo Total</th>
+                                                    <th>Saldo que se recargó</th>
+                                                    <th>Acciones</th>
                                                 </tr>
-                                            <?php endwhile ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php while ($row = mysqli_fetch_array($respuesta)):  ?>
+                                                    <tr>
+                                                        <td class="text-center"><?php echo $row['id_recarga'];  ?></td>
+                                                        <td class="text-center"><?php echo $row['nombre'];  ?></td>
+                                                        <td class="text-center"><?php echo $row['apellido'];  ?></td>
+                                                        <td class="text-center"><?php echo $row['saltotal'];  ?></td>
+                                                        <td class="text-center"><?php echo $row['salrecarga'];  ?></td>
+                                                        <td class="text-center">
+                                                            <button type="button" title="Borrar Registro" class="btn" style="background-color: #dc3545; color: #fff;" onclick="window.location.href='delete.php?id_recarga=<?php echo $row['id_recarga']; ?>'">
+                                                                <i class="fa-solid fa-trash-can"></i> Eliminar
+                                                            </button>
+                                                            <button type="button"
+                                                                title="Ver información"
+                                                                class="btn verRecargaBtn"
+                                                                style="background-color: #e83e8c; color: #fff; border-color: #e83e8c;"
+                                                                data-id="<?php echo $row['id_recarga']; ?>">
+                                                                <i class="fa-solid fa-eye"></i> Ver
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endwhile ?>
+                                            </tbody>
+                                        </table>
+                                    <?php else: ?>
+                                        <div class="alert text-center mt-4" style="background-color: #000000ff; color: #fff;">
+                                            Datos de usuarios no encontrados
+                                        </div>
+                                    <?php endif; ?>
 
                                     <!-- <a href="recarga.php" class="btn mt-3" style="background-color: orange; color: #fff;">
                                         <i class="fa-solid fa-house"></i> Inicio

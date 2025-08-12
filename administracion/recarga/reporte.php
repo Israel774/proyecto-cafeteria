@@ -1,7 +1,15 @@
 <?php
-// Inicia la sesión
-
 session_start();
+
+if (!isset($_SESSION['nickname'])) {
+    // No ha iniciado sesión, redirigir
+    header("Location: ../../index.html");
+    exit;
+}
+
+include("../../conexion/conexion.php");
+  $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
+    $respuesta = mysqli_query($conn, $sql);
 
 // Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['nickname'])) {
@@ -11,7 +19,7 @@ if (!isset($_SESSION['nickname'])) {
 
 // Verifica el rol del usuario
 if ($_SESSION['rol'] != 'Administrador') {
-    echo "<script>alert('Acceso denegado. Solo los administradores pueden acceder a esta página.'); window.history.back();</script>";
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
     exit();
 }
 

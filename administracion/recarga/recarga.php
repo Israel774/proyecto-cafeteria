@@ -1,10 +1,4 @@
 <?php
-<<<<<<< HEAD
-// Inicia la sesión
-
-session_start();
-
-=======
 session_start();
 
 if (!isset($_SESSION['nickname'])) {
@@ -12,7 +6,11 @@ if (!isset($_SESSION['nickname'])) {
     header("Location: ../../index.html");
     exit;
 }
->>>>>>> 93624e09e0ddca744caf3beabe38235c6c94dc2f
+
+include("../../conexion/conexion.php");
+  $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
+    $respuesta = mysqli_query($conn, $sql);
+
 // Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['nickname'])) {
     header('Location: ../index.php');
@@ -21,7 +19,7 @@ if (!isset($_SESSION['nickname'])) {
 
 // Verifica el rol del usuario
 if ($_SESSION['rol'] != 'Administrador') {
-    echo "<script>alert('Acceso denegado. Solo los administradores pueden acceder a esta página.'); window.history.back();</script>";
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
     exit();
 }
 
@@ -164,7 +162,7 @@ if ($_SESSION['estado'] != 'Activo') {
                                                 <label for="proveedor" class="form-label">Metodo de Pago</label>
                                                 <select class="form-select" id="metodoPago" name="metodoPago" required>
                                                     <option value="Efectivo">Efectivo</option>
-                                                    <option value="Tarjeta">Tarjeta</option>
+                                                    <option value="Tarjeta" disabled>Tarjeta</option>
 
                                                 </select>
                                             </div>
@@ -173,10 +171,10 @@ if ($_SESSION['estado'] != 'Activo') {
 
                                             <div class="col-md-6">
                                                 <label for="proveedor" class="form-label">¿Necesita Recibo?</label>
-                                                <select class="form-select" id="FK_recibo" name="FK_recibo" required>
+                                                <select class="form-select" id="recibo" name="recibo" required>
                                                     <!-- Pendiente a correccion de ID, name y DB -->
                                                     <option value="0">No</option>
-                                                    <option value="1">Si</option>
+                                                    <option value="1" disabled>Si</option>
                                                     <!-- Aquí puedes cargar los proveedores desde base de datos -->
                                                 </select>
                                             </div>
