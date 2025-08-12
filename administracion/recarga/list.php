@@ -53,7 +53,7 @@ if ($_SESSION['estado'] != 'Activo') {
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="../index.php">Inicio</a>
         <!-- Sidebar Toggle-->
@@ -62,7 +62,6 @@ if ($_SESSION['estado'] != 'Activo') {
         </button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -71,7 +70,7 @@ if ($_SESSION['estado'] != 'Activo') {
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
-                    <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
+                    <li><a class="dropdown-item" href="cerrar.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -84,10 +83,16 @@ if ($_SESSION['estado'] != 'Activo') {
                     <h1 class="mt-4"></h1>
                     <!-- parte1-->
                     <div class="row">
+
+
+
                     </div>
                     <!-- parte1fin-->
                     <!-- parte2-->
                     <div class="row">
+
+
+
                     </div>
                     <!-- ***************************************CONTENIDO************************************************ -->
                     <main>

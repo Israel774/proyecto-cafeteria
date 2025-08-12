@@ -1,8 +1,11 @@
 <?php
+session_start(); // para acceder a $_SESSION
 
 include("../../conexion/conexion.php");
 $id_recarga = $_GET["id_recarga"];
 
+// Usuario que realiza la actualización
+$update_by = $_SESSION['nickname']; // o $_SESSION['nickname'] si es texto
 
 $sql_verificar = "SELECT * FROM recarga WHERE id_recarga = '$id_recarga' AND estado = 1";
 $result = mysqli_query($conn, $sql_verificar);
@@ -29,15 +32,15 @@ if ($result && mysqli_num_rows($result) > 0) {
             mysqli_begin_transaction($conn);
 
             try {
-                // 1. Marcar recarga como anulada y tipo = 2 (resta)
+                // 1. Marcar recarga como anulada y tipo = 2 (resta) + quién la actualizó
                 $sql_update_recarga = "UPDATE recarga 
-                    SET estado = 0, tipo = 2, update_at = NOW() 
+                    SET estado = 0, tipo = 2, update_at = NOW(), update_by = '$update_by' 
                     WHERE id_recarga = '$id_recarga'";
                 mysqli_query($conn, $sql_update_recarga);
 
                 // 2. Actualizar saldo del cliente
                 $sql_update_cliente = "UPDATE clientes 
-                    SET saldo = '$salanterior', Update_at = NOW() 
+                    SET saldo = '$salanterior', update_at = NOW() 
                     WHERE nickname = '$nickname'";
                 mysqli_query($conn, $sql_update_cliente);
 
@@ -62,5 +65,4 @@ if ($result && mysqli_num_rows($result) > 0) {
 } else {
     echo "No se encontró la recarga activa con ID: $id_recarga";
 }
-
 ?>

@@ -23,7 +23,7 @@ $menu = [
          ]
     ],
     'Recargar' => [
-        'icono' => 'fa-solid fa-cash-register',
+        'icono' => 'fas fa-money-bill-wave',
         'submenu' => [
             'Recargar Saldo' => '../recarga/recarga.php',
             'Lista de Recargas' => '../recarga/list.php',

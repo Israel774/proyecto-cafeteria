@@ -10,8 +10,8 @@ metodoPago varchar (15),
 estado INT(1), /*Estado de recarga: 1 = creado, 0 = Eliminado*/
 tipo INT(1) DEFAULT 1, /*Tipo de recarga: 1 = dinero sumado a la cuenta, 2 = dinero eliminado de la cuenta*/
 update_at datetime,
-update_by int(10),
+update_by varchar(50),
 create_at datetime,
-create_by int(10)
+create_by varchar(50)
 );
 select * from recarga;
