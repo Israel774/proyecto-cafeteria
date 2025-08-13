@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../conexion/conexion.php'; // Asegúrate de que la ruta sea correcta
-
+$conn = conectar();
 // Verifica si el usuario está autenticado y si se ha pasado un id_venta
 if (!isset($_SESSION['id_usuario']) || !isset($_GET['id_venta'])) {
     header('Location: historial_compras.php');

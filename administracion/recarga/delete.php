@@ -3,9 +3,13 @@ session_start(); // para acceder a $_SESSION
 
 include("../../conexion/conexion.php");
 $id_recarga = $_GET["id_recarga"];
+<<<<<<< Updated upstream
 
 // Usuario que realiza la actualización
 $update_by = $_SESSION['nickname']; // o $_SESSION['nickname'] si es texto
+=======
+$conn = conectar();
+>>>>>>> Stashed changes
 
 $sql_verificar = "SELECT * FROM recarga WHERE id_recarga = '$id_recarga' AND estado = 1";
 $result = mysqli_query($conn, $sql_verificar);

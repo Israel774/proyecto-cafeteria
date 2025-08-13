@@ -1,5 +1,6 @@
 <?php
 include("../../conexion/conexion.php");
+<<<<<<< Updated upstream
 session_start();
 
 // Verificar sesión y rol administrador
@@ -21,6 +22,11 @@ if (isset($_GET['id_proveedor']) && is_numeric($_GET['id_proveedor'])) {
             WHERE id_proveedor = ?";
 
     $stmt = mysqli_prepare($conn, $sql);
+=======
+$conn = conectar();
+    $id_proveedor = $_GET["id_proveedor"];
+   
+>>>>>>> Stashed changes
     
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "i", $id_proveedor);

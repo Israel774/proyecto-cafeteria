@@ -1,16 +1,10 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['nickname'])) {
     // No ha iniciado sesión, redirigir
     header("Location: ../../index.html");
     exit;
 }
-
-include("../../conexion/conexion.php");
-  $sql = "SELECT * FROM recarga WHERE estado = 1 ORDER BY id_recarga DESC";
-    $respuesta = mysqli_query($conn, $sql);
-
 // Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['nickname'])) {
     header('Location: ../index.php');

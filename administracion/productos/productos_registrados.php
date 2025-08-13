@@ -20,7 +20,7 @@ if ($_SESSION['estado'] != 'Activo') {
 }
 
   include("../../conexion/conexion.php");
-
+$conn = conectar();
   // Consulta con join para traer nombre del proveedor
   $sql = "SELECT productos.*, proveedor.Nombre AS nombre_proveedor
         FROM productos

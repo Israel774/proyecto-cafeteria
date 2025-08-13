@@ -2,10 +2,17 @@
 session_start(); // Importante para acceder a $_SESSION
 
 require "../../conexion/conexion.php";
+<<<<<<< Updated upstream
 
 $barras      = $_POST["codigobarra"];
 $nombre      = $_POST["nombre"];
 $apellido    = $_POST["apellido"];
+=======
+$conn = conectar();
+$barras = $_POST["codigobarra"];
+$nombre = $_POST["nombre"];
+$apellido = $_POST["apellido"];
+>>>>>>> Stashed changes
 $salanterior = $_POST["saldo"];
 $saltotal    = $_POST["saltotal"];
 $salrecarga  = $_POST["salrecarga"];

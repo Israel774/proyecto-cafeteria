@@ -1,3 +1,26 @@
+<?php
+    session_start();
+
+  // Verifica si el usuario ha iniciado sesión
+    if (!isset($_SESSION['nickname'])) {
+        header('Location: ../../index.html');
+        exit();
+    }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Kiosko') {
+    echo "<script>alert(Acceso denegado. pagina solo para kioskos.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

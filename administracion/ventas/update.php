@@ -1,6 +1,6 @@
 <?php
-include("conexion.php");
-
+include("../../conexion/conexion.php");
+$conn = conectar();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recibimos y sanitizamos los datos
     $id = isset($_POST['id']) ? intval($_POST['id']) : 0;

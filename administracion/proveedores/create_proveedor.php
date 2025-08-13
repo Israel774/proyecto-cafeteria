@@ -1,5 +1,6 @@
 <?php
 require "../../conexion/conexion.php";
+<<<<<<< Updated upstream
 session_start();
 
 // Validar que el usuario esté logueado
@@ -10,6 +11,9 @@ if (!isset($_SESSION['id_usuario'])) {
 
 $usuario_id = $_SESSION['id_usuario']; // ID del usuario que crea el registro
 
+=======
+$conn = conectar();
+>>>>>>> Stashed changes
 // Obtener datos del formulario
 $Nombre = trim($_POST['Nombre']);
 $Direccion = trim($_POST['Direccion']);

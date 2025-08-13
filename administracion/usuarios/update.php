@@ -1,5 +1,6 @@
 <?php 
 include("../../conexion/conexion.php");
+$conn = conectar();
 $id_usuario     = $_POST["id"];
 $nombre         = $_POST["nombre"];
 $apellido       = $_POST["apellido"];

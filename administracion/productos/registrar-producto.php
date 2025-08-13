@@ -21,7 +21,7 @@ if ($_SESSION['estado'] != 'Activo') {
 }
 
 require "../../conexion/conexion.php"; // tu conexión a la BD
-
+$conn = conectar();
 $sql = "SELECT id_proveedor, Nombre FROM proveedor";
 $resultado = $conn->query($sql);
 ?>

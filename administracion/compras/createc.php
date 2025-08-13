@@ -1,7 +1,7 @@
 <?php
 // Incluir el archivo de conexi\u00f3n a la base de datos
 require "../../conexion/conexion.php";
-
+$conn = conectar();
 // Recuperar y sanear los datos del formulario
 // trim() elimina espacios en blanco al inicio y final
 $encargado = trim($_POST['encargado']);

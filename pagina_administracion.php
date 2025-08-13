@@ -1,6 +1,5 @@
   <?php
   session_start();
-
   // Verifica si el usuario ha iniciado sesión
   if (!isset($_SESSION['nickname'])) {
       header('Location: index.php');

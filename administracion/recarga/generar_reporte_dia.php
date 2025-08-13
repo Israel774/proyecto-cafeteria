@@ -4,7 +4,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 include '../../conexion/conexion.php';  
-
+$conn = conectar();
 $fecha = $_POST['fecha_unica'];
 
 // Encabezado del HTML

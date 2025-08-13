@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../../conexion/conexion.php";
+$conn = conectar();
 
 // Verificar que el usuario esté logueado
 if (!isset($_SESSION['id_usuario'])) {

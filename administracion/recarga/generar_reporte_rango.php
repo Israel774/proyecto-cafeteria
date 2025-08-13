@@ -5,7 +5,7 @@ use Dompdf\Options;
 
 // Conexión a la base de datos
 include '../../conexion/conexion.php';
-
+$conn = conectar();
 $fecha_inicio = $_POST['fecha_inicio'];
 $fecha_final = $_POST['fecha_final'];
 

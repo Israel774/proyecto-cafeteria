@@ -1,3 +1,24 @@
+<?php
+  session_start();
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

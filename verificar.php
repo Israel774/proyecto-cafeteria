@@ -1,12 +1,13 @@
 <?php 
-require_once "conexion/conexion.php"; // Aquí se incluye $conn
+require_once "conexion/conexion.php";
+$conn = conectar();
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['nickname'], $_POST['pass'])) {
         $nickname = trim($_POST['nickname']);
-        $contraseña = hash('sha512',$_POST['pass']);
+        $contraseña = hash('sha512', $_POST['pass']);
 
-        // Preparamos consulta segura con mysqli
         $sql = "SELECT * FROM usuario WHERE nickname = ?";
         $stmt = $conn->prepare($sql);
 
@@ -18,12 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($result->num_rows === 1) {
                 $user = $result->fetch_assoc();
 
-                if (($contraseña = $user['contraseña'])) {
-                    session_start();
+                // Verifica la contraseña correctamente
+                if ($contraseña === $user['contraseña']) { 
                     $_SESSION['estado'] = $user['estado'];
                     $_SESSION['id_usuario'] = $user['id_usuario'];
                     $_SESSION['nickname'] = $user['nickname'];
-                    $_SESSION['rol'] = $user['tipo']; // 'tipo' es el nombre real del campo en BD
+                    $_SESSION['rol'] = $user['tipo'];
 
                     if ($user['tipo'] == 'Administrador') {
                         header("Location: pagina_administracion.php");
@@ -34,27 +35,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     } elseif ($user['tipo'] == 'Kiosko') {
                         header("Location: Diseño-pantalla-tactil/index.php");
                         exit;
+                    } else {
+                        // En caso de rol no reconocido
+                        $_SESSION['error_message'] = "Rol de usuario no reconocido.";
+                        header("Location: index.html"); // Redirige a la página de login
+                        exit;
                     }
-                    else {
-                        $error_message = "Rol de usuario no reconocido.";
-                    }
-
                 } else {
-                    $error_message = "Usuario o contraseña incorrectos.";
+                    // En caso de contraseña incorrecta
+                    $_SESSION['error_message'] = "Usuario o contraseña incorrectos.";
+                    header("Location: index.html"); // Redirige a la página de login
+                    exit;
                 }
-
             } else {
-                $error_message = "Usuario o contraseña incorrectos.";
+                // En caso de usuario no encontrado
+                $_SESSION['error_message'] = "Usuario o contraseña incorrectos.";
+                header("Location: login.html"); // Redirige a la página de login
+                exit;
             }
 
             $stmt->close();
         } else {
-            $error_message = "Error en la preparación de la consulta.";
+            // En caso de error en la preparación de la consulta
+            $_SESSION['error_message'] = "Error en la preparación de la consulta.";
+            header("Location: index.html"); // Redirige a la página de login
+            exit;
         }
 
         $conn->close();
     } else {
-        $error_message = "Todos los campos son obligatorios.";
+        // En caso de campos faltantes
+        $_SESSION['error_message'] = "Todos los campos son obligatorios.";
+        header("Location: index.html"); // Redirige a la página de login
+        exit;
     }
+} else {
+    // Si la solicitud no es POST
+    header("Location: index.html");
+    exit;
 }
 ?>

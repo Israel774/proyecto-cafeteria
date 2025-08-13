@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Incluye el archivo de conexión a la base de datos.
     // ¡AJUSTA ESTA RUTA SEGÚN TU ESTRUCTURA DE CARPETAS!
     require_once '../../conexion/conexion.php'; // Ejemplo: si conexion.php está dos niveles arriba
-
+    $conn = conectar();
     // Obtén el código de barras de la solicitud POST.
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);

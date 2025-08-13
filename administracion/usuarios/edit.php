@@ -1,5 +1,24 @@
-<?php 
+<?php
+  session_start();
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+} 
 include("../../conexion/conexion.php");
+$conn = conectar();
 $id_usuario = $_GET['id_usuario'];
 $sql = "SELECT * FROM usuario WHERE id_usuario = '$id_usuario'";
 $r = mysqli_query($conn, $sql);
@@ -24,16 +43,11 @@ $row = mysqli_fetch_array($r);
 </head>
 
 <body>
-
-
-
-   
     <div class="main-content">
         <div class="container mt-5">
             <h2 class="text-primary text-center mb-4">Editar Usuario</h2>
             <form action="update.php" method="POST" class="card p-4 shadow">
                 <input type="hidden" name="id" value="<?= $row['id_usuario'] ?>">
-
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label">Nombre</label>
@@ -47,9 +61,9 @@ $row = mysqli_fetch_array($r);
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Modificación</label>
-                        <input type="text" class="form-control" name="modificacion" id="modificacion" required>
+                        <input type="text" class="form-control" name="modificacion" id="modificacion"
+                            value="<?= $row['modificacion'] ?>" readonly required>
                     </div>
-
                     <div class="col-md-6">
                         <label class="form-label">Teléfono</label>
                         <input type="text" class="form-control" name="telefono" value="<?= $row['telefono'] ?>"
@@ -67,7 +81,6 @@ $row = mysqli_fetch_array($r);
                             </option>
                         </select>
                     </div>
-
                     <div class="col-md-6">
                         <label class="form-label">Correo</label>
                         <input type="email" class="form-control" name="correo" value="<?= $row['correo'] ?>" required>
@@ -95,7 +108,6 @@ $row = mysqli_fetch_array($r);
                         <input type="text" class="form-control" name="contraseña" value="<?= $row['contraseña'] ?>"
                             required>
                     </div>
-
                     <div class="col-12 text-center">
                         <button class="btn btn-success" type="submit">
                             <i class="fas fa-save me-2"></i>Actualizar
@@ -107,41 +119,7 @@ $row = mysqli_fetch_array($r);
                 </div>
             </form>
         </div>
-
-
     </div>
-
-
-
-
-    <script>
-    const nombreInput = document.getElementById('nombre');
-    const apellidoInput = document.getElementById('apellido');
-    const modificacionInput = document.getElementById('modificacion');
-
-    function generarModificacion() {
-        const nombre = nombreInput.value.trim().toLowerCase();
-        const apellido = apellidoInput.value.trim().toLowerCase();
-
-        if (nombre.length >= 2 && apellido.length >= 2) {
-            const letras = nombre.slice(0, 2) + apellido.slice(0, 2);
-
-            const numeros = '0123456789';
-            let aleatorios = '';
-            for (let i = 0; i < 4; i++) {
-                aleatorios += numeros.charAt(Math.floor(Math.random() * numeros.length));
-            }
-
-            modificacionInput.value = letras + aleatorios;
-        } else {
-            modificacionInput.value = '';
-        }
-    }
-
-    nombreInput.addEventListener('input', generarModificacion);
-    apellidoInput.addEventListener('input', generarModificacion);
-    window.addEventListener('load', generarModificacion);
-    </script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    </body>
 </html>

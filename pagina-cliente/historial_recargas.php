@@ -1,6 +1,14 @@
 <?php
+session_start();
 // Incluye el archivo que obtiene todos los datos del usuario
 include 'obtener-usuario/obtener_usuario.php';
+$conn = conectar();
+
+// Verifica si el usuario está autenticado y si se ha pasado un id_venta
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: historial_compras.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

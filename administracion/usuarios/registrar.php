@@ -1,20 +1,16 @@
 <?php
-include("../../conexion/conexion.php");
-$sql = "SELECT * FROM usuario";
-$respuesta = mysqli_query($conn , $sql); 
-
-
 session_start();
-
+require "../../conexion/conexion.php";
+$conn = conectar();
 // Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['nickname'])) {
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
     exit();
 }
 
 // Verifica el rol del usuario
 if ($_SESSION['rol'] != 'Administrador') {
-    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    echo "<script>alert('Acceso denegado. Solo los administradores pueden acceder a esta página.'); window.history.back()</script>";
     exit();
 }
 
@@ -23,7 +19,6 @@ if ($_SESSION['estado'] != 'Activo') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -48,20 +43,30 @@ if ($_SESSION['estado'] != 'Activo') {
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="estilos.css">
     <style>
-       
-.custom-size {
-    height: 36px;
-    font-size: 17px;
-    padding: 5px 10px;
-}
+        .custom-size {
+            height: 36px;
+            font-size: 17px;
+            padding: 5px 10px;
+        }
 
-
-.custom-btn {
-    height: 36px;
-    font-size: 17px;
-    padding: 5px 12px;
-}
-
+        .custom-btn {
+            height: 36px;
+            font-size: 17px;
+            padding: 5px 12px;
+        }
+        .password-wrapper {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            z-index: 100;
+        }
     </style>
 </head>
 
@@ -72,22 +77,8 @@ if ($_SESSION['estado'] != 'Activo') {
             <i class="fas fa-bars"></i>
         </button>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control custom-size" type="text" placeholder="Buscar..." />
-                <button class="btn btn-primary custom-btn" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+
         </form>
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" data-bs-toggle="dropdown">
-                    <i class="fas fa-user fa-fw"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#!">Configuración</a></li>
-                    <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
-</form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
@@ -115,11 +106,11 @@ if ($_SESSION['estado'] != 'Activo') {
                                 
                                 <div class="col-md-6">
                                     <label class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" required>
+                                    <input type="text" class="form-control" name="nombre" id="nombre" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Apellidos</label>
-                                    <input type="text" class="form-control" name="apellido" required>
+                                    <input type="text" class="form-control" name="apellido" id="apellido" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Teléfono</label>
@@ -133,13 +124,17 @@ if ($_SESSION['estado'] != 'Activo') {
                                         <option value="Alumno">Alumno</option>
                                         <option value="Docente">Docente</option>
                                         <option value="Dependente">Dependente</option>
+                                        <option value="Kiosko">Kiosko</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Correo</label>
                                     <input type="email" class="form-control" name="correo" required>
                                 </div>
-                                
+                                <div class="col-md-6">
+                                    <label class="form-label">Código de Modificación</label>
+                                    <input type="text" class="form-control" name="modificacion" id="modificacion" readonly required>
+                                </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Código de Barra</label>
                                     <input type="text" class="form-control" name="codigobarra" required>
@@ -154,7 +149,6 @@ if ($_SESSION['estado'] != 'Activo') {
                                     <button type="button" class="toggle-password" onclick="togglePassword()">
                                         <i class="fas fa-eye" id="toggleIcon"></i>
                                     </button>
-                                    <br><br>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary" type="submit">Registrar</button>
@@ -170,7 +164,6 @@ if ($_SESSION['estado'] != 'Activo') {
         </div>
     </div>
 
-   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -178,7 +171,6 @@ if ($_SESSION['estado'] != 'Activo') {
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
-
 
     <script>
         window.addEventListener('DOMContentLoaded', event => {
@@ -211,16 +203,38 @@ if ($_SESSION['estado'] != 'Activo') {
         }
     </script>
 
-   
     <script>
-        
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const modificacionInput = document.getElementById('modificacion');
+
+        function generarModificacion() {
+            const nombre = nombreInput.value.trim().toLowerCase();
+            const apellido = apellidoInput.value.trim().toLowerCase();
+
+            if (nombre.length >= 2 && apellido.length >= 2) {
+                const letras = nombre.slice(0, 2) + apellido.slice(0, 2);
+                const numeros = '0123456789';
+                let aleatorios = '';
+                for (let i = 0; i < 4; i++) {
+                    aleatorios += numeros.charAt(Math.floor(Math.random() * numeros.length));
+                }
+                modificacionInput.value = (letras + aleatorios).toUpperCase();
+            } else {
+                modificacionInput.value = '';
+            }
+        }
+
+        nombreInput.addEventListener('input', generarModificacion);
+        apellidoInput.addEventListener('input', generarModificacion);
+        window.addEventListener('load', generarModificacion);
+
         document.querySelector('form').addEventListener('submit', function (e) {
             const inputs = this.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="password"]');
             inputs.forEach(input => {
                 input.value = input.value.trim();
             });
         });
-
 
         document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"]').forEach(input => {
             input.addEventListener('input', function () {

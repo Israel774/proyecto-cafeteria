@@ -1,5 +1,6 @@
 <?php
 include("../../conexion/conexion.php");
+$conn = conectar();
 $sql = "SELECT * FROM usuario where estado = 'activo'" ;
 
 $respuesta = mysqli_query($conn , $sql); 

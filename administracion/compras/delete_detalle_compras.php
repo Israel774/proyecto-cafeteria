@@ -1,7 +1,7 @@
 <?php
 // Incluye el archivo de conexi\u00f3n a la base de datos
 include("../../conexion/conexion.php");
-
+$conn = conectar();
 // Verifica si la solicitud es de tipo POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // Si no es POST, redirige de vuelta a la lista.

@@ -1,6 +1,6 @@
 <?php
 require "../../conexion/conexion.php";
-
+$conn = conectar();
 $fk_compras = trim($_POST['id_compra']); // ID de la compra a la que pertenece este detalle
 $fk_producto = trim($_POST['fk_producto']);
 $cantidad = trim($_POST['cantidad']);

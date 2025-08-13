@@ -1,5 +1,6 @@
 <?php
 include("../../conexion/conexion.php");
+$conn = conectar();
 session_start();
 
 // Obtener datos del formulario

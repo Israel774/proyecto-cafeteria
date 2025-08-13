@@ -1,5 +1,24 @@
 <?php
-include("conexion.php");
+  session_start();
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+include("../../conexion/conexion.php");
+$conn = conectar();
 
 $idVenta = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($idVenta <= 0) {
@@ -8,7 +27,7 @@ if ($idVenta <= 0) {
 
 $sql = "SELECT id_producto, cantidad, precio_unitario AS PrecioUni, subtotal AS SubTotal, create_date
         FROM detalle_ventas
-        WHERE id_venta = ?";
+        WHERE id_detalleventas = ?";
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {

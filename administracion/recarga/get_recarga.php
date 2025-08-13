@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../conexion/conexion.php'; // define $conn
-
+$conn = conectar();
 if (isset($_POST['id_recarga'])) {
     $id = intval($_POST['id_recarga']);
 

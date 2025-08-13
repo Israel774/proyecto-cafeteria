@@ -1,5 +1,24 @@
 <?php
+  session_start();
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
 include '../../conexion/conexion.php';
+$conn = conectar();
 
 $fechaInicio = $_GET['fechaInicio'] ?? null;
 $fechaFin = $_GET['fechaFin'] ?? null;
@@ -7,7 +26,7 @@ $fechaFin = $_GET['fechaFin'] ?? null;
 $ventas = [];
 
 if ($fechaInicio && $fechaFin) {
-    $sql = "SELECT id, id_producto, cantidad, precio_unitario, subtotal 
+    $sql = "SELECT id_detalleventas, id_producto, cantidad, precio_unitario, subtotal 
             FROM detalle_ventas 
             WHERE DATE(create_date) BETWEEN ? AND ?";
     $stmt = $conn->prepare($sql);
@@ -15,7 +34,7 @@ if ($fechaInicio && $fechaFin) {
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    $sql = "SELECT id, id_producto, cantidad, precio_unitario, subtotal FROM detalle_ventas";
+    $sql = "SELECT id_detalleventas, id_producto, cantidad, precio_unitario, subtotal FROM detalle_ventas";
     $result = $conn->query($sql);
 }
 
@@ -120,18 +139,18 @@ if ($fechaInicio && $fechaFin) {
                     <tbody>
                         <?php foreach ($ventas as $row): ?>
                             <tr>
-                                <td><?= htmlspecialchars($row['id']) ?></td>
+                                <td><?= htmlspecialchars($row['id_detalleventas']) ?></td>
                                 <td><?= htmlspecialchars($row['id_producto']) ?></td>
                                 <td><?= htmlspecialchars($row['cantidad']) ?></td>
                                 <td>Q<?= number_format($row['precio_unitario'], 2) ?></td>
                                 <td>Q<?= number_format($row['subtotal'], 2) ?></td>
                                 <td style="display: flex; gap: 6px; align-items: center;">
-                                    <a href="delete.php?id=<?= urlencode($row['id']) ?>">
+                                    <a href="delete.php?id=<?= urlencode($row['id_detalleventas']) ?>">
                                         <button type="button" title="Borrar registro" class="btn btn-danger">
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
                                     </a>
-                                    <a href="view.php?id=<?= urlencode($row['id']) ?>">
+                                    <a href="view.php?id=<?= urlencode($row['id_detalleventas']) ?>">
                                         <button type="button" class="btn" style="background-color: #f78acb; color: white;" title="Ver detalle">
                                             <i class="fa-regular fa-eye"></i>
                                         </button>

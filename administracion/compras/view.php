@@ -1,5 +1,24 @@
-<?php 
+<?php
+  session_start();
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
+
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
+    exit();
+}
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
 include("../../conexion/conexion.php");
+$conn = conectar();
 $id_compras = $_GET['id_compras'];
 $sql = "SELECT * FROM compras WHERE id_compras = '$id_compras'";
 $r = mysqli_query($conn, $sql);

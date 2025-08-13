@@ -1,6 +1,6 @@
 <?php
 include("../../conexion/conexion.php");
-
+$conn = conectar();
 $id_usuario = $_GET["id_usuario"];
 
 $sql_get_nickname = "SELECT nickname FROM usuario WHERE id_usuario = '$id_usuario'";

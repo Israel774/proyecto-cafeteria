@@ -1,5 +1,6 @@
 <?php
 require "../../conexion/conexion.php";
+$conn = conectar();
 $encargado = trim($_POST['encargado']);
 $metodo_de_pago = trim($_POST['metodo_de_pago']);
 $fk_proveedor = trim($_POST['fk_proveedor']);

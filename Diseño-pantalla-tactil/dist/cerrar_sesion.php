@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../../conexion/conexion.php'; // Ruta a tu conexión
+$conn = conectar();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $claveIngresada = hash('sha512', $_POST['clave_admin']);

@@ -1,5 +1,6 @@
 <?php
 include("../../conexion/conexion.php");
+$conn = conectar();
 $sql = "SELECT * FROM proveedor where activo=1" ;
 $respuesta = mysqli_query($conn , $sql); 
 

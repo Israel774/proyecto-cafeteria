@@ -1,15 +1,26 @@
 <?php
-// Incluye el archivo de conexi\u00f3n a la base de datos
-include("../../conexion/conexion.php");
+  session_start();
+  // Verifica si el usuario ha iniciado sesión
+  if (!isset($_SESSION['nickname'])) {
+      header('Location: ../index.php');
+      exit();
+  }
 
-// Inicia la sesi\u00f3n
-session_start();
-
-// Verifica si el usuario ha iniciado sesi\u00f3n. Si no, lo redirige.
-if (!isset($_SESSION['nickname'])) {
-    header('Location: ../index.php');
+// Verifica el rol del usuario
+if ($_SESSION['rol'] != 'Administrador') {
+    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
     exit();
 }
+
+//verifica si el usuario está activo
+if ($_SESSION['estado'] != 'Activo') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
+// Incluye el archivo de conexi\u00f3n a la base de datos
+include("../../conexion/conexion.php");
+$conn = conectar();
+
 
 // 1. Verifica que se haya pasado un ID de compra v\u00e1lido por la URL
 if (!isset($_GET['id_compras']) || empty($_GET['id_compras'])) {

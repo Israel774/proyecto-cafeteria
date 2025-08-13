@@ -1,5 +1,6 @@
 <?php 
 include("../../conexion/conexion.php");
+$conn = conectar();
     $id_compras = $_GET["id_compras"];
    
     
