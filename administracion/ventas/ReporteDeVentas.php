@@ -26,21 +26,30 @@ $fechaFin = $_GET['fechaFin'] ?? null;
 $ventas = [];
 
 if ($fechaInicio && $fechaFin) {
-    $sql = "SELECT id_detalleventas, id_producto, cantidad, precio_unitario, subtotal 
-            FROM detalle_ventas 
-            WHERE DATE(create_date) BETWEEN ? AND ?";
+    $sql = "SELECT dv.id_detalleventas, p.nombre AS nombre_producto, dv.cantidad, dv.precio_unitario, dv.subtotal 
+            FROM detalle_ventas dv
+            LEFT JOIN productos p ON dv.id_producto = p.id_productos
+            WHERE DATE(dv.create_date) BETWEEN ? AND ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $fechaInicio, $fechaFin);
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    $sql = "SELECT id_detalleventas, id_producto, cantidad, precio_unitario, subtotal FROM detalle_ventas";
+    $sql = "SELECT dv.id_detalleventas, p.nombre AS nombre_producto, dv.cantidad, dv.precio_unitario, dv.subtotal
+            FROM detalle_ventas dv
+            LEFT JOIN productos p ON dv.id_producto = p.id_productos";
     $result = $conn->query($sql);
 }
 
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $ventas[] = $row;
+        $ventas[] = [
+            'id_detalleventas' => $row['id_detalleventas'],
+            'nombre' => $row['nombre_producto'] ?? 'Producto eliminado',
+            'cantidad' => $row['cantidad'],
+            'precio_unitario' => $row['precio_unitario'],
+            'subtotal' => $row['subtotal']
+        ];
     }
 }
 
@@ -140,7 +149,7 @@ if ($fechaInicio && $fechaFin) {
                         <?php foreach ($ventas as $row): ?>
                             <tr>
                                 <td><?= htmlspecialchars($row['id_detalleventas']) ?></td>
-                                <td><?= htmlspecialchars($row['id_producto']) ?></td>
+                                <td><?= htmlspecialchars($row['nombre']) ?></td>
                                 <td><?= htmlspecialchars($row['cantidad']) ?></td>
                                 <td>Q<?= number_format($row['precio_unitario'], 2) ?></td>
                                 <td>Q<?= number_format($row['subtotal'], 2) ?></td>

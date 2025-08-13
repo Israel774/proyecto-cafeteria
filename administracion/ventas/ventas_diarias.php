@@ -1,23 +1,37 @@
 <?php
-  session_start();
-  // Verifica si el usuario ha iniciado sesión
-  if (!isset($_SESSION['nickname'])) {
-      header('Location: ../index.php');
-      exit();
-  }
+include '../../conexion/conexion.php';
+$conn = conectar(); // Conectar a la BD
 
-// Verifica el rol del usuario
-if ($_SESSION['rol'] != 'Administrador') {
-    echo "<script>alert(Acceso denegado. Solo los administradores pueden acceder a esta página.); window.history.back()</script>";
-    exit();
+// Consulta segura: trae ventas de hoy y el nombre del producto
+$sql = "
+    SELECT dv.id_detalleventas, p.nombre AS nombre_producto, dv.cantidad, dv.subtotal
+    FROM detalle_ventas dv
+    LEFT JOIN productos p ON dv.id_producto = p.id_productos
+    WHERE DATE(dv.create_date) = CURDATE()
+    ORDER BY dv.id_detalleventas ASC
+";
+
+$result = mysqli_query($conn, $sql);
+
+if(!$result){
+    die("Error en consulta: " . mysqli_error($conn));
 }
 
-//verifica si el usuario está activo
-if ($_SESSION['estado'] != 'Activo') {
-    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
-    exit();
+$ventas = [];
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $ventas[] = [
+            'id_detalleventas' => $row['id_detalleventas'],
+            'nombre' => $row['nombre_producto'] ?? 'Producto eliminado', // si no existe el producto
+            'cantidad' => $row['cantidad'],
+            'subtotal' => $row['subtotal']
+        ];
+    }
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,75 +114,32 @@ if ($_SESSION['estado'] != 'Activo') {
                                         <th>ID</th>
                                         <th>Nombre del Producto</th>
                                         <th>Cantidad</th>
+
                                         <th>Total Pagado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach ($ventas as $row): ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Gaseosa Coca-Cola 500ml</td>
-                                        <td>1</td>
-                                        <td>Q5.00</td>
+                                        <td><?= htmlspecialchars($row['id_detalleventas']) ?></td>
+                                        <td><?= htmlspecialchars($row['nombre']) ?></td>
+                                        <td><?= htmlspecialchars($row['cantidad']) ?></td>
+                                        <td>Q<?= number_format($row['subtotal'], 2) ?></td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
-                                                <a href="delete.php?id=1" class="btn btn-danger" title="Borrar">
+                                                <a href="delete.php?id=<?= urlencode($row['id_detalleventas']) ?>"
+                                                    class="btn btn-danger" title="Borrar">
                                                     <i class="fa-solid fa-xmark"></i>
                                                 </a>
-
-
-
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Tortilla con frijol y queso</td>
-                                        <td>4</td>
-                                        <td>Q30.00</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <a href="delete.php?id=2" class="btn btn-danger" title="Borrar">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </a>
-
-
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Pan dulce</td>
-                                        <td>5</td>
-                                        <td>Q40.00</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <a href="delete.php?id=3" class="btn btn-danger" title="Borrar">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </a>
-
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Café</td>
-                                        <td>7</td>
-                                        <td>Q25.00</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <a href="delete.php?id=4" class="btn btn-danger" title="Borrar">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </a>
-
-
-
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
+
+
+
                             </table>
                             <script src="https://kit.fontawesome.com/76679858d1.js" crossorigin="anonymous"></script>
                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
