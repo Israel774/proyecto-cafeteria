@@ -74,19 +74,20 @@ $resultado_proveedores = mysqli_query($conn, $sql_proveedores);
                     <div class="col-md-6">
                         <label class="form-label">Tipo de Producto</label>
                         <select class="form-select" id="proveedor" name="tipo_producto" required>
-                        <option value="<?= $row['tipo_producto'] ?>" selectet><?= $row['tipo_producto'] ?></option>
-                        <option value="comidas" >comidas</option>
-                        <option value="postres" >postres</option>
-                        <option value="bebidasfrias" >bebidas frías</option>
-                        <option value="bebidascalientes" >bebidas calientes</option>
-                        <option value="snacks" >snacks</option>
-                        <option value="dulces" >dulces</option>
-                      </select>
+                            <option value="<?= $row['tipo_producto'] ?>" selected><?= $row['tipo_producto'] ?></option>
+                            <option value="comidas">comidas</option>
+                            <option value="postres">postres</option>
+                            <option value="bebidasfrias">bebidas frías</option>
+                            <option value="bebidascalientes">bebidas calientes</option>
+                            <option value="snacks">snacks</option>
+                            <option value="dulces">dulces</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label">Código de Barra</label>
-                        <input type="text" class="form-control" name="codigobarra" value="<?= $row['codigo_barra'] ?>" required>
+                        <input type="text" class="form-control" value="<?= $row['codigo_barra'] ?>" readonly>
+                        <input type="hidden" name="codigobarra" value="<?= $row['codigo_barra'] ?>">
                     </div>
 
                     <div class="col-md-6">
