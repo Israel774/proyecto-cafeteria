@@ -58,7 +58,7 @@ if (!$datosCompra) {
 // AQU\u00cd SE A\u00d1ADE LA CL\u00c1USULA 'AND dc.estado = 1' para filtrar solo los registros activos.
 $stmt_detalles = mysqli_prepare($conn, "
     SELECT dc.*, prod.nombre AS nombre_producto
-    FROM detalle_compras dc
+    FROM detalle_compra dc
     LEFT JOIN productos prod ON dc.fk_producto = prod.id_productos
     WHERE dc.fk_compras = ? AND dc.estado = 1
 ");

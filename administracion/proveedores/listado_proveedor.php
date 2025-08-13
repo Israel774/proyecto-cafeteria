@@ -156,22 +156,18 @@ table thead th {
                     <td><?php echo $row['Nombre_De_Repartidor']; ?></td>
                     <td class="text-center">
                                             <a href="borrar.php?id_proveedor=<?php echo $row['id_proveedor']; ?>"
-                                                title="Borrar Registro">
-                                                <button type="button" class="btn btn-outline-danger btn-xs btn-margin">
+                                                title="Borrar Registro" class="btn btn-outline-danger btn-xs btn-margin">
                                                     <i class="fa-solid fa-trash-can"></i>
-                                                </button>
                                             </a>
                                             <a href="actualizar.php?id_proveedor=<?php echo $row['id_proveedor']; ?>"
-                                                title="Editar Registro">
-                                                <button type="button" class="btn btn-outline-warning btn-xs btn-margin">
+                                                title="Editar Registro" class="btn btn-outline-warning btn-xs btn-margin">
                                                     <i class="fa-solid fa-pen-to-square"></i>
-                                                </button>
                                             </a>
                                             <a href="ver.php?id_proveedor=<?php echo $row['id_proveedor']; ?>" title="Ver Registro">
-  <button type="button" class="btn btn-xs btn-outline-rosado">
-    <i class="fa-solid fa-eye"></i>
-  </button>
-</a>
+                                                <button type="button" class="btn btn-xs btn-outline-rosado">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </button>
+                                            </a>
                                         </td>
                 </tr>
                 <?php endwhile; ?>
@@ -188,18 +184,7 @@ table thead th {
                     <!-- FIN CONTENIDO -->
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">

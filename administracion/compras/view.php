@@ -17,7 +17,7 @@ if ($_SESSION['estado'] != 'Activo') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
-include("../../conexion/conexion.php");
+include_once("../../conexion/conexion.php");
 $conn = conectar();
 $id_compras = $_GET['id_compras'];
 $sql = "SELECT * FROM compras WHERE id_compras = '$id_compras'";

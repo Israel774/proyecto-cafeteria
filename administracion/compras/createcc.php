@@ -12,7 +12,7 @@ $codigo_de_barras = trim($_POST['codigo_de_barras']);
 // Calcular subtotal (cantidad * precio)
 $sub_total = $cantidad * $precio;
 
-$sql = "INSERT INTO detalle_compras 
+$sql = "INSERT INTO detalle_compra 
         (estado, fk_compras, fk_producto, cantidad, unidad_de_medida, precio, caducidad, codigo_de_barras, sub_total, createAt) 
         VALUES 
         ('1', '$fk_compras', '$fk_producto', '$cantidad', '$unidad_de_medida', '$precio', '$caducidad', '$codigo_de_barras', '$sub_total', NOW())";

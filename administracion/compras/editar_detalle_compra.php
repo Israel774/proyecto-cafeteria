@@ -49,7 +49,7 @@ if (!$compra_info) {
 // 3. Consulta para obtener todos los productos y sus detalles para esta compra
 // Se a\u00f1ade la condici\u00f3n 'estado = 1'
 $sql_detalles = "SELECT dc.id_detalle_compra, dc.cantidad, dc.precio, dc.sub_total, p.nombre, p.id_productos
-                 FROM detalle_compras dc
+                 FROM detalle_compra dc
                  LEFT JOIN productos p ON dc.fk_producto = p.id_productos
                  WHERE dc.fk_compras = ? AND dc.estado = 1";
 $stmt_detalles = mysqli_prepare($conn, $sql_detalles);

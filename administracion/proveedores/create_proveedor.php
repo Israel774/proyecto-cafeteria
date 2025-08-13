@@ -1,6 +1,5 @@
 <?php
 require "../../conexion/conexion.php";
-<<<<<<< Updated upstream
 session_start();
 
 // Validar que el usuario esté logueado
@@ -11,9 +10,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
 $usuario_id = $_SESSION['id_usuario']; // ID del usuario que crea el registro
 
-=======
 $conn = conectar();
->>>>>>> Stashed changes
 // Obtener datos del formulario
 $Nombre = trim($_POST['Nombre']);
 $Direccion = trim($_POST['Direccion']);
@@ -47,7 +44,7 @@ $sql = "INSERT INTO proveedor (
 $stmt = mysqli_prepare($conn, $sql);
 
 if ($stmt) {
-    mysqli_stmt_bind_param($stmt, "sssisssssi", 
+    mysqli_stmt_bind_param($stmt, "sssisissi", 
         $Nombre, 
         $Direccion, 
         $Tipo_Producto, 
