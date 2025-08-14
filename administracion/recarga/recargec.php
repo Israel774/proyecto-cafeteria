@@ -2,24 +2,17 @@
 session_start(); // Importante para acceder a $_SESSION
 
 require "../../conexion/conexion.php";
-<<<<<<< Updated upstream
-
-$barras      = $_POST["codigobarra"];
-$nombre      = $_POST["nombre"];
-$apellido    = $_POST["apellido"];
-=======
 $conn = conectar();
 $barras = $_POST["codigobarra"];
 $nombre = $_POST["nombre"];
 $apellido = $_POST["apellido"];
->>>>>>> Stashed changes
 $salanterior = $_POST["saldo"];
 $saltotal    = $_POST["saltotal"];
 $salrecarga  = $_POST["salrecarga"];
 $metodoPago  = $_POST["metodoPago"];
 
 // Usuario que hace la recarga
-$created_by = $_SESSION['nickname']; // o $_SESSION['id_usuario'] si usas IDs
+$created_by = $_SESSION['id_usuario']; // o $_SESSION['id_usuario'] si usas IDs
 
 // Insertar con create_by
 $sql = "INSERT INTO recarga (
