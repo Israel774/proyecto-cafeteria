@@ -1,21 +1,21 @@
 <?php
 session_start(); // para acceder a $_SESSION
-
 include("../../conexion/conexion.php");
+
 $id_recarga = $_GET["id_recarga"];
 $update_by = $_SESSION['id_usuario']; // ID del usuario logueado
 
 $conn = conectar();
 
+// Verificar que la recarga exista y esté activa
 $sql_verificar = "SELECT * FROM recarga WHERE id_recarga = '$id_recarga' AND estado = 1";
 $result = mysqli_query($conn, $sql_verificar);
 
 if ($result && mysqli_num_rows($result) > 0) {
     $recarga = mysqli_fetch_assoc($result);
     $codigoBarra = $recarga['barras'];
-    $salanterior = $recarga['salanterior'];
 
-    // Buscar el usuario que tenga ese código de barras
+    // Buscar el usuario con ese código de barras
     $sql_usuario = "SELECT nickname FROM usuario WHERE codigobarra = '$codigoBarra'";
     $res_usuario = mysqli_query($conn, $sql_usuario);
 
@@ -23,7 +23,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         $usuario = mysqli_fetch_assoc($res_usuario);
         $nickname = $usuario['nickname'];
 
-        // Verificar si ese nickname existe en la tabla clientes
+        // Verificar que el cliente exista
         $sql_cliente = "SELECT * FROM clientes WHERE nickname = '$nickname'";
         $res_cliente = mysqli_query($conn, $sql_cliente);
 
@@ -32,15 +32,18 @@ if ($result && mysqli_num_rows($result) > 0) {
             mysqli_begin_transaction($conn);
 
             try {
-                // 1. Marcar recarga como anulada y tipo = 2 (resta) + quién la actualizó
+                // Calcular monto de la recarga anulada
+                $monto = $recarga['saltotal'] - $recarga['salanterior'];
+
+                // 1. Marcar recarga como anulada (estado = 0) y tipo = 2 + quién la actualizó
                 $sql_update_recarga = "UPDATE recarga 
                     SET estado = 0, tipo = 2, update_at = NOW(), update_by = '$update_by' 
                     WHERE id_recarga = '$id_recarga'";
                 mysqli_query($conn, $sql_update_recarga);
 
-                // 2. Actualizar saldo del cliente
+                // 2. Actualizar saldo del cliente restando el monto de la recarga anulada
                 $sql_update_cliente = "UPDATE clientes 
-                    SET saldo = '$salanterior', update_at = NOW() 
+                    SET saldo = saldo - $monto, update_at = NOW() 
                     WHERE nickname = '$nickname'";
                 mysqli_query($conn, $sql_update_cliente);
 

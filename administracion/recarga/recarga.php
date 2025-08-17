@@ -95,7 +95,7 @@ if ($_SESSION['estado'] != 'Activo') {
                                     <!-- Titulo principal-->
                                 </div>
                                 <div class="card-body">
-                                    <form id="recargaForm" method="POST" action="recargec.php">
+                                    <form id="recargaForm" method="POST" action="recargec.php" target="_blank">
                                         <div class="row mb-3">
 
 
@@ -167,8 +167,8 @@ if ($_SESSION['estado'] != 'Activo') {
                                                 <label for="proveedor" class="form-label">¿Necesita Recibo?</label>
                                                 <select class="form-select" id="recibo" name="recibo" required>
                                                     <!-- Pendiente a correccion de ID, name y DB -->
-                                                    <option value="0">No</option>
-                                                    <option value="1" disabled>Si</option>
+                                                    <option value="No">No</option>
+                                                    <option value="Si">Si</option>
                                                     <!-- Aquí puedes cargar los proveedores desde base de datos -->
                                                 </select>
                                             </div>
