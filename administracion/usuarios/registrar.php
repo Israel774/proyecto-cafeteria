@@ -146,9 +146,6 @@ if ($_SESSION['estado'] != 'Activo') {
                                 <div class="col-md-6 password-wrapper">
                                     <label class="form-label">Contraseña</label>
                                     <input type="password" class="form-control" id="password" name="contraseña" required>
-                                    <button type="button" class="toggle-password" onclick="togglePassword()">
-                                        <i class="fas fa-eye" id="toggleIcon"></i>
-                                    </button>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary" type="submit">Registrar</button>
