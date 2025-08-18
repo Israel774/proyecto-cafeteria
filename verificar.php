@@ -35,7 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     } elseif ($user['tipo'] == 'Kiosko') {
                         header("Location: Diseño-pantalla-tactil/index.php");
                         exit;
-                    } else {
+                    }elseif ($user['tipo'] == 'Cajero') {
+                        header("Location: solo-recarga/index.php");
+                        exit;
+                    } elseif ($user['tipo'] == 'Reportes&productos') {
+                        header("Location: venta-productos/index.php");
+                        exit;
+                    }else {
                         // En caso de rol no reconocido
                         $_SESSION['error_message'] = "Rol de usuario no reconocido.";
                         header("Location: index.html"); // Redirige a la página de login
@@ -50,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 // En caso de usuario no encontrado
                 $_SESSION['error_message'] = "Usuario o contraseña incorrectos.";
-                header("Location: login.html"); // Redirige a la página de login
+                header("Location: index.html"); // Redirige a la página de login
                 exit;
             }
 

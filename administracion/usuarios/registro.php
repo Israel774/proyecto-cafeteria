@@ -1,7 +1,7 @@
 <?php
 include("../../conexion/conexion.php");
 $conn = conectar();
-$sql = "SELECT * FROM usuario where estado = 'activo'" ;
+$sql = "SELECT * FROM usuario where estado != 'Eliminado' && nickname != 'sistema'";
 
 $respuesta = mysqli_query($conn , $sql); 
 
@@ -21,7 +21,7 @@ if ($_SESSION['rol'] != 'Administrador') {
 }
 
 //verifica si el usuario está activo
-if ($_SESSION['estado'] != 'Activo') {
+if ($_SESSION['estado'] == 'Eliminado') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }

@@ -14,7 +14,7 @@ if ($_SESSION['rol'] != 'Kiosko') {
 }
 
 //verifica si el usuario está activo
-if ($_SESSION['estado'] != 'Activo') {
+if ($_SESSION['estado'] == 'Eliminado') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
@@ -26,7 +26,7 @@ $productos = [];
 $conn = conectar();
 
 if ($valor) {
-    $sql = "SELECT * FROM productos WHERE tipo_producto = ?";
+    $sql = "SELECT * FROM productos WHERE tipo_producto = ? && stock > 0";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $valor);
     mysqli_stmt_execute($stmt);

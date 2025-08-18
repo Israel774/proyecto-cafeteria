@@ -13,7 +13,7 @@ if ($_SESSION['rol'] != 'Administrador') {
 }
 
 //verifica si el usuario está activo
-if ($_SESSION['estado'] != 'Activo') {
+if ($_SESSION['estado'] == 'Eliminado') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
@@ -81,7 +81,7 @@ if ($_SESSION['estado'] != 'Activo') {
               
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProductos"
                 aria-expanded="false" aria-controls="collapseProductos">
-                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                <div class="sb-nav-link-icon"><i class="fas fa-coffee me-1"></i></div>
                 Productos
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
               </a>
@@ -95,7 +95,7 @@ if ($_SESSION['estado'] != 'Activo') {
 
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCompras"
                 aria-expanded="false" aria-controls="collapseCompras">
-                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                 Compras
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
               </a>
@@ -109,7 +109,7 @@ if ($_SESSION['estado'] != 'Activo') {
 
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRecargas"
                 aria-expanded="false" aria-controls="collapseRecargas">
-                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                <div class="sb-nav-link-icon"><i class="fas fa-money-bill-wave"></i></div>
                 Recargar
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
               </a>
@@ -123,7 +123,7 @@ if ($_SESSION['estado'] != 'Activo') {
 
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProveedores"
                 aria-expanded="false" aria-controls="collapseProveedores">
-                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-truck-field"></i></i></div>
                 Proveedores
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
               </a>
@@ -138,7 +138,7 @@ if ($_SESSION['estado'] != 'Activo') {
 
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas"
                 aria-expanded="false" aria-controls="collapseVentas">
-                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
                 Ventas
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
               </a>

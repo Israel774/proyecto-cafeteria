@@ -14,8 +14,8 @@ if ($_SESSION['rol'] != 'Administrador') {
     exit();
 }
 
-//verifica si el usuario está activo
-if ($_SESSION['estado'] != 'Activo') {
+// Verifica si el usuario está activo
+if ($_SESSION['estado'] == 'Eliminado') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
@@ -23,16 +23,12 @@ if ($_SESSION['estado'] != 'Activo') {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registrar Usuario</title>
-
-    <meta name="description" content="" />
-    <meta name="author" content="" />
     <title>Cafetería Liceo Pre Universitario del Norte - Registrar Usuarios</title>
+
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -42,6 +38,7 @@ if ($_SESSION['estado'] != 'Activo') {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="estilos.css">
+
     <style>
         .custom-size {
             height: 36px;
@@ -54,9 +51,11 @@ if ($_SESSION['estado'] != 'Activo') {
             font-size: 17px;
             padding: 5px 12px;
         }
+
         .password-wrapper {
             position: relative;
         }
+
         .toggle-password {
             position: absolute;
             right: 15px;
@@ -67,17 +66,23 @@ if ($_SESSION['estado'] != 'Activo') {
             cursor: pointer;
             z-index: 100;
         }
+
+        .error-message {
+            color: red;
+            font-size: 0.875em;
+            margin-top: 5px;
+            display: none;
+        }
     </style>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand ps-3" href="../index.php">Inicio</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-
         </form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
@@ -90,6 +95,7 @@ if ($_SESSION['estado'] != 'Activo') {
             </li>
         </ul>
     </nav>
+
     <div id="layoutSidenav">
         <?php include '../../conexion/menu.php'; ?>
         <div id="layoutSidenav_content">
@@ -103,10 +109,10 @@ if ($_SESSION['estado'] != 'Activo') {
                         </div>
                         <div class="card-body">
                             <form class="row g-3" method="POST" action="create.php">
-                                
                                 <div class="col-md-6">
                                     <label class="form-label">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" id="nombre" required>
+                                    <div id="nombre-error" class="error-message"></div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Apellidos</label>
@@ -122,8 +128,8 @@ if ($_SESSION['estado'] != 'Activo') {
                                         <option value="" disabled selected>Seleccionar</option>
                                         <option value="Administrador">Administrador</option>
                                         <option value="Alumno">Alumno</option>
-                                        <option value="Docente">Docente</option>
-                                        <option value="Dependente">Dependente</option>
+                                        <option value="Cajero">Cajero</option>
+                                        <option value="Reportes&productos">Ventas y Productos</option>
                                         <option value="Kiosko">Kiosko</option>
                                     </select>
                                 </div>
@@ -132,11 +138,14 @@ if ($_SESSION['estado'] != 'Activo') {
                                     <input type="email" class="form-control" name="correo" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Código de Modificación</label>
-                                    <input type="text" class="form-control" name="modificacion" id="modificacion" readonly required>
+                                    <label class="form-label">Código de cliente</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="modificacion" id="modificacion" required>
+                                        <button class="btn btn-primary" type="button" id="generarBtn">Generar nuevo</button>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Código de Barra</label>
+                                    <label class="form-label">Código SICA</label>
                                     <input type="text" class="form-control" name="codigobarra" required>
                                 </div>
                                 <div class="col-md-6">
@@ -146,6 +155,9 @@ if ($_SESSION['estado'] != 'Activo') {
                                 <div class="col-md-6 password-wrapper">
                                     <label class="form-label">Contraseña</label>
                                     <input type="password" class="form-control" id="password" name="contraseña" required>
+                                    <button type="button" class="toggle-password" onclick="togglePassword()" style="margin-top: 2.3%">
+                                        <i class="fas fa-eye" id="toggleIcon"></i>
+                                    </button>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary" type="submit">Registrar</button>
@@ -170,16 +182,15 @@ if ($_SESSION['estado'] != 'Activo') {
     <script src="js/datatables-simple-demo.js"></script>
 
     <script>
-        window.addEventListener('DOMContentLoaded', event => {
+        window.addEventListener('DOMContentLoaded', () => {
             const sidebarToggle = document.body.querySelector('#sidebarToggle');
             if (sidebarToggle) {
-                sidebarToggle.addEventListener('click', event => {
-                    event.preventDefault();
+                sidebarToggle.addEventListener('click', e => {
+                    e.preventDefault();
                     document.body.classList.toggle('sb-sidenav-toggled');
                     localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
                 });
             }
-
             if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
                 document.body.classList.toggle('sb-sidenav-toggled');
             }
@@ -190,47 +201,69 @@ if ($_SESSION['estado'] != 'Activo') {
             const icon = document.getElementById('toggleIcon');
             if (passInput.type === "password") {
                 passInput.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
+                icon.classList.replace("fa-eye", "fa-eye-slash");
             } else {
                 passInput.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
+                icon.classList.replace("fa-eye-slash", "fa-eye");
             }
         }
     </script>
 
     <script>
-        const nombreInput = document.getElementById('nombre');
-        const apellidoInput = document.getElementById('apellido');
-        const modificacionInput = document.getElementById('modificacion');
+        document.addEventListener('DOMContentLoaded', () => {
+            const nombreInput = document.getElementById('nombre');
+            const apellidoInput = document.getElementById('apellido');
+            const modificacionInput = document.getElementById('modificacion');
+            const generarBtn = document.getElementById('generarBtn');
+            const nombreErrorDiv = document.getElementById('nombre-error');
 
-        function generarModificacion() {
-            const nombre = nombreInput.value.trim().toLowerCase();
-            const apellido = apellidoInput.value.trim().toLowerCase();
+            async function generarYValidarModificacion() {
+                const nombre = nombreInput.value.trim().toLowerCase();
+                const apellido = apellidoInput.value.trim().toLowerCase();
 
-            if (nombre.length >= 2 && apellido.length >= 2) {
-                const letras = nombre.slice(0, 2) + apellido.slice(0, 2);
-                const numeros = '0123456789';
-                let aleatorios = '';
-                for (let i = 0; i < 4; i++) {
-                    aleatorios += numeros.charAt(Math.floor(Math.random() * numeros.length));
+                if (nombre.length < 2 || apellido.length < 2) {
+                    nombreErrorDiv.textContent = 'Por favor, ingresa al menos 2 letras en Nombre y Apellido para generar el código.';
+                    nombreErrorDiv.style.display = 'block';
+                    return;
+                } else {
+                    nombreErrorDiv.style.display = 'none';
                 }
-                modificacionInput.value = (letras + aleatorios).toUpperCase();
-            } else {
-                modificacionInput.value = '';
+
+                let codigoGenerado;
+                let codigoUnicoEncontrado = false;
+                let intentos = 0;
+                const maxIntentos = 10;
+
+                while (!codigoUnicoEncontrado && intentos < maxIntentos) {
+                    const letras = nombre.slice(0, 2) + apellido.slice(0, 2);
+                    const numeros = '0123456789';
+                    let aleatorios = '';
+                    for (let i = 0; i < 4; i++) {
+                        aleatorios += numeros.charAt(Math.floor(Math.random() * numeros.length));
+                    }
+                    codigoGenerado = (letras + aleatorios).toUpperCase();
+
+                    const response = await fetch('verificar_modificacion.php?modificacion=' + codigoGenerado);
+                    const data = await response.json();
+
+                    if (data.existe === false) {
+                        codigoUnicoEncontrado = true;
+                    }
+                    intentos++;
+                }
+
+                if (codigoUnicoEncontrado) {
+                    modificacionInput.value = codigoGenerado;
+                } else {
+                    nombreErrorDiv.textContent = 'No se pudo generar un código único después de varios intentos. Por favor, intente de nuevo.';
+                    nombreErrorDiv.style.display = 'block';
+                    modificacionInput.value = '';
+                }
             }
-        }
 
-        nombreInput.addEventListener('input', generarModificacion);
-        apellidoInput.addEventListener('input', generarModificacion);
-        window.addEventListener('load', generarModificacion);
-
-        document.querySelector('form').addEventListener('submit', function (e) {
-            const inputs = this.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], input[type="password"]');
-            inputs.forEach(input => {
-                input.value = input.value.trim();
-            });
+            nombreInput.addEventListener('input', generarYValidarModificacion);
+            apellidoInput.addEventListener('input', generarYValidarModificacion);
+            generarBtn.addEventListener('click', generarYValidarModificacion);
         });
 
         document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"]').forEach(input => {
@@ -242,5 +275,4 @@ if ($_SESSION['estado'] != 'Activo') {
         });
     </script>
 </body>
-
 </html>

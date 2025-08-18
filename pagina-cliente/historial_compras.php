@@ -9,6 +9,11 @@ if (!isset($_SESSION['id_usuario']) ) {
     header('Location: historial_compras.php');
     exit();
 }
+//verifica si el usuario está activo
+if ($_SESSION['estado'] == 'Eliminado') {
+    echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

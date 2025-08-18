@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="bg-gray-100 p-8">
     <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-xl no-print">
+        <h1 class="text-3xl font-bold text-center mb-6">Cafeteria Liceo PreUniversitario del Norte</h1>
         <h1 class="text-3xl font-bold text-center mb-6">Recibo de Compra</h1>
         <div class="mb-6 border-b pb-4">
             <h2 class="text-xl font-semibold mb-2">Datos del Cliente</h2>

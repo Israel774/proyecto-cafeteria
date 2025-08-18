@@ -18,7 +18,7 @@ if ($_SESSION['rol'] != 'Administrador') {
 }
 
 //verifica si el usuario está activo
-if ($_SESSION['estado'] != 'Activo') {
+if ($_SESSION['estado'] == 'Eliminado') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
@@ -125,7 +125,7 @@ if ($_SESSION['estado'] != 'Activo') {
                                             </div>
                                             <!-- Label bloqueado para mostrar saldo antes de la recarga -->
                                             <div class="col-md-6">
-                                                <label for="nombre" class="form-label">Saldo anterior</label>
+                                                <label for="nombre" class="form-label">Saldo Actual</label>
                                                 <input type="text" class="form-control" id="saldo" name="saldo"
                                                     readonly /> <!-- disabled -->
                                             </div>
@@ -201,7 +201,6 @@ if ($_SESSION['estado'] != 'Activo') {
                                             </a>
                                             -->
                         </div>
-                       
                     </main>
                     <!-- FIN CONTENIDO -->
                 </div>

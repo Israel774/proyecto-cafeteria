@@ -16,6 +16,7 @@ $estado       = 'Activo';
 $codigobarra  = trim($_POST['codigobarra']);
 $nickname     = trim($_POST['nickname']);
 $contraseña   = hash('sha512', trim($_POST['contraseña']));
+$contraseña_plana = trim($_POST['contraseña']);
 $modificacion = trim($_POST['modificacion']);
 
 $create_by = $_SESSION['id_usuario'];
@@ -46,17 +47,12 @@ if ($row_codigobarra['count'] > 0) {
     exit();
 }
 
-// Nota: No es recomendable verificar si una contraseña ya existe en la base de datos
-// antes de registrar un usuario. Dos usuarios pueden tener la misma contraseña
-// (aunque en la práctica, al usar un hash salado, esto es menos probable).
-// Por lo tanto, se ha eliminado la validación de la contraseña.
-
 $sql = "INSERT INTO usuario(
-    nombre, apellido, telefono, tipo, correo, estado, codigobarra, nickname, contraseña, modificacion, Create_by, Create_at
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+    nombre, apellido, telefono, tipo, correo, estado, codigobarra, nickname, contraseña, contraseña_plano, modificacion, Create_by, Create_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssssssss", $nombre, $apellido, $telefono, $tipo, $correo, $estado, $codigobarra, $nickname, $contraseña, $modificacion, $create_by);
+$stmt->bind_param("ssssssssssss", $nombre, $apellido, $telefono, $tipo, $correo, $estado, $codigobarra, $nickname, $contraseña, $contraseña_plana, $modificacion, $create_by);
 
 $sql2 = "INSERT INTO clientes(
     nombre, apellido, nickname, saldo, estado_de_tarjeta, Create_by, Create_at

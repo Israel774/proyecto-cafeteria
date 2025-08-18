@@ -52,7 +52,7 @@ try {
     
     if ($datos['estado'] != 'Activo') {
         $conn->rollback();
-        echo json_encode(['success' => false, 'message' => 'El usuario está inactivo y no puede realizar compras.']);
+        echo json_encode(['success' => false, 'message' => 'El usuario no está activo y no puede realizar compras.']);
         exit;
     }
 

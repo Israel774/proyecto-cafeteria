@@ -4,7 +4,7 @@ function conectar() {
     date_default_timezone_set("America/Guatemala");
     $hostname = "localhost";
     $user = "root";
-    $password = "";
+    $password = "LOSMASGALLOSDELPREUSEXTOCOMPU2025";
     $database = "cafeteria";
     $conn = new mysqli($hostname, $user, $password, $database);
     if ($conn->connect_error) {

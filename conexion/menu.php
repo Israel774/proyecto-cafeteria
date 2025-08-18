@@ -9,18 +9,18 @@ $menu = [
         ]
     ],
     'Productos' => [
-        'icono' => 'fas fa-user',
+        'icono' => 'fas fa-coffee me-1',
         'submenu' => [
             'Registro de Productos' => '../productos/registrar-producto.php',
             'Productos Registrados' => '../productos/productos_registrados.php',
         ]
     ],
     'Compras' => [
-        'icono' => 'fas fa-user',
+        'icono' => 'fa-solid fa-cart-shopping',
         'submenu' => [
             'Compra de Productos' => '../compras/compras.php',
             'Compras registradas' => '../compras/listado.php',
-         ]
+        ]
     ],
     'Recargar' => [
         'icono' => 'fas fa-money-bill-wave',
@@ -31,7 +31,7 @@ $menu = [
         ]
     ],
     'Proveedores' => [
-        'icono' => 'fa-solid fa-cash-register',
+        'icono' => 'fa-solid fa-truck-field',
         'submenu' => [
             'Registro de Proveedores' => '../proveedores/proveedor.php',
             'Listado de proveedores' => '../proveedores/listado_proveedor.php'

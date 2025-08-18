@@ -13,7 +13,7 @@ if ($_SESSION['rol'] != 'Administrador') {
 }
 
 //verifica si el usuario está activo
-if ($_SESSION['estado'] != 'Activo') {
+if ($_SESSION['estado'] == 'Eliminado') {
     echo "<script>alert('Cuenta inactiva. Consulta con los administradores si se trata de algun error'); window.history.back();</script>";
     exit();
 }
@@ -90,10 +90,8 @@ if ($fechaInicio && $fechaFin) {
                 <i class="fas fa-user fa-fw"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Configuración</a></li>
-                <li><a class="dropdown-item" href="#!">Actividad</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+                <li><a class="dropdown-item" href="../../pagina_administracion.php">Exit</a></li>
+                <li><a class="dropdown-item" href="../../cerrar-sesion.php">Logout</a></li>
             </ul>
         </li>
     </ul>
